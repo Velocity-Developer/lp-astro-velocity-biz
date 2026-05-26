@@ -1,0 +1,76 @@
+name: Deploy on package version update
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - package.json
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.version.outputs.changed }}
+      previous-version: ${{ steps.version.outputs.previous-version }}
+      current-version: ${{ steps.version.outputs.current-version }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check package version change
+        id: version
+        shell: bash
+        run: |
+          current_version=$(node -p "require('./package.json').version")
+          before_sha="${{ github.event.before }}"
+
+          if [ "$before_sha" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$before_sha:package.json" 2>/dev/null; then
+            previous_version=$(git show "$before_sha:package.json" | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8')).version")
+          else
+            previous_version=""
+          fi
+
+          echo "previous-version=$previous_version" >> "$GITHUB_OUTPUT"
+          echo "current-version=$current_version" >> "$GITHUB_OUTPUT"
+
+          if [ "$previous_version" != "$current_version" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  build-and-deploy:
+    needs: check-version
+    if: needs.check-version.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro
+        run: npm run build
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./dist/
+          server-dir: /
