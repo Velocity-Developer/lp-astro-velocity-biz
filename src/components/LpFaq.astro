@@ -1,0 +1,88 @@
+---
+
+const faqs = [
+  {
+    question: "Pengerjaan berapa lama?",
+    answer: "Lama pengerjaan 3 hari sampai 10 hari kerja, menyesuaikan paket yang dipilih"
+  },
+  {
+    question: "Apakah bisa DP untuk pembayarannya?",
+    answer: "Bisa, Untuk menjaga kenyamanan bertransaksi kami menyediakan opsi pembayaran DP 50%."
+  },
+  {
+    question: "Apakah bisa dibantu memasarkan produk kami di dunia online?",
+    answer: "Bisa, kami punya tim pemasaran iklan google yang berpengalaman."
+  },
+  {
+    question: "Apakah bisa meningkatkan omzet usaha?",
+    answer: "Bisa, dengan menggunakan layanan iklan google kami bisa membantu anda menemukan calon customer/klien baru di pencarian google."
+  },
+  {
+    question: "Apakah dapat email bisnis?",
+    answer: "Dapat, anda akan mendapat email bisnis profesional sesuai nama domain anda contoh: nama@domain.com"
+  },
+  {
+    question: "Apakah ada tutorial penggunakaan websitenya?",
+    answer: "Ada, kami menyediakan tutorial pengelolaan website."
+  },
+  {
+    question: "Apakah ada pemanduan jika mau mengedit web atau posting artikel/ berita?",
+    answer: "Ada, kami bantu anda lewat wa, telpon, maupun berbagi layar komputer, sesuai permintaan anda."
+  },
+  {
+    question: "Apakah hosting benar-benar unlimited ?",
+    answer: "Ya, hosting Unlimited tidak ada batasan dari kapasitas hostingnya. Pembatasan dari jumlah inodes di hostingnya. Paket A = 100k inodes, Paket B = 200k inodes, Paket C = 300k inodes."
+  },
+  {
+    question: "Apakah dibantu perbaikan jika web kena hacker?",
+    answer: "Ya, kami bantu perbaikan jika kena hacker"
+  },
+  {
+    question: "Jika website rusak/error bagaimana?",
+    answer: "akan dibantu mengatasi kerusakan oleh tim support kami, tim support kami online setiap hari tanpa libur"
+  },
+  {
+    question: "Apakah data hilang jika website rusak?",
+    answer: "Data tidak hilang, data masih kami simpan dalam sistem backup yang mumpuni dengan teknologi terbaru"
+  }
+]
+---
+<section id="faq" class="px-6 py-12 md:py-20 bg-radial-[at_50%_15%] from-rose-50 via-blue-50 to-cyan-50">
+    <div class="mx-auto max-w-4xl">
+        
+        <h2 class="text-center font-bold text-2xl md:text-4xl mb-2 md:mb-3">
+            FAQ
+        </h2>
+        <p class="text-center mb-6 md:mb-10">Pertanyaan yang sering ditanyakan seputar pembuatan website</p>
+
+        <div class="space-y-1 md:space-y-3" x-data="{ open: null }">            
+            {faqs.map((item,i) => (
+                <div class="group shadow hover:shadow-md rounded-xl bg-white">
+                    <button type="button" @click={`open === ${i} ? open = null : open = ${i}`} class="px-4 md:px-6 py-3 md:py-6 w-full flex items-center cursor-pointer gap-3 group-hover:text-sky-700">
+                        <span class="text-blue-500">
+                            <svg x-show={`open !== ${i}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                            </svg>
+                            <svg x-show={`open === ${i}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                            </svg>
+                        </span>
+                        <div class="font-medium text-left text-slate-700">
+                            {item.question}
+                        </div>
+                    </button>
+                    <div 
+                      x-show={`open === ${i}`} 
+                      x-transition
+                      class="px-6 pb-6 text-slate-600 text-sm"
+                    >
+                        {item.answer}
+                    </div>
+                </div>
+            ))}
+        </div>
+
+    </div>
+</section>

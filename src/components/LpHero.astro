@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import Button from '../components/LpButton.astro';
+import ImgLpHero from '../assets/home-hero.webp';
+
+const items = [
+    'Garansi dari hacker dan virus',
+    'Gratis pemanduan setiap hari',
+    'Hosting unlimited*, muat banyak foto',
+    'Harga terjangkau',
+    '5.000 klien aktif',
+    'Pengalaman 13 tahun+'
+]
+---
+
+<section id="hero" class="relative w-full text-white bg-linear-to-r from-blue-800 to-sky-600 pt-30 px-6 md:px-10 xl:px-0 md:pt-20 md:pb-10">			
+    <div
+        class="absolute inset-0 z-0 opacity-50"
+        style="
+        background-image:linear-gradient(to right, #e7e5e4 1px, transparent 1px),linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);
+        background-size:20px 20px;
+        background-position: 00,00;
+        mask-image: repeating-linear-gradient(
+                    to right,
+                    black 0px,
+                    black 3px,
+                    transparent 3px,
+                    transparent 8px
+                    ),
+                    repeating-linear-gradient(
+                    to bottom,
+                    black 0px,
+                    black 3px,
+                    transparent 3px,
+                    transparent 8px
+                    ),
+                    radial-gradient(ellipse 80% 80% at 100% 0%, #000 50%, transparent 90%);
+        -webkit-mask-image: repeating-linear-gradient(
+                    to right,
+                    black 0px,
+                    black 3px,
+                    transparent 3px,
+                    transparent 8px
+                    ),
+                    repeating-linear-gradient(
+                    to bottom,
+                    black 0px,
+                    black 3px,
+                    transparent 3px,
+                    transparent 8px
+                    ),
+                radial-gradient(ellipse 80% 80% at 100% 100%, #000 50%, transparent 90%);
+                    
+            mask-composite: intersect;
+            -webkit-mask-composite: source-in;
+        "
+    />
+    <div class="flex flex-col md:flex-row items-center md:justify-between mx-auto max-w-7xl min-h-[40em] md:min-h-[50vh] relative z-1">
+        <div class="md:basis-lg xl:basis-1/2 space-y-8 text-center md:text-left pb-4 md:pr-4">
+            
+            <h1 class="font-extrabold text-3xl md:text-4xl xl:text-5xl">
+                Jasa Pembuatan Website <br>Terpercaya Sejak 2009
+            </h1>
+            <h2 class="md:max-w-xl text-sm md:text-base">
+                Tingkatkan kredibilitas dan jangkauan Anda dengan website yang dirancang sesuai kebutuhan: usaha, bisnis, sekolah, instansi, hingga toko online dan sebagainya.
+            </h2>
+            <div class="">
+                <Button link="https://wa.me/6285600566674?text=Hallo%2C%20Saya%20tertarik%20buat%20website%20di%20Velocity%20Developer.%20Mohon%20infonya." target="_blank" className="cta-wa-button cta-wa-hero-consultation">
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                        </svg>
+                        Konsultasi Gratis, Respon 1 Menit
+                    </div>
+                </Button>
+            </div>
+
+        </div>
+
+        <div class="flex-1 flex justify-end px-5 md:p-0">
+            <Image src={ImgLpHero} width="450" class="object-contain" alt="Hero LP" fetchpriority="high" loading="eager"/>
+        </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl overflow-hidden whitespace-nowrap text-white pb-4 md:pb-0">
+        <div class="overflow-hidden marquee-container">
+            <div class="marquee-track flex text-sm md:text-lg">
+                <div class="marquee-content flex">
+                    {items.map((item) => (
+                        <div class="mr-2 md:mr-8 flex gap-1 opacity-75 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                            </svg>
+                            { item }
+                        </div>
+                    ))}
+                </div>
+
+                <!-- clone -->
+                <div class="marquee-content flex">
+                    {items.map((item) => (
+                        <div class="mr-2 md:mr-8 flex gap-1 opacity-75 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                            </svg>
+                            { item }
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

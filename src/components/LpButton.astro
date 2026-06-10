@@ -1,0 +1,38 @@
+---
+const {
+    type= 'link',
+    link= '',
+    target= '_self',
+    color= 'primary',
+    className= ''
+} = Astro.props;
+
+const baseClass = 'px-10 py-3 rounded-full inline-block transition-shadow duration-300 hover:shadow-md cursor-pointer';
+
+const colorMap = {
+    primary: 'bg-linear-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-900 text-white',
+    secondary: 'bg-linear-to-r from-slate-500 to-slate-800 hover:from-slate-600 hover:to-slate-900 text-white'
+} as any
+const colorClass = colorMap[color] || colorMap.primary;
+---
+
+{type === 'link' ? (
+    <a   
+        href={link} 
+        target={target}
+        class={`${baseClass} ${colorClass} ${className}`}
+        x-data="{ loading: false }"
+        @click="loading = true"
+    >
+        <slot />
+    </a>
+) : (
+    <button 
+        type="button"
+        class={`${baseClass} ${colorClass} ${className}`}
+        x-data="{ loading: false }"
+        @click="loading = true"
+    >
+        <slot />
+    </button>
+)}
