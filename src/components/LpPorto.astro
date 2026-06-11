@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import ImgPartnerLegal from '../assets/porto/partnerlegal.id.webp';
+import ImgKaltengDailyCom from '../assets/porto/kaltengdaily.com.webp';
+import ImgTiketGoyCom from '../assets/porto/tiketgoy.com.webp';
+import ImgFahmitourCom from '../assets/porto/fahmitour.com.webp';
+import ImgPrimadutatourCom from '../assets/porto/primadutatour.com.webp';
+import ImgLetsexExploreIndonesiaCom from '../assets/porto/letsexploreindonesia.com.webp';
+const items = [
+    {
+        title: 'letsexploreindonesia.com',
+        image: ImgLetsexExploreIndonesiaCom
+    },
+    {
+        title: 'partnerlegal.id',
+        image: ImgPartnerLegal
+    },
+    {
+        title: 'kaltengdaily.com',
+        image: ImgKaltengDailyCom
+    },
+    {
+        title: 'tiketgoy.com',
+        image: ImgTiketGoyCom
+    },
+    {
+        title: 'fahmitour.com',
+        image: ImgFahmitourCom
+    },
+    {
+        title: 'primadutatour.com',
+        image: ImgPrimadutatourCom
+    },
+]
+
+---
+<div class="overflow-x-auto -mt-30 px-4 max-w-360 mx-auto">
+    <div class="flex gap-2">
+        {items.map((item) => (
+            <div class="w-[33.33%] md:w-[25%] text-center">
+                <Image src={item.image} alt={item.title} loading="lazy" class="w-full object-contain"/>
+                <div class="text-sm bg-blue-700 text-white p-2">
+                    {item.title}
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
