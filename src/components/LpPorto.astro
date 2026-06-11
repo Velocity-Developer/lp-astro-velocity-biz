@@ -7,10 +7,17 @@ import ImgFahmitourCom from '../assets/porto/fahmitour.com.webp';
 import ImgPrimadutatourCom from '../assets/porto/primadutatour.com.webp';
 import ImgLetsexExploreIndonesiaCom from '../assets/porto/letsexploreindonesia.com.webp';
 import ImgZehntenMassageCom from '../assets/porto/zehnten-massage.ch.webp';
+import ImgSumberanekametalCom from '../assets/porto/sumberanekametal.com.webp';
+import ImgDemondhygieneklinieknlCom from '../assets/porto/demondhygienekliniek.nl.webp';
+import ImgGolkarlamonganCom from '../assets/porto/golkarlamongan.com.webp';
 const items = [
     {
         title: 'letsexploreindonesia.com',
         image: ImgLetsexExploreIndonesiaCom
+    },
+    {
+        title: 'demondhygienekliniek.nl',
+        image: ImgDemondhygieneklinieknlCom
     },
     {
         title: 'zehnten-massage.ch',
@@ -36,6 +43,14 @@ const items = [
         title: 'primadutatour.com',
         image: ImgPrimadutatourCom
     },
+    {
+        title: 'sumberanekametal.com',
+        image: ImgSumberanekametalCom
+    },
+    {
+        title: 'golkarlamongan.com',
+        image: ImgGolkarlamonganCom
+    },
 ]
 
 const carouselItems = [
@@ -55,7 +70,7 @@ const carouselItems = [
             <div class="swiper-slide pb-2">
                 <div class="carousel-cell-container relative">
                     <Image src={item.image} alt={item.title} loading="lazy" class="w-full object-contain shadow-md"/>
-                    <div class="caption absolute bottom-0 left-0 right-0 text-center text-sm px-2 pb-2 transition-all duration-300">                        
+                    <div class="caption absolute bottom-0 left-0 right-0 pb-1 px-1 text-center text-sm transition-all duration-300">                        
                         <div class="bg-teal-600 rounded-full text-white p-2 shadow-md">
                             {item.title}
                         </div>
@@ -109,4 +124,14 @@ const carouselItems = [
 </script>
 
 <style>
+    .mySwiper:not(.swiper-coverflow.swiper-3d) {
+        opacity: 0;
+    }
+    .mySwiper .swiper-slide:not(.swiper-slide-active) .caption {
+        opacity: 0;
+        transform: translateY(150%);
+    }
+    .mySwiper .swiper-slide:not(.swiper-slide-active) img {
+        filter: grayscale(70%);
+    }
 </style>
