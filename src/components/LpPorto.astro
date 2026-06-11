@@ -6,10 +6,15 @@ import ImgTiketGoyCom from '../assets/porto/tiketgoy.com.webp';
 import ImgFahmitourCom from '../assets/porto/fahmitour.com.webp';
 import ImgPrimadutatourCom from '../assets/porto/primadutatour.com.webp';
 import ImgLetsexExploreIndonesiaCom from '../assets/porto/letsexploreindonesia.com.webp';
+import ImgZehntenMassageCom from '../assets/porto/zehnten-massage.ch.webp';
 const items = [
     {
         title: 'letsexploreindonesia.com',
         image: ImgLetsexExploreIndonesiaCom
+    },
+    {
+        title: 'zehnten-massage.ch',
+        image: ImgZehntenMassageCom
     },
     {
         title: 'partnerlegal.id',
@@ -33,16 +38,62 @@ const items = [
     },
 ]
 
+const carouselItems = [
+    items[items.length - 2],
+    items[items.length - 1],
+    ...items,
+    items[0],
+    items[1],
+]
+
 ---
-<div class="overflow-x-auto -mt-30 px-4 max-w-360 mx-auto">
-    <div class="flex gap-2">
-        {items.map((item) => (
-            <div class="w-[33.33%] md:w-[25%] text-center">
-                <Image src={item.image} alt={item.title} loading="lazy" class="w-full object-contain"/>
-                <div class="text-sm bg-blue-700 text-white p-2">
-                    {item.title}
+<div class="lp-porto-carousel -mt-30 px-4 max-w-360 mx-auto">
+    
+    <div class="main-carousel" data-flickity='{"contain": true, "autoPlay": 1500, "prevNextButtons": false, "pageDots": false, "freeScroll": false, "wrapAround": true }'>
+        {items.map((item, index) => (
+            <div class="carousel-cell">
+                <div class="carousel-cell-container relative">
+                    <Image src={item.image} alt={item.title} loading="lazy" class="w-full object-contain"/>
+                    <div class="caption text-center text-sm bg-slate-900 text-white p-2">
+                        {item.title}
+                    </div>
                 </div>
             </div>
         ))}
     </div>
+
 </div>
+
+
+<!-- flickity -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+<style>
+    .carousel-cell .carousel-cell-container {
+        transition: all 0.3s ease-in-out;
+    }
+    .carousel-cell:not(.is-selected) .carousel-cell-container {
+        transform: scale(0.75);
+    }
+    .carousel-cell .carousel-cell-container img {
+        transition: all 0.3s ease-in-out;
+    }
+    .carousel-cell .caption {
+        transition: all 0.3s ease-in-out;
+    }
+    .carousel-cell:not(.is-selected) .caption {
+        opacity: 0;
+    }
+    .carousel-cell:hover .caption {
+        opacity: 100;
+    }
+    .lp-porto-carousel .carousel-cell {
+        width: 33.33%;
+    }
+    @media screen and (min-width: 768px) {
+        .lp-porto-carousel .carousel-cell {
+            width: 20%;
+        }
+    }
+</style>
