@@ -47,53 +47,66 @@ const carouselItems = [
 ]
 
 ---
-<div class="lp-porto-carousel -mt-30 px-4 max-w-360 mx-auto">
-    
-    <div class="main-carousel" data-flickity='{"contain": true, "autoPlay": 1500, "prevNextButtons": false, "pageDots": false, "freeScroll": false, "wrapAround": true }'>
+<div class="lp-porto-carousel -mt-30 md:-mt-30 px-4 max-w-360 mx-auto">
+        
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
         {items.map((item, index) => (
-            <div class="carousel-cell">
+            <div class="swiper-slide pb-2">
                 <div class="carousel-cell-container relative">
-                    <Image src={item.image} alt={item.title} loading="lazy" class="w-full object-contain"/>
-                    <div class="caption text-center text-sm bg-slate-900 text-white p-2">
-                        {item.title}
+                    <Image src={item.image} alt={item.title} loading="lazy" class="w-full object-contain shadow-md"/>
+                    <div class="caption absolute bottom-0 left-0 right-0 text-center text-sm px-2 pb-2 transition-all duration-300">                        
+                        <div class="bg-teal-600 rounded-full text-white p-2 shadow-md">
+                            {item.title}
+                        </div>
                     </div>
                 </div>
             </div>
         ))}
-    </div>
-
+  </div>
 </div>
 
 
-<!-- flickity -->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+
+<script type="module">        
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.mjs'
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: false,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            modifier: 1,
+            slideShadows: true,
+        },
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        loop: true,
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+                coverflowEffect: {
+                    depth: 100,
+                }
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                coverflowEffect: {
+                    depth: 300,
+                }
+            },
+        },
+    });
+</script>
 
 <style>
-    .carousel-cell .carousel-cell-container {
-        transition: all 0.3s ease-in-out;
-    }
-    .carousel-cell:not(.is-selected) .carousel-cell-container {
-        transform: scale(0.75);
-    }
-    .carousel-cell .carousel-cell-container img {
-        transition: all 0.3s ease-in-out;
-    }
-    .carousel-cell .caption {
-        transition: all 0.3s ease-in-out;
-    }
-    .carousel-cell:not(.is-selected) .caption {
-        opacity: 0;
-    }
-    .carousel-cell:hover .caption {
-        opacity: 100;
-    }
-    .lp-porto-carousel .carousel-cell {
-        width: 33.33%;
-    }
-    @media screen and (min-width: 768px) {
-        .lp-porto-carousel .carousel-cell {
-            width: 20%;
-        }
-    }
 </style>
