@@ -10,6 +10,7 @@ const {
 const baseClass = 'px-10 py-3 rounded-full inline-block transition-shadow duration-300 hover:shadow-md cursor-pointer';
 
 const colorMap = {
+    yellow: 'bg-linear-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-700 text-white',
     primary: 'bg-linear-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-900 text-white',
     secondary: 'bg-linear-to-r from-slate-500 to-slate-800 hover:from-slate-600 hover:to-slate-900 text-white'
 } as any
@@ -23,6 +24,7 @@ const colorClass = colorMap[color] || colorMap.primary;
         class={`${baseClass} ${colorClass} ${className}`}
         x-data="{ loading: false }"
         @click="loading = true"
+        data-color={color}
     >
         <slot />
     </a>
