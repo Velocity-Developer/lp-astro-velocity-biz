@@ -1,157 +1,62 @@
 ---
 import Button from '../components/LpButton.astro';
-const items = [
+const benefits = [
     {
-        slug: 'paket-a',
-        title: 'Paket A',
-        caption: 'Cocok untuk Individu atau UMKM yang baru mulai',
-        price: 'Rp 3.000.000',
-        price_slash: 'Rp 6.000.000',
-        email: 4,
-        color: 'from-teal-400 to-teal-600 group-hover:from-teal-300'
+        title: 'Unlimited Hosting',
+        description: 'Bebas tampung data tanpa batasan ruang.',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-hdd-rack" viewBox="0 0 16 16"> <path d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1M3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m2 7a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-2.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/> <path d="M2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1v2H2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1V7h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm13 2v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1m0 7v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1m-3-4v2H4V7z"/> </svg>',
     },
     {
-        slug: 'paket-b',
-        title: 'Paket B',
-        caption: 'Cocok untuk Bisnis Berkembang dengan kebutuhan tinggi',
-        price: 'Rp 6.000.000',
-        price_slash: 'Rp 10.000.000',
-        email: 8,
-        color: ' from-blue-400 to-blue-600  group-hover:from-blue-300'
+        title: 'Halaman Unlimited',
+        description: 'Buat halaman website sebanyak apa pun yang Anda butuhkan.',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16"> <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2"/> <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0"/> </svg>'
     },
     {
-        slug: 'paket-c',
-        title: 'Paket C',
-        caption: 'Cocok Organisasi & Perusahaan Besar untuk kebutuhan custom',
-        price: 'Rp 9.000.000',
-        price_slash: 'Rp 15.000.000',
-        email: 12,
-        color: ' from-indigo-400 to-indigo-600 group-hover:from-indigo-300'
+        title: 'Bebas Masalah Teknis',
+        description: 'Punya website tidak perlu pusing mikirin server, kapasitas habis, resource rendah, atau masalah teknis lainnya.',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16"> <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/> </svg>'
+    },
+    {
+        title: 'All-in-One Service',
+        description: 'Tidak ada biaya tambahan, semua sudah terkover di paket 3 juta ini!.',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16"> <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/> </svg>'
     }
 ]
-
-const packageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Daftar Paket Jasa Pembuatan Website Velocity Developer',
-    itemListElement: items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-            '@type': 'Product',
-            name: item.title,
-            description: item.caption,
-            category: 'Jasa Pembuatan Website',
-            brand: {
-                '@type': 'Brand',
-                name: 'Velocity Developer'
-            },
-            offers: {
-                '@type': 'Offer',
-                price: item.price.replace(/\D/g, ''),
-                priceCurrency: 'IDR',
-                availability: 'https://schema.org/InStock',
-                url: `https://wa.me/6285600566674?text=Hallo%2C%20Saya%20tertarik%20dengan%20${encodeURIComponent(item.title)}%20di%20Velocity%20Developer.%20Mohon%20infonya.`
-            }
-        }
-    }))
-}
 ---
 
-<section id="paketweb" class="px-6 py-12 md:py-30 bg-radial-[at_50%_15%] from-white via-slate-50 to-gray-50">
-    <script type="application/ld+json" set:html={JSON.stringify(packageSchema)} />
+<section id="paketweb" class="px-10 py-30 text-white bg-linear-to-r from-blue-800 to-sky-600">
 
-    <div class="mx-auto max-w-7xl">
-        <h2 class="text-center font-bold text-2xl md:text-4xl mb-6 md:mb-10">
-            Harga Web
+    <div class="mx-auto max-w-4xl">
+        <h2 class="text-center font-medium text-base md:text-xl mb-5">
+            Harga Website
         </h2>
-        <div class="grid grid-cols-12 gap-3 md:gap-5 xl:gap-10">
+        <div class="text-4xl md:text-6xl font-bold text-yellow-300 tracking-tighter text-center">
+            Rp 3.000.000
+        </div>
+        <p class="text-sm md:text-base text-center mt-4 text-blue-200">
+        Untuk semua kebutuhan web, perusahaan, bisnis, toko online, portal berita, instansi, sekolah dan lainnya
+        </p>
 
-            {items.map((item) => (
-                <div class="col-span-12 md:col-span-6 xl:col-span-4 shadow-sm hover:shadow-xl rounded-xl bg-white overflow-hidden group">
-                    <div class={`px-5 py-5 text-xl md:text-2xl font-bold text-white bg-linear-to-r text-center ${item.color}`}>
-                        {item.title}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-15 md:mt-25">
+            {benefits.map((item) => (
+                <div class="flex gap-5 md:gap-8">
+                    <div>
+                        <span set:html={item.icon} class="w-25 h-25"></span>
                     </div>
-                    <div class="p-8 md:px-12">
-                        <p class="text-sm text-center text-slate-500">{item.caption}</p>
-                        <p class="mt-5 text-sm md:text-xl text-center text-rose-600 font-medium line-through">
-                            {item.price_slash}
-                        </p>
-                        <h3 class="mt-1 text-2xl md:text-3xl font-extrabold tracking-tighter text-center bg-linear-to-r from-slate-600 to-slate-900 group-hover:from-slate-400 text-transparent bg-clip-text">
-                            {item.price}
+                    <div>
+                        <h3 class="font-bold text-base md:text-2xl">
+                            {item.title}
                         </h3>
-                        <ul class="mt-6">
-                            <li class="px-4 py-1 flex items-start justify-start gap-2">
-                                <span class="inline-block mt-1 text-teal-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
-                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
-                                    </svg>
-                                </span>  
-                                Unlimited Hosting
-                            </li>
-                            <li class="px-4 py-1 flex items-start justify-start gap-2">
-                                <span class="inline-block mt-1 text-teal-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
-                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
-                                    </svg>
-                                </span>  
-                                Tutorial Kelola Website
-                            </li>
-                            <li class="px-4 py-1 flex items-start justify-start gap-2">
-                                <span class="inline-block mt-1 text-teal-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
-                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
-                                    </svg>
-                                </span>  
-                                Gratis Tanya Jawab
-                            </li>
-                            <li class="px-4 py-1 flex items-start justify-start gap-2">
-                                <span class="inline-block mt-1 text-teal-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
-                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
-                                    </svg>
-                                </span>  
-                                Gratis Panduan Kelola Website
-                            </li>
-                            <li class="px-4 py-1 flex items-start justify-start gap-2">
-                                <span class="inline-block mt-1 text-teal-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
-                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
-                                    </svg>
-                                </span>  
-                                Garansi Hacker & Virus
-                            </li>
-                            <li class="px-4 py-1 flex items-start justify-start gap-2">
-                                <span class="inline-block mt-1 text-teal-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
-                                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
-                                    </svg>
-                                </span>  
-                                {item.email} Email Profesional
-                            </li>
-                        </ul>
-                        
-                        <div class="text-center mt-10">
-                            <Button link="https://wa.me/6285600566674?text=Hallo%2C%20Saya%20tertarik%20buat%20website%20di%20Velocity%20Developer.%20Mohon%20infonya." target="_blank" color="secondary" className={`cta-wa-button cta-wa-pricing-${item.slug}`}>
-                                <div class="flex items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
-                                        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-                                    </svg>
-                                    Hubungi Kami
-                                </div>
-                            </Button>
-                        </div>
+                        <p class="text-xs md:text-sm text-blue-100">
+                            {item.description}
+                        </p>
                     </div>
                 </div>
             ))}
-
         </div>
+
+    
+
 
     </div>
 </section>

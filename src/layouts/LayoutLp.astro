@@ -1,0 +1,99 @@
+---
+import '../styles/global.css'
+import LpHeader from '../components/LpHeader.astro';
+import LpFooter from '../components/LpFooter.astro';
+
+// Ambil path URL saat ini (misal: /about)
+const pathname = new URL(Astro.url).pathname;
+
+//SEO props
+const {
+  title = 'Velocity Developer',
+  description = 'Jasa Pembuatan Website, Profile, Toko Online, Sekolah, Berita',
+  keywords = 'Jasa Pembuatan Website, Profile, Toko Online, Sekolah, Berita',
+  image = '/default-og.jpg',
+  noindex = false
+} = Astro.props;
+
+const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
+---
+
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<meta name="generator" content={Astro.generator} />
+
+		 <!-- Basic SEO -->
+		<title>{title} | {description}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		
+		<!-- Google / Search Engine Tags -->
+		<meta itemprop="name" content={title+' | '+description} />
+		<meta itemprop="description" content={description} />
+		<meta itemprop="image" content={image} />
+
+		<!-- Open Graph -->
+		<meta property="og:title" content={title+' | '+description} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+		<meta property="og:type" content="website" />
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title+' | '+description} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={image} />
+		
+		<link rel="preload" href="/fonts/PlusJakartaSans-400.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="/fonts/PlusJakartaSans-500.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="/fonts/PlusJakartaSans-600.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="/fonts/PlusJakartaSans-700.woff2" as="font" type="font/woff2" crossorigin>
+
+		<!-- Meta Pixel Code -->
+		<script is:inline define:vars={{ pixelId }}>
+			!function(f,b,e,v,n,t,s)
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window, document,'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', pixelId);
+			fbq('track', 'PageView');
+		</script>
+		
+		<noscript>
+			<img height="1" width="1" style="display:none"
+			src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`} />
+		</noscript>
+		<!-- End Meta Pixel Code -->		 
+		 
+		<meta name="facebook-domain-verification" content="c6nwminm770ig65qg42dju7zebkaea" />
+
+	</head>
+	<body>
+	<div class="relative text-gray-800">
+		<LpHeader currentPath={pathname} client:load/>
+			<slot />
+		<LpFooter />
+	</div>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+  		font-family: "PlusJakartaSans", sans-serif;
+  		scroll-behavior: smooth;
+	}
+</style>
