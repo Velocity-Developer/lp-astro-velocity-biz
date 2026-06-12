@@ -45,7 +45,7 @@ const wa = '6285600566674';
     </h3>
     {fields.map((item) => (
         <div class="mb-4">
-            <label class="block mb-1 text-sm text-slate-600">{item.label}</label>
+            <label class="block mb-1 text-sm text-slate-600" for={item.name}>{item.label}</label>
             {(item.type === 'text') && 
                 <input class="w-full p-2 border border-slate-300 rounded-md" type="text" name={item.name} placeholder={item.placeholder} x-model={`form.${item.name}`} required />
             }
