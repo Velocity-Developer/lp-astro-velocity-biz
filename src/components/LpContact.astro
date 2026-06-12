@@ -24,22 +24,10 @@ const fields = [
         placeholder: 'Nama anda'
     },
     {
-        label: 'Usia',
-        name: 'usia',
-        type: 'number',
-        placeholder: 'Usia anda'
-    },
-    {
         label: 'No Hp',
         name: 'no_hp',
         type: 'number',
         placeholder: 'No Hp anda'
-    },
-    {
-        label: 'Kebutuhan website',
-        name: 'kebutuhan_website',
-        type: 'textarea',
-        placeholder: 'Jelaskan kebutuhan website anda'
     },
 ]
 
@@ -86,9 +74,7 @@ const wa = '6285600566674';
                     x-data={`{
                         form: {
                             nama: '',
-                            usia: '',
-                            no_hp: '',
-                            kebutuhan_website: ''
+                            no_hp: ''
                         },
                         wa: '${wa}',
                         get isValid() {
@@ -99,9 +85,7 @@ const wa = '6285600566674';
                                 'Hallo, saya ingin order website di Velocity Developer.',
                                 '',
                                 'Nama: ' + this.form.nama,
-                                'Usia: ' + this.form.usia,
-                                'No Hp: ' + this.form.no_hp,
-                                'Kebutuhan website: ' + this.form.kebutuhan_website
+                                'No Hp: ' + this.form.no_hp
                             ].join('\\n');
 
                             return 'https://wa.me/' + this.wa + '?text=' + encodeURIComponent(message);
@@ -115,10 +99,6 @@ const wa = '6285600566674';
                     {fields.map((item) => (
                         <div class="mb-4">
                             <label class="block mb-1 text-sm text-slate-600">{item.label}</label>
-                            {(item.type === 'textarea') && 
-                                <textarea rows="5" class="w-full p-2 border border-slate-300 rounded-md" name={item.name} placeholder={item.placeholder} x-model={`form.${item.name}`} required></textarea>
-                            }
-                            
                             {(item.type === 'text') && 
                                 <input class="w-full p-2 border border-slate-300 rounded-md" type="text" name={item.name} placeholder={item.placeholder} x-model={`form.${item.name}`} required />
                             }
