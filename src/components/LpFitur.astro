@@ -1,0 +1,67 @@
+---
+const tables = [
+    ["Hosting Unlimited","✅", "❌"],
+    ["Halaman Unlimited","✅", "❌"],
+    ["Domain Gratis","✅", "kadang"],
+    ["Support Selamanya","✅", "❌"],
+    ["Respon Cepat","Komunikasi Via WhatsApp","Harus buat tiket yang responnya lama"],
+    ["Tutorial Kelola Website","Disediakan","Belum tentu ada"],
+    ["Harga Mulai","Rp 3 Juta","Rp 5Juta+++"],
+]
+import Button from '../components/Button.astro';
+---
+<section id="fitur" class="py-12 px-6 md:py-25 bg-radial-[at_50%_15%] from-lime-50 via-blue-50 to-sky-50">
+    <div class="mx-auto max-w-4xl">
+
+        <table class="w-full border-collapse text-center">
+            <thead class="text-blue-700 text-base md:text-xl">
+                <tr>
+                    <th class="py-4 px-5">
+                        Fitur
+                    </th>
+                    <th class="py-4 px-5">
+                        Velocity Developer
+                    </th>
+                    <th class="py-4 px-5">
+                        Jasa lain
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {tables.map((table) => (
+                <tr>
+                    {table.map((item,index) => (
+                        <td class="border-t border-gray-200 py-2 md:py-3 px-1 md:px-5">
+                            {index === 0 ? (
+                                <div class="text-base md:text-xl text-slate-800">
+                                    {item}
+                                </div>
+                            ) : index === 1 ? (
+                                <div class="text-sm md:text-base text-blue-700">
+                                    {item}
+                                </div>
+                            ) : (
+                                <div class="text-sm md:text-base text-rose-700">
+                                    {item}
+                                </div>
+                            )}
+
+                        </td>
+                    ))}  
+                </tr>
+            ))}
+            </tbody>
+        </table>
+
+        
+        <div class="text-center mt-30">                       
+            <Button link="/lp#formorder" color="yellow">                
+                <div class="flex justify-center items-center gap-2 py-2 px-3">
+                    Segera Amankan Promo bulan ini hanya dengan 3jt!!!
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/> </svg>
+                </div>
+            </Button>
+        </div>
+
+    </div>
+</section>
