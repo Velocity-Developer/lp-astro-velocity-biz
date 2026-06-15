@@ -6,12 +6,12 @@ const fields = [
         type: 'text',
         placeholder: 'Nama anda'
     },
-    {
-        label: 'Usia',
-        name: 'usia',
-        type: 'number',
-        placeholder: 'Usia anda'
-    },
+    // {
+    //     label: 'Usia',
+    //     name: 'usia',
+    //     type: 'number',
+    //     placeholder: 'Usia anda'
+    // },
     {
         label: 'No Hp',
         name: 'no_hp',
@@ -33,7 +33,6 @@ const wa = '6285600566674';
     x-data={`{
         form: {
             nama: '',
-            usia: '',
             no_hp: '',
             kebutuhan_website: ''
         },
@@ -46,7 +45,6 @@ const wa = '6285600566674';
                 'Hallo, saya ingin order website di Velocity Developer.',
                 '',
                 'Nama: ' + this.form.nama,
-                'Usia: ' + this.form.usia,
                 'No Hp: ' + this.form.no_hp,
                 'Kebutuhan website: ' + this.form.kebutuhan_website
             ].join('\\n');
