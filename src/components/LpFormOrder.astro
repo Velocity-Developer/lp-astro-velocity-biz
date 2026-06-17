@@ -7,12 +7,6 @@ const fields = [
         placeholder: 'Nama anda'
     },
     {
-        label: 'Usia',
-        name: 'usia',
-        type: 'number',
-        placeholder: 'Usia anda'
-    },
-    {
         label: 'No Hp',
         name: 'no_hp',
         type: 'number',
@@ -27,7 +21,6 @@ const wa = '6285600566674';
     x-data={`{
         form: {
             nama: '',
-            usia: '',
             no_hp: ''
         },
         wa: '${wa}',
@@ -39,7 +32,6 @@ const wa = '6285600566674';
                 'Hallo, saya ingin order website di Velocity Developer.',
                 '',
                 'Nama: ' + this.form.nama,
-                'Usia: ' + this.form.usia,
                 'No Hp: ' + this.form.no_hp
             ].join('\\n');
 
@@ -50,7 +42,7 @@ const wa = '6285600566674';
                 source: window.location.href,
                 nama: this.form.nama,
                 hp: this.form.no_hp,
-                usia: this.form.usia,
+                usia: '',
                 kebutuhan: ''
             };
         },
