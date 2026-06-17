@@ -7,6 +7,12 @@ const fields = [
         placeholder: 'Nama anda'
     },
     {
+        label: 'Usia',
+        name: 'usia',
+        type: 'number',
+        placeholder: 'Usia anda'
+    },
+    {
         label: 'No Hp',
         name: 'no_hp',
         type: 'number',
@@ -21,6 +27,7 @@ const wa = '6285600566674';
     x-data={`{
         form: {
             nama: '',
+            usia: '',
             no_hp: ''
         },
         wa: '${wa}',
@@ -32,10 +39,43 @@ const wa = '6285600566674';
                 'Hallo, saya ingin order website di Velocity Developer.',
                 '',
                 'Nama: ' + this.form.nama,
+                'Usia: ' + this.form.usia,
                 'No Hp: ' + this.form.no_hp
             ].join('\\n');
 
             return 'https://wa.me/' + this.wa + '?text=' + encodeURIComponent(message);
+        },
+        get orderPayload() {
+            return {
+                source: window.location.href,
+                nama: this.form.nama,
+                hp: this.form.no_hp,
+                usia: this.form.usia,
+                kebutuhan: ''
+            };
+        },
+        sendOrder() {
+            fetch('https://new.velocitydeveloper.net/api/api/public/form-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer JEs3eipnlZxhS028J4ybcBlZzwks6ac3r0nDfmsh'
+                },
+                body: JSON.stringify(this.orderPayload)
+            })
+                .then(async (response) => {
+                    const data = await response.clone().json().catch(() => response.text());
+
+                    console.log('Form order POST response:', {
+                        ok: response.ok,
+                        status: response.status,
+                        data
+                    });
+                })
+                .catch((error) => {
+                    console.log('Form order POST error:', error);
+                });
         }
     }`}
     @submit.prevent
@@ -62,7 +102,7 @@ const wa = '6285600566674';
             class="px-20! py-4! rounded-full inline-flex items-center justify-center transition-shadow duration-300 bg-linear-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-900 text-white w-full"
             x-bind:class="isValid ? 'cursor-pointer hover:shadow-md' : 'opacity-50 cursor-not-allowed pointer-events-none'"
             x-bind:aria-disabled="(!isValid).toString()"
-            @click="if (!isValid) $event.preventDefault()"
+            @click="if (!isValid) { $event.preventDefault(); return; } sendOrder()"
         >
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
