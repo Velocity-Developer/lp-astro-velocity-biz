@@ -47,7 +47,7 @@ const wa = '6285600566674';
         },
         get orderPayload() {
             return {
-                source: window.location.href,
+                source: window.location.href.replace(/^https?:\/\//, ''),
                 nama: this.form.nama,
                 hp: this.form.no_hp,
                 usia: '',
