@@ -1,34 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import HomeHero from '../components/HomeHero.astro';
-import HomePaket from '../components/HomePaket.astro';
-import HomeKlien from '../components/HomeKlien.astro';
-import HomeFaq from '../components/HomeFaq.astro';
-import HomeContact from '../components/HomeContact.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-
+const target = '/lp';
 ---
 
-<Layout>
-	<div id="container">
-		<main>
-			<HomeHero/>
-
-			<div class="bg-linear-to-r from-cyan-500 to-teal-500 text-white py-10 px-6 text-center">
-				<div class="mx-auto max-w-3xl xl:max-w-5xl">					
-					<h2 class="text-white font-bold text-xl md:text-3xl xl:text-5xl leading-tight">
-						Ada 5.000 Website aktif yang kami buat, dan 16.000 Website yang telah dibuat sejak 2009 
-					</h2>
-				</div>
-			</div>
-
-			<HomeKlien />
-			<HomePaket/>
-			<HomeFaq/>
-			<HomeContact />
-
-		</main>
-	</div>
-</Layout>
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="refresh" content={`0; url=${target}`} />
+		<link rel="canonical" href={target} />
+		<title>Mengalihkan ke Velocity Developer</title>
+	</head>
+	<body>
+		<script is:inline define:vars={{ target }}>
+			window.location.replace(target);
+		</script>
+		<p>Mengalihkan ke <a href={target}>halaman landing page</a>...</p>
+	</body>
+</html>
