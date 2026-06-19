@@ -1,0 +1,112 @@
+---
+import LayoutLp from '../layouts/LayoutLp.astro';
+import BeritaHero from '../components/portalBerita/BeritaHero.astro';
+import BeritaPainPoints from '../components/portalBerita/BeritaPainPoints.astro';
+import BeritaFitur from '../components/portalBerita/BeritaFitur.astro';
+import LpPorto from '../components/LpPorto.astro';
+import LpKlien from '../components/LpKlien.astro';
+import BeritaPaket from '../components/portalBerita/BeritaPaket.astro';
+import BeritaKontak from '../components/portalBerita/BeritaKontak.astro';
+import LpFormOrderAdvance from '../components/LpFormOrderAdvance.astro';
+---
+
+<LayoutLp
+	title="Jasa Pembuatan Portal Berita Profesional - Velocity Developer"
+	description="Buat portal berita profesional mulai Rp 3 Juta. SEO Ready, Google News, Support 24/7, dan siap monetisasi!"
+>
+	<div
+		id="container"
+		x-data="{
+			isFormOrderOpen: false,
+			openFormOrderModal() {
+				this.isFormOrderOpen = true;
+				document.body.classList.add('overflow-hidden');
+			},
+			closeFormOrderModal() {
+				this.isFormOrderOpen = false;
+				document.body.classList.remove('overflow-hidden');
+			}
+		}"
+		@click.capture="
+			if ($event.target.closest('.cta-modal-formorder')) {
+				$event.preventDefault();
+				openFormOrderModal();
+			}
+		"
+		@keydown.escape.window="closeFormOrderModal()"
+	>
+		<main>
+			<BeritaHero />
+			<BeritaPainPoints />
+			<BeritaFitur />
+			<LpPorto />
+
+			<div class="bg-blue-800 px-8 py-15 text-center text-white">
+				<div class="mx-auto max-w-4xl xl:max-w-5xl">
+					<h2 class="text-3xl font-bold leading-tight text-white md:text-5xl">
+						Ada <span class="text-yellow-400">5.000 Website</span> Aktif Yang Kami Buat,
+						Termasuk Portal Berita & Media Online
+					</h2>
+					<p class="text-xl text-blue-200 mt-4">
+						Pengalaman lebih dari 13 tahun dalam pembuatan website profesional
+					</p>
+				</div>
+			</div>
+
+			<LpKlien />
+			<BeritaPaket />
+			<BeritaKontak />
+		</main>
+
+		<!-- Modal Form Order -->
+		<div
+			x-cloak
+			x-show="isFormOrderOpen"
+			x-transition.opacity
+			class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 px-4 py-6"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="modal-formorder-title"
+			@click.self="closeFormOrderModal()"
+		>
+			<div
+				x-show="isFormOrderOpen"
+				x-transition
+				class="relative w-full max-w-xl rounded-3xl bg-white p-8 shadow-2xl md:p-10"
+			>
+				<button
+					type="button"
+					class="absolute right-4 top-4 inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900"
+					aria-label="Tutup form order"
+					@click="closeFormOrderModal()"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M6 18 18 6M6 6l12 12"
+						></path>
+					</svg>
+				</button>
+
+				<div id="modal-formorder-title" class="sr-only">Form Konsultasi Portal Berita</div>
+				<h3 class="font-bold text-2xl mb-6 text-slate-800">Form Konsultasi Portal Berita</h3>
+				<LpFormOrderAdvance />
+			</div>
+		</div>
+	</div>
+</LayoutLp>
+
+<style is:global>
+	[x-cloak] {
+		display: none !important;
+	}
+</style>
