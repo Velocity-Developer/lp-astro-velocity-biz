@@ -1,0 +1,73 @@
+---
+import Button from '../LpButton.astro';
+
+const runningItems = [
+	'Website rental mobil profesional',
+	'Sistem booking online otomatis',
+	'Iklan Google siap jalan',
+	'SEO & Google Maps ready',
+	'Support 24/7 via WhatsApp'
+];
+---
+
+<section id="hero" class="relative w-full bg-linear-to-r from-orange-600 to-amber-500 px-6 pt-30 text-white md:px-10 md:pb-10 md:pt-20 xl:px-0">
+	<div
+		class="absolute inset-0 z-0 opacity-50"
+		style="
+		background-image:linear-gradient(to right, #e7e5e4 1px, transparent 1px),linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);
+		background-size:20px 20px;
+		background-position: 00,00;
+		mask-image: repeating-linear-gradient(to right, black 0px, black 3px, transparent 3px, transparent 8px), repeating-linear-gradient(to bottom, black 0px, black 3px, transparent 3px, transparent 8px), radial-gradient(ellipse 80% 80% at 100% 0%, #000 50%, transparent 90%);
+		-webkit-mask-image: repeating-linear-gradient(to right, black 0px, black 3px, transparent 3px, transparent 8px), repeating-linear-gradient(to bottom, black 0px, black 3px, transparent 3px, transparent 8px), radial-gradient(ellipse 80% 80% at 100% 100%, #000 50%, transparent 90%);
+		mask-composite: intersect;
+		-webkit-mask-composite: source-in;
+	"
+	></div>
+	<div class="relative z-1 mx-auto flex min-h-[25em] max-w-7xl items-center justify-center md:min-h-[40em]">
+		<div class="mx-auto max-w-4xl space-y-8 text-center">
+			<h1 class="text-4xl font-extrabold md:text-6xl xl:text-8xl">
+				Mau Rental Mobil Anda Banjir Orderan? Website Profesional + Iklan Google Cuma <span class="text-yellow-300">Rp 3 Juta</span>!
+			</h1>
+			<h2 class="text-2xl font-extrabold md:text-3xl">
+				Booking Otomatis, SEO Siap, dan Iklan Google Langsung Jalan—Tanpa Repot!
+			</h2>
+			<h3 class="text-base md:text-2xl">
+				Tidak usah pusing kelola teknis website dan iklan. Kami bikin rental mobil Anda mudah ditemukan dan banjir orderan!<br />
+				Harga promo spesial: <span class="font-bold text-yellow-300">Rp 3.000.000</span><br />
+				All-in-One Service!
+			</h3>
+			<div class="flex flex-col items-center justify-center gap-3 sm:flex-row mt-6">
+				<Button link="#" className="cta-modal-formorder px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow">
+					<div class="flex items-center justify-center gap-2">
+						Konsultasi Gratis via WhatsApp
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+						</svg>
+					</div>
+				</Button>
+				<a href="#painpoints" class="inline-flex rounded-full border border-white/40 px-8 py-3 font-semibold bg-yellow-300 text-orange-900 transition-colors hover:bg-white/30">
+					Lihat Masalah Yang Kami Pecahkan
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="mx-auto max-w-7xl overflow-hidden whitespace-nowrap pb-4 text-white md:pb-0">
+		<div class="marquee-container overflow-hidden">
+			<div class="marquee-track flex text-sm md:text-lg">
+				{Array.from({ length: 2 }).map(() => (
+					<div class="marquee-content flex">
+						{runningItems.map((item) => (
+							<div class="mr-2 flex items-center gap-1 opacity-75 md:mr-8">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+									<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+								</svg>
+								{item}
+							</div>
+						))}
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
