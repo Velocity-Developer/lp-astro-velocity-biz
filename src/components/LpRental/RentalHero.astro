@@ -2,69 +2,86 @@
 import Button from '../LpButton.astro';
 
 const runningItems = [
-	'Website rental mobil profesional',
-	'Sistem booking online otomatis',
-	'Iklan Google siap jalan',
-	'SEO & Google Maps ready',
-	'Support 24/7 via WhatsApp'
 ];
 ---
 
-<section id="hero" class="relative w-full bg-linear-to-r from-orange-600 to-amber-500 px-6 pt-30 text-white md:px-10 md:pb-10 md:pt-20 xl:px-0">
-	<div
-		class="absolute inset-0 z-0 opacity-50"
-		style="
-		background-image:linear-gradient(to right, #e7e5e4 1px, transparent 1px),linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);
-		background-size:20px 20px;
-		background-position: 00,00;
-		mask-image: repeating-linear-gradient(to right, black 0px, black 3px, transparent 3px, transparent 8px), repeating-linear-gradient(to bottom, black 0px, black 3px, transparent 3px, transparent 8px), radial-gradient(ellipse 80% 80% at 100% 0%, #000 50%, transparent 90%);
-		-webkit-mask-image: repeating-linear-gradient(to right, black 0px, black 3px, transparent 3px, transparent 8px), repeating-linear-gradient(to bottom, black 0px, black 3px, transparent 3px, transparent 8px), radial-gradient(ellipse 80% 80% at 100% 100%, #000 50%, transparent 90%);
-		mask-composite: intersect;
-		-webkit-mask-composite: source-in;
-	"
-	></div>
-	<div class="relative z-1 mx-auto flex min-h-[25em] max-w-7xl items-center justify-center md:min-h-[40em]">
-		<div class="mx-auto max-w-4xl space-y-8 text-center">
-			<h1 class="text-4xl font-extrabold md:text-6xl xl:text-8xl">
-				Mau Rental Mobil Anda Banjir Orderan? Website Profesional + Iklan Google Cuma <span class="text-yellow-300">Rp 3 Juta</span>!
+<section id="hero" class="relative overflow-hidden bg-slate-950 px-6 pb-8 pt-32 text-white md:px-10 md:pb-10 md:pt-36">
+	<div class="absolute inset-0 bg-linear-to-br from-slate-950 via-slate-950 to-orange-950/80"></div>
+	<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 15% 15%, #fb923c 0, transparent 28%), radial-gradient(circle at 85% 70%, #facc15 0, transparent 24%);"></div>
+	<div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+	<div class="absolute inset-0 bg-slate-950/30"></div>
+
+	<div class="relative mx-auto grid min-h-[36rem] max-w-7xl items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
+		<div>
+			<div class="mb-5 inline-flex items-center gap-2 rounded-full border border-orange-300/30 bg-orange-400/10 px-4 py-2 text-sm font-semibold text-orange-200">
+				<span class="h-2 w-2 rounded-full bg-yellow-300"></span>
+				Website profesional + setup Google Ads
+			</div>
+			<h1 class="max-w-4xl text-4xl font-bold leading-tight md:text-6xl lg:text-7xl">
+				Saat Orang Mencari Jasa Rental Mobil di Google, <span class="text-yellow-300">Apakah Bisnis Anda Muncul?</span>
 			</h1>
-			<h2 class="text-2xl font-extrabold md:text-3xl">
-				Booking Otomatis, SEO Siap, dan Iklan Google Langsung Jalan—Tanpa Repot!
-			</h2>
-			<h3 class="text-base md:text-2xl">
-				Tidak usah pusing kelola teknis website dan iklan. Kami bikin rental mobil Anda mudah ditemukan dan banjir orderan!<br />
-				Harga promo spesial: <span class="font-bold text-yellow-300">Rp 3.000.000</span><br />
-				All-in-One Service!
-			</h3>
-			<div class="flex flex-col items-center justify-center gap-3 sm:flex-row mt-6">
-				<Button link="#" className="cta-modal-formorder px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow">
-					<div class="flex items-center justify-center gap-2">
-						Konsultasi Gratis via WhatsApp
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-						</svg>
+			<p class="mt-6 max-w-3xl text-lg leading-relaxed text-slate-200 md:text-2xl">
+				Pelanggan yang benar-benar ingin menyewa mobil biasanya mencari langsung di Google, bukan menunggu menemukan akun media sosial Anda.
+			</p>
+		</div>
+
+		<div class="relative mx-auto w-full max-w-lg lg:max-w-none" aria-hidden="true" >
+			<div class="rounded-3xl border border-white/15 bg-white/10 p-4 shadow-2xl backdrop-blur-md md:p-6">
+				<div class="rounded-2xl bg-white p-5 text-slate-800 shadow-xl md:p-7">
+					<div class="flex items-center gap-2 border-b border-slate-200 pb-4">
+						<span class="h-3 w-3 rounded-full bg-red-400"></span><span class="h-3 w-3 rounded-full bg-yellow-400"></span><span class="h-3 w-3 rounded-full bg-green-400"></span>
+						<div class="ml-3 flex-1 rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-500">rental mobil di kota saya</div>
 					</div>
-				</Button>
-				<a href="#painpoints" class="inline-flex rounded-full border border-white/40 px-8 py-3 font-semibold bg-yellow-300 text-orange-900 transition-colors hover:bg-white/30">
-					Lihat Masalah Yang Kami Pecahkan
-				</a>
+					<div class="mt-5 text-xs text-slate-400">Hasil pencarian Google</div>
+					<div class="mt-4 rounded-xl border-l-4 border-orange-500 bg-orange-50 p-4">
+						<div class="text-xs text-green-700">Website rental mobil Anda</div>
+						<div class="mt-1 font-bold text-blue-700">Rental Mobil Terpercaya di Kota Anda</div>
+						<p class="mt-2 text-xs leading-relaxed text-slate-500">Pilihan mobil lengkap, proses mudah, dan bisa langsung terhubung melalui WhatsApp.</p>
+					</div>
+					<div class="mt-4 grid grid-cols-2 gap-3">
+						<div class="rounded-xl bg-slate-100 p-4"><div class="mb-2 h-16 rounded-lg bg-slate-200"></div><div class="h-2 rounded bg-slate-300"></div></div>
+						<div class="rounded-xl bg-slate-100 p-4"><div class="mb-2 h-16 rounded-lg bg-slate-200"></div><div class="h-2 rounded bg-slate-300"></div></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="mx-auto max-w-7xl overflow-hidden whitespace-nowrap pb-4 text-white md:pb-0">
-		<div class="marquee-container overflow-hidden">
-			<div class="marquee-track flex text-sm md:text-lg">
+	<div class="relative mt-10 mx-auto grid min-h-[36rem] w-full max-w-7xl items-center">
+		<div class="mt-7 flex w-full flex-col items-center text-center">
+			<h1 class="w-full text-4xl font-bold leading-tight md:text-6xl lg:text-7xl">
+				Masih Berpikir Social Media Saja Sudah Cukup Untuk Mendapatkan Pelanggan Rental Mobil?
+			</h1>
+			<p class="mx-auto mt-6 max-w-5xl text-2xl leading-relaxed text-slate-200 md:text-2xl">
+				Masalahnya, pelanggan yang benar-benar ingin menyewa mobil biasanya mencari langsung di Google, bukan menunggu menemukan akun Sosmed Anda.
+			</p>
+			<div class="mx-auto mt-10 w-full max-w-5xl rounded-2xl border border-orange-300/20 bg-orange-400/10 px-6 py-5 backdrop-blur-sm md:px-8 md:py-6">
+				<p class="text-4xl font-semibold leading-relaxed text-white md:text-4xl">
+					Kami membantu bisnis rental mobil tampil di Google melalui website profesional + setup Google Ads.
+				</p>
+				<div class="mt-7 flex flex-wrap items-end justify-center gap-x-4 gap-y-2">
+				<span class="text-slate-300">Hanya Dengan</span>
+				<span class="text-6xl font-bold text-yellow-300 md:text-7xl">Rp3 Juta</span>
+				<span class="mt-4 rounded-full bg-green-500 px-8 py-4 text-xl font-bold text-white">GRATIS saldo iklan Rp500.000</span>
+			</div>
+			<div class="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
+				<Button link="#" className="cta-modal-formorder px-9 py-4 text-base font-bold shadow-xl" color="yellow">
+					Konsultasi Gratis Sekarang
+				</Button>
+				<a href="#masalah" class="bg-yellow-900 inline-flex items-center justify-center rounded-full border border-white/25 px-8 py-4 font-semibold text-white transition hover:border-white/60 hover:bg-white/10">
+					Lihat Masalah Bisnis Rental
+				</a>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="relative mx-auto mt-8 max-w-7xl overflow-hidden whitespace-nowrap">
+		<div class="marquee-container">
+			<div class="marquee-track flex text-sm md:text-base">
 				{Array.from({ length: 2 }).map(() => (
 					<div class="marquee-content flex">
-						{runningItems.map((item) => (
-							<div class="mr-2 flex items-center gap-1 opacity-75 md:mr-8">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-									<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-								</svg>
-								{item}
-							</div>
-						))}
+						{runningItems.map((item) => <div class="mr-8 flex items-center gap-2 text-slate-300"><span class="text-yellow-300">✓</span>{item}</div>)}
 					</div>
 				))}
 			</div>

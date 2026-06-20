@@ -2,128 +2,47 @@
 import Button from '../LpButton.astro';
 
 const packageBenefits = [
-	{
-		title: 'Website Rental Mobil Profesional',
-		description: 'Desain modern, mobile friendly, dan sesuai dengan brand Anda.',
-		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-car-front text-yellow-300" viewBox="0 0 16 16"><path d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6zm-3.5 5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-.277a2 2 0 0 0 1.147-1.524l.353-1.415A2 2 0 0 0 14.5 8.118V6a2 2 0 0 0-2-2h-1.181a1 1 0 0 0-.941.669l-.236.707A1 1 0 0 1 9.237 6H6.764a1 1 0 0 1-.905-.624l-.236-.707A1 1 0 0 0 4.68 4H3.5a2 2 0 0 0-2 2v2.118a2 2 0 0 0 .5 1.166l.353 1.415A2 2 0 0 0 3.5 12.723V13zM3 6a1 1 0 0 1 1-1h1.181l.236.707a2 2 0 0 0 1.81 1.25h4.546a2 2 0 0 0 1.81-1.25L11.319 5H12.5a1 1 0 0 1 1 1v2.118a1 1 0 0 1-.25.583l-.353 1.415a1 1 0 0 1-.573.762H4.176a1 1 0 0 1-.573-.762l-.353-1.415A1 1 0 0 1 3 8.118V6z"/></svg>'
-	},
-	{
-		title: 'Sistem Booking Online Otomatis',
-		description: 'Pelanggan bisa booking langsung dari website, cek ketersediaan mobil real-time.',
-		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-calendar-check text-yellow-300" viewBox="0 0 16 16"><path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>'
-	},
-	{
-		title: 'SEO & Google Maps Optimized',
-		description: 'Website Anda mudah ditemukan di Google dan Google Maps oleh orang yang cari rental mobil di area Anda.',
-		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-geo-alt text-yellow-300" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>'
-	},
-	{
-		title: 'Iklan Google Ads Setup',
-		description: 'Kami setup iklan Google Ads untuk Anda, target audiens yang tepat di area bisnis Anda.',
-		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-megaphone text-yellow-300" viewBox="0 0 16 16"><path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-2.213c-.756.345-1.73.513-3 .513-3.866 0-7-1.79-7-4v-1c0-2.21 3.134-4 7-4 1.27 0 2.244.168 3 .513V2.5zm-3 10c1.256 0 2.244-.168 3-.513V6.013c-.756-.345-1.73-.513-3-.513-3.358 0-6 1.343-6 3v1c0 1.657 2.642 3 6 3z"/></svg>'
-	},
-	{
-		title: 'Optimasi Iklan 1 Bulan',
-		description: 'Kami optimalkan iklan Anda selama 1 bulan agar ROI maksimal dan orderan bertambah.',
-		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-graph-up-arrow text-yellow-300" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"/></svg>'
-	},
-	{
-		title: 'Support 24/7 Selamanya',
-		description: 'Ada masalah teknis? Hubungi kami via WhatsApp kapan saja, kami siap membantu sampai masalah selesai.',
-		icon: '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-headset text-yellow-300" viewBox="0 0 16 16"><path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a2 2 0 0 1-2-2V8a2 2 0 0 1 1-1.732V6a6 6 0 1 1 12 0v.268A2 2 0 0 1 15 8v2a2 2 0 0 1-2 2h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z"/><path d="M12.5 12.5A2.5 2.5 0 0 1 10 15H8a.5.5 0 0 1 0-1h2a1.5 1.5 0 0 0 1.5-1.5z"/></svg>'
-	}
+	'Website rental mobil profesional',
+	'Setup Google Ads',
+	'Optimasi iklan',
+	'Gratis saldo iklan Google Rp500.000',
+	'Hosting unlimited',
+	'Domain gratis 1 tahun',
+	'Support selalu ready via WhatsApp'
 ];
 ---
 
-<section id="paketweb" class="bg-linear-to-r from-orange-600 to-amber-500 px-6 pb-20 pt-15 text-white md:px-10">
+<section id="paketweb" class="overflow-hidden bg-linear-to-br from-orange-700 to-amber-600 px-4 py-14 text-white sm:px-6 md:py-24">
 	<div class="mx-auto max-w-6xl">
-		<h2 class="mb-5 text-center text-xl font-medium md:text-2xl">
-			Paket Website Rental Mobil + Iklan Google
-		</h2>
-		<div class="text-center text-2xl font-medium tracking-tighter text-orange-200 line-through mb-2">
-			Rp 5.000.000
+		<div class="mx-auto max-w-4xl text-center">
+			<p class="text-xs font-bold uppercase tracking-[.18em] text-orange-100 sm:text-base sm:tracking-[.2em]">Saatnya masuk ke Google</p>
+			<h2 class="mt-3 text-2xl font-bold leading-tight sm:text-3xl md:text-5xl">Sudah Saatnya Jasa Rental Mobil Anda Masuk di Halaman Pertama Pencarian Google</h2>
+			<p class="mt-4 text-sm leading-relaxed text-orange-50 sm:mt-5 sm:text-lg">Orang yang serius mencari jasa rental mobil akan langsung mengetik di Google. Pastikan bisnis Anda ada saat mereka mencari.</p>
 		</div>
-		<div class="text-center text-5xl font-bold tracking-tighter text-yellow-300 md:text-7xl mb-4">
-			Rp 3.000.000
-		</div>
-		<p class="mt-2 text-center text-lg text-orange-100 max-w-2xl mx-auto">
-			Cukup mulai dari Rp 3 Juta untuk punya website rental mobil profesional + iklan Google yang siap mendatangkan orderan!
-		</p>
 
-		<div class="text-center mt-8 mb-12">
-			<p class="text-xl font-bold mb-4 text-yellow-200">
-				⏰ Promo Berakhir Dalam:
-			</p>
-			<div class="flex justify-center gap-4 flex-wrap" x-data="{
-				days: '00',
-				hours: '00',
-				minutes: '00',
-				seconds: '00',
-				targetDate: new Date().setDate(new Date().getDate() + 7),
-				updateCountdown() {
-					const now = new Date().getTime();
-					const distance = this.targetDate - now;
-					
-					if (distance < 0) {
-						this.days = '00';
-						this.hours = '00';
-						this.minutes = '00';
-						this.seconds = '00';
-						return;
-					}
-					
-					this.days = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-					this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-					this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-					this.seconds = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-				},
-				init() {
-					this.updateCountdown();
-					setInterval(() => this.updateCountdown(), 1000);
-				}
-			}" x-init="init">
-				<div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 min-w-[90px] shadow-lg">
-					<div class="text-4xl font-bold text-yellow-300" x-text="days"></div>
-					<div class="text-sm text-orange-100 mt-1">Hari</div>
-				</div>
-				<div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 min-w-[90px] shadow-lg">
-					<div class="text-4xl font-bold text-yellow-300" x-text="hours"></div>
-					<div class="text-sm text-orange-100 mt-1">Jam</div>
-				</div>
-				<div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 min-w-[90px] shadow-lg">
-					<div class="text-4xl font-bold text-yellow-300" x-text="minutes"></div>
-					<div class="text-sm text-orange-100 mt-1">Menit</div>
-				</div>
-				<div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 min-w-[90px] shadow-lg">
-					<div class="text-4xl font-bold text-yellow-300" x-text="seconds"></div>
-					<div class="text-sm text-orange-100 mt-1">Detik</div>
-				</div>
+		<div class="mx-auto mt-9 max-w-3xl rounded-2xl border border-white/25 bg-slate-950 p-4 shadow-2xl sm:mt-12 sm:rounded-[2rem] sm:p-7 md:p-12">
+			<div class="text-center">
+				<p class="text-xs font-bold uppercase tracking-widest text-orange-300 sm:text-sm">Paket Website + Google Ads</p>
+				<p class="mt-4 break-words text-4xl font-bold tracking-tight text-yellow-300 sm:mt-5 sm:text-5xl md:text-7xl">Rp3.000.000</p>
+				<p class="mt-2 text-sm text-slate-300 sm:mt-3 sm:text-base">Investasi mulai dari Rp3 juta</p>
+				<div class="mt-4 inline-flex max-w-full items-center justify-center rounded-full bg-green-500 px-4 py-2 text-xs font-bold leading-relaxed text-white sm:mt-5 sm:px-5 sm:text-base">Bonus saldo iklan Rp500.000</div>
 			</div>
-		</div>
 
-		<div class="mt-12 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
-			{packageBenefits.map((item) => (
-				<div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:shadow-lg">
-					<div class="mb-4" set:html={item.icon}></div>
-					<h3 class="font-bold text-xl mb-2 text-yellow-200">
-						{item.title}
-					</h3>
-					<p class="text-sm text-orange-100">
-						{item.description}
-					</p>
-				</div>
-			))}
-		</div>
+			<div class="mt-7 grid gap-2.5 sm:mt-9 sm:grid-cols-2 sm:gap-3">
+				{packageBenefits.map((benefit) => (
+					<div class="flex items-start gap-3 rounded-xl bg-white/5 p-3 text-sm leading-relaxed text-slate-100 sm:p-4">
+						<span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-500 text-white">
+							<svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 10 3 3 7-7"></path></svg>
+						</span>
+						<span class="pt-0.5">{benefit}</span>
+					</div>
+				))}
+			</div>
 
-		<div class="mt-16 text-center">
-			<Button link="#" className="cta-modal-formorder px-16 py-5 text-xl font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow">
-				<div class="flex items-center justify-center gap-3">
-					Ambil Promo Sekarang - Konsultasi Gratis!
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-						<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-					</svg>
-				</div>
-			</Button>
+			<div class="mt-7 text-center sm:mt-9">
+				<Button link="#" className="cta-modal-formorder w-full px-4 py-4 text-sm font-bold shadow-xl sm:w-auto sm:px-8 sm:py-5 sm:text-lg" color="yellow">Ambil Paket & Konsultasi Gratis</Button>
+				<p class="mx-auto mt-4 max-w-lg text-[11px] leading-relaxed text-slate-400 sm:text-xs">Konsultasikan kebutuhan dan target kota bisnis rental Anda bersama tim kami.</p>
+			</div>
 		</div>
 	</div>
 </section>

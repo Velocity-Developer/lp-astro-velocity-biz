@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import Button from '../LpButton.astro';
+import portfolioOne from '../../assets/porto/letsexploreindonesia.com.webp';
+import portfolioTwo from '../../assets/porto/fahmitour.com.webp';
+import portfolioThree from '../../assets/porto/primadutatour.com.webp';
+
+const portfolio = [
+	{ title: 'Website katalog armada', caption: 'Tampilan layanan yang rapi dan mudah dipahami', image: portfolioOne },
+	{ title: 'Website pemesanan perjalanan', caption: 'Informasi paket dan kontak tampil lebih meyakinkan', image: portfolioTwo },
+	{ title: 'Website travel profesional', caption: 'Desain responsif untuk calon pelanggan mobile', image: portfolioThree }
+];
+---
+
+<section id="review" class="overflow-hidden bg-slate-950 px-6 py-16 text-white md:py-24">
+	<div class="mx-auto max-w-6xl">
+		<div class="grid items-center gap-12 lg:grid-cols-2">
+			<div>
+				<p class="font-bold uppercase tracking-[.2em] text-orange-400">Ditemukan saat pelanggan mencari</p>
+				<h2 class="mt-3 text-3xl font-bold leading-tight md:text-5xl">Sudah Banyak Klien Kami yang Websitenya Muncul di Halaman Pertama Google</h2>
+				<p class="mt-5 text-lg leading-relaxed text-slate-300">Website yang profesional memberi bisnis Anda tempat untuk ditemukan, menjelaskan layanan, menampilkan armada, dan mengarahkan calon pelanggan ke WhatsApp.</p>
+				<div class="mt-7">
+					<Button link="#" className="cta-modal-formorder px-9 py-4 font-bold" color="yellow">Bantu Website Saya Tampil di Google</Button>
+				</div>
+			</div>
+
+			<div class="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur md:p-7">
+				<div class="rounded-2xl bg-white p-5 text-slate-700">
+					<div class="flex items-center gap-3 rounded-full border border-slate-300 px-5 py-3 text-sm shadow-sm">
+						<svg class="h-5 w-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+						rental mobil terpercaya di kota saya
+					</div>
+					<div class="mt-5 space-y-4">
+						<div class="rounded-xl border border-orange-200 bg-orange-50 p-4">
+							<p class="text-xs text-green-700">www.rentalmobilanda.com</p>
+							<p class="mt-1 font-bold text-blue-700">Rental Mobil Profesional & Terpercaya</p>
+							<p class="mt-2 text-xs leading-relaxed text-slate-500">Temukan armada yang sesuai untuk perjalanan Anda. Hubungi kami melalui WhatsApp.</p>
+						</div>
+						<div class="h-16 rounded-xl bg-slate-100"></div>
+						<div class="h-16 rounded-xl bg-slate-100"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="porto" class="bg-white px-6 py-16 md:py-24">
+	<div class="mx-auto max-w-7xl">
+		<div class="mx-auto max-w-4xl text-center">
+			<p class="font-bold uppercase tracking-[.2em] text-orange-600">Tampil profesional, lebih dipercaya</p>
+			<h2 class="mt-3 text-3xl font-bold leading-tight text-slate-900 md:text-5xl">Dengan Tampilan Website Profesional, Customer Akan Lebih Percaya dengan Jasa Anda</h2>
+			<p class="mt-5 text-lg text-slate-600">Berikut contoh kualitas website bisnis transportasi dan perjalanan yang telah kami kerjakan.</p>
+		</div>
+
+		<div class="mt-12 grid gap-7 md:grid-cols-3">
+			{portfolio.map((item) => (
+				<article class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg transition hover:-translate-y-2 hover:shadow-2xl">
+					<div class="aspect-[4/3] overflow-hidden bg-slate-100">
+						<Image src={item.image} alt={item.title} class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105" loading="lazy" />
+					</div>
+					<div class="p-6">
+						<h3 class="text-xl font-bold text-slate-900">{item.title}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-slate-600">{item.caption}</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+</section>

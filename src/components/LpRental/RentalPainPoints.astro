@@ -2,108 +2,41 @@
 import Button from '../LpButton.astro';
 
 const painPoints = [
-	{
-		title: 'Tidak punya klien dari online',
-		description: 'Semua orang mencara jasa rental lewat online terutama di google.',
-		icon: '😫'
-	},
-	{
-		title: 'Website Jelek Tidak Dikelola',
-		description: 'Website yang bagus akan menarik dan menambah kepercayaan pelanggan.',
-		icon: '📱'
-	},
-	{
-		title: 'Tidak Muncul di Google',
-		description: 'Orang cari "rental mobil [kota]" tapi website Anda tidak muncul, kalah sama kompetitor.',
-		icon: '🔍'
-	},
-	{
-		title: 'Biaya Iklan Mahal Tapi Tidak Efektif',
-		description: 'Sudah bayar iklan tapi orderan sedikit, tidak tau target audiens yang benar.',
-		icon: '💸'
-	},
-	{
-		title: 'Tidak Ada Laporan Transaksi',
-		description: 'Catatan order berantakan, susah tracking pendapatan dan stok mobil.',
-		icon: '📊'
-	},
-	{
-		title: 'Website Rentan Error/Down',
-		description: 'Saat banyak order, website malah error, pelanggan kecewa dan pindah ke lain.',
-		icon: '⚠️'
-	},
-	{
-		title: 'Tidak Ada Fitur Booking Online',
-		description: 'Pelanggan harus telpon dulu, banyak yang males dan cancel.',
-		icon: '🚫'
-	},
-	{
-		title: 'Waktu Habis Buat Balas Chat',
-		description: 'Hari-hari cuma balas chat pelanggan, tidak ada waktu ngembangin bisnis.',
-		icon: '🕒'
-	}
-];
-
-const benefits = [
-	'Website rental mobil profesional',
-	'Sistem booking online otomatis',
-	'SEO & Google Maps siap',
-	'Iklan Google Ads setup + optimasi 1 bulan',
-	'Hosting & domain gratis 1 tahun',
-	'Support 24/7 via WhatsApp',
-	'Dashboard laporan transaksi',
-	'Mudah dikelola tanpa coding',
-	'100% mobile friendly',
-	'Notifikasi otomatis ke WA'
+	'Tidak muncul di Google saat orang mencari rental mobil di kota Anda',
+	'Mengandalkan relasi dan rekomendasi dari mulut ke mulut',
+	'Sulit mendapatkan pelanggan baru setiap bulan',
+	'Kompetitor lebih sering muncul di Google',
+	'Kompetitor mendapatkan lebih banyak telepon dan WhatsApp',
+	'Masih mengandalkan Facebook dan Instagram',
+	'Tidak memiliki website profesional',
+	'Kehilangan calon pelanggan setiap hari tanpa disadari'
 ];
 ---
 
-<section id="painpoints" class="w-full bg-slate-900 px-6 py-15 text-white xl:py-20">
+<section id="masalah" class="bg-white px-6 py-16 md:py-24">
 	<div class="mx-auto max-w-6xl">
-		<h2 class="mx-auto mb-6 max-w-3xl text-center text-4xl font-bold md:mb-10 md:text-6xl">
-			Hati-Hati Masalah Ini Sering Bikin Bisnis Rental Mobil Tidak Berkembang!
-		</h2>
+		<div class="mx-auto max-w-4xl text-center">
+			<p class="text-4xl mb-3 font-bold uppercase tracking-[.2em] text-orange-600">Coba cek bisnis Anda</p>
+			<h2 class="text-3xl font-bold leading-tight text-slate-900 md:text-5xl">Usaha Rental Mobil Anda Punya Salah Satu Masalah Ini?</h2>
+		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-			{painPoints.map((pain, index) => (
-				<div class="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700 hover:border-orange-500 transition-all duration-300 hover:shadow-lg">
-					<div class="text-4xl mb-3">{pain.icon}</div>
-					<h3 class="font-bold text-xl mb-2 text-yellow-300">{pain.title}</h3>
-					<p class="text-slate-300">{pain.description}</p>
+		<div class="text-xl mt-10 grid gap-4 md:grid-cols-2">
+			{painPoints.map((pain) => (
+				<div class="flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg">
+					<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 font-bold text-rose-600">×</div>
+					<p class="pt-2 font-semibold leading-relaxed text-slate-700">{pain}</p>
 				</div>
 			))}
 		</div>
 
-		<div class="bg-orange-600/50 backdrop-blur-sm p-5 rounded-3xl mb-10 border border-orange-400">
-			<h3 class="mx-auto mb-6 max-w-3xl text-center text-3xl font-bold md:text-4xl">
-				Semua Masalah di Atas Hilang! Dengan <span class="text-yellow-300 text-5xl md:text-5xl">Rp 3 Juta</span>!
-			</h3>
-			<h3 class="mx-auto mb-6 max-w-3xl text-center text-2xl font-bold md:text-3xl">
-				Anda Akan Dapatkan SEMUA Ini:
-			</h3>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto">
-				{benefits.map((benefit) => (
-					<div class="flex items-center gap-3">
-						<div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
-								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-							</svg>
-						</div>
-						<span class="text-lg">{benefit}</span>
-					</div>
-				))}
+		<div class="mt-12 rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-2xl md:px-12">
+			<p class="mx-auto max-w-4xl text-4xl font-bold leading-relaxed md:text-4xl">
+				Hanya dengan <span class="text-5xl text-yellow-300">Rp 3 Juta.</span> Kami bantu mengatasinya dengan <span class="text-yellow-300">website profesional dan setup iklan Google</span>
+			</p>
+			<p class="mt-4 text-lg text-slate-300">Termasuk GRATIS saldo iklan senilai <strong class="text-white text-4xl">Rp500.000</strong>.</p>
+			<div class="mt-7">
+				<Button link="#" className="cta-modal-formorder px-10 py-4 text-base font-bold" color="yellow">Saya Ingin Bisnis Saya Muncul di Google</Button>
 			</div>
-		</div>
-
-		<div class="mt-10 text-center">
-			<Button link="#" className="cta-modal-formorder px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow">
-				<div class="flex items-center justify-center gap-2">
-					Selesaikan Masalah Rental Mobil Anda Sekarang!
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-						<path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
-					</svg>
-				</div>
-			</Button>
 		</div>
 	</div>
 </section>

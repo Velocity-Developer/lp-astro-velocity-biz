@@ -2,9 +2,8 @@
 import LayoutLp from '../layouts/LayoutLp.astro';
 import RentalHero from '../components/LpRental/RentalHero.astro';
 import RentalPainPoints from '../components/LpRental/RentalPainPoints.astro';
+import RentalSocialProof from '../components/LpRental/RentalSocialProof.astro';
 import RentalFitur from '../components/LpRental/RentalFitur.astro';
-import LpPorto from '../components/LpPorto.astro';
-import LpKlien from '../components/LpKlien.astro';
 import RentalPaket from '../components/LpRental/RentalPaket.astro';
 import RentalKontak from '../components/LpRental/RentalKontak.astro';
 import LpFormOrderAdvance from '../components/LpFormOrderAdvance.astro';
@@ -12,7 +11,7 @@ import LpFormOrderAdvance from '../components/LpFormOrderAdvance.astro';
 
 <LayoutLp
 	title="Website Rental Mobil Profesional + Iklan Google - Velocity Developer"
-	description="Buat website rental mobil profesional + iklan Google mulai Rp 3 Juta. Booking online otomatis, SEO & Google Maps ready, support 24/7!"
+	description="Website rental mobil profesional + setup Google Ads mulai Rp3 juta, termasuk gratis saldo iklan Google Rp500.000."
 >
 	<div
 		id="container"
@@ -38,22 +37,8 @@ import LpFormOrderAdvance from '../components/LpFormOrderAdvance.astro';
 		<main>
 			<RentalHero />
 			<RentalPainPoints />
+			<RentalSocialProof />
 			<RentalFitur />
-			<LpPorto />
-
-			<div class="bg-orange-600 px-8 py-15 text-center text-white">
-				<div class="mx-auto max-w-4xl xl:max-w-5xl">
-					<h2 class="text-3xl font-bold leading-tight text-white md:text-5xl">
-						Ada <span class="text-yellow-300">5.000 Website</span> Aktif Yang Kami Buat,
-						Termasuk Bisnis Rental Mobil!
-					</h2>
-					<p class="text-xl text-orange-100 mt-4">
-						Pengalaman lebih dari 13 tahun dalam pembuatan website profesional
-					</p>
-				</div>
-			</div>
-
-			<LpKlien />
 			<RentalPaket />
 			<RentalKontak />
 		</main>
