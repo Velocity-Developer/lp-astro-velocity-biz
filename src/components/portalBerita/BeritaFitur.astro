@@ -32,15 +32,15 @@ const featureRows = [
 				</thead>
 				<tbody>
 					{featureRows.map((row, index) => (
-						<tr key={index} class={index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+						<tr class={index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
 							{row.map((item, colIndex) => (
-								<td key={colIndex} class="border-t border-slate-300 px-1 py-3 md:px-5">
+								<td class="border-t border-slate-300 px-1 py-3 md:px-5">
 									{colIndex === 0 ? (
 										<div class="text-sm font-semibold text-slate-800 md:text-lg">{item}</div>
 									) : colIndex === 1 ? (
-										<div class="text-sm font-bold text-green-600 md:text-lg">{item}</div>
+										<div class="text-sm font-bold text-green-800 md:text-lg">{item}</div>
 									) : (
-										<div class="text-sm font-semibold text-rose-600 md:text-lg">{item}</div>
+										<div class="text-sm font-semibold text-red-800 md:text-lg">{item}</div>
 									)}
 								</td>
 							))}
