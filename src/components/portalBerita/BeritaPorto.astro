@@ -1,5 +1,7 @@
 ---
 import { Image } from 'astro:assets';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
 import Imgmediabhayangkaranasional from '../../assets/porto-portalberita/mediabhayangkaranasional.com.webp';
 import ImgKabarprimaCom from '../../assets/porto-portalberita/kabarprima.com.webp';
 import ImgSuaraupdateCo from '../../assets/porto-portalberita/suaraupdate.co.webp';
@@ -72,42 +74,45 @@ const carouselItems = [
 </div>
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script>
+    import Swiper from 'swiper';
+    import { Autoplay, EffectCoverflow } from 'swiper/modules';
 
-
-<script type="module">        
-    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.mjs'
-    var swiper = new Swiper(".mySwiper", {
-        effect: "coverflow",
+    new Swiper('.mySwiper', {
+        modules: [Autoplay, EffectCoverflow],
+        effect: 'coverflow',
         grabCursor: false,
         centeredSlides: true,
-        slidesPerView: "auto",
+        slidesPerView: 1.15,
+        spaceBetween: 16,
         coverflowEffect: {
             rotate: 0,
             stretch: 0,
+            depth: 120,
             modifier: 1,
             slideShadows: true,
+            scale: 0.92,
         },
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,
+            pauseOnMouseEnter: true,
         },
         loop: true,
         breakpoints: {
             640: {
                 slidesPerView: 2,
-                spaceBetween: 10,
+                spaceBetween: 16,
                 coverflowEffect: {
-                    depth: 100,
-                }
+                    depth: 160,
+                },
             },
             768: {
                 slidesPerView: 3,
-                spaceBetween: 30,
+                spaceBetween: 24,
                 coverflowEffect: {
-                    depth: 300,
-                }
+                    depth: 240,
+                },
             },
         },
     });
