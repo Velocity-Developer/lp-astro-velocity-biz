@@ -10,7 +10,12 @@ import partytown from '@astrojs/partytown';
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      modulePreload: {
+        resolveDependencies: () => []
+      }
+    }
   },
 
   integrations: [alpinejs(), partytown()]
