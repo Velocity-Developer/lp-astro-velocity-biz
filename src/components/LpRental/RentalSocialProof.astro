@@ -1,8 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import Button from '../LpButton.astro';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
 import portfolioOne from '../../assets/porto/letsexploreindonesia.com.webp';
 import portfolioTwo from '../../assets/porto/fahmitour.com.webp';
 import portfolioThree from '../../assets/porto/primadutatour.com.webp';
@@ -87,7 +85,7 @@ const itemsSwiper = [
 		</div>
 
 		
-		<div class="swiper mySwiper">
+		<div class="swiper mySwiper" data-rental-swiper-root>
 			<div class="swiper-wrapper">
 			{itemsSwiper.map((item, index) => (
 				<div class="swiper-slide pb-2">
@@ -107,58 +105,192 @@ const itemsSwiper = [
 </section>
 
 <script>
-    import Swiper from 'swiper';
-    import { Autoplay, EffectCoverflow } from 'swiper/modules';
+    const root = document.querySelector<HTMLDivElement>('[data-rental-swiper-root]');
+    const swiperElement = root;
 
-    new Swiper('.mySwiper', {
-        modules: [Autoplay, EffectCoverflow],
-        effect: 'coverflow',
-        grabCursor: false,
-        centeredSlides: true,
-        slidesPerView: 1.15,
-        spaceBetween: 16,
-        coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 120,
-            modifier: 1,
-            slideShadows: true,
-            scale: 0.92,
-        },
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-        },
-        loop: true,
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 16,
-                coverflowEffect: {
-                    depth: 160,
+    async function initSwiper() {
+        if (!root || !swiperElement || root.dataset.swiperInitialized === 'true') {
+            return;
+        }
+
+        root.dataset.swiperInitialized = 'true';
+
+        const [{ default: Swiper }, { Autoplay, EffectCoverflow }] = await Promise.all([
+            import('swiper'),
+            import('swiper/modules'),
+        ]);
+
+        new Swiper(swiperElement, {
+            modules: [Autoplay, EffectCoverflow],
+            effect: 'coverflow',
+            grabCursor: false,
+            centeredSlides: true,
+            slidesPerView: 1.15,
+            spaceBetween: 16,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 120,
+                modifier: 1,
+                slideShadows: true,
+                scale: 0.92,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            loop: true,
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 16,
+                    coverflowEffect: {
+                        depth: 160,
+                    },
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                    coverflowEffect: {
+                        depth: 240,
+                    },
                 },
             },
-            768: {
-                slidesPerView: 3,
-                spaceBetween: 24,
-                coverflowEffect: {
-                    depth: 240,
-                },
-            },
-        },
-    });
+        });
+
+        root.dataset.swiperReady = 'true';
+    }
+
+    if (root && swiperElement) {
+        const observer = new IntersectionObserver((entries) => {
+            const [entry] = entries;
+
+            if (!entry?.isIntersecting) {
+                return;
+            }
+
+            observer.disconnect();
+            initSwiper().catch(() => {
+                root.dataset.swiperInitialized = 'false';
+            });
+        }, {
+            rootMargin: '300px 0px',
+        });
+
+        observer.observe(root);
+    }
 </script>
 
 <style>
-    .mySwiper:not(.swiper-coverflow.swiper-3d) {
+    .mySwiper {
+        overflow-x: auto;
+        padding-block: 1rem;
+        scrollbar-width: none;
+    }
+
+    .mySwiper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mySwiper .swiper-wrapper {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(82%, 1fr);
+        gap: 1rem;
+        align-items: center;
+        scroll-snap-type: x mandatory;
+    }
+
+    .mySwiper .swiper-slide {
+        scroll-snap-align: center;
+    }
+
+    .mySwiper .caption {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .mySwiper img {
+        filter: none;
+    }
+
+    [data-swiper-ready="true"].mySwiper:not(.swiper-coverflow.swiper-3d) {
         opacity: 0;
     }
-    .mySwiper .swiper-slide:not(.swiper-slide-active) .caption {
+
+    [data-swiper-ready="true"].mySwiper {
+        overflow: hidden;
+        padding-block: 0;
+    }
+
+    [data-swiper-ready="true"].mySwiper .swiper-wrapper {
+        display: flex;
+        gap: 0;
+        align-items: stretch;
+        scroll-snap-type: none;
+        transition-property: transform;
+        box-sizing: content-box;
+    }
+
+    [data-swiper-ready="true"].mySwiper .swiper-slide {
+        flex-shrink: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition-property: transform;
+        display: block;
+        scroll-snap-align: unset;
+    }
+
+    [data-swiper-ready="true"].mySwiper.swiper-3d {
+        perspective: 1200px;
+    }
+
+    [data-swiper-ready="true"].mySwiper.swiper-3d .swiper-wrapper {
+        transform-style: preserve-3d;
+    }
+
+    [data-swiper-ready="true"].mySwiper.swiper-3d .swiper-slide,
+    [data-swiper-ready="true"].mySwiper.swiper-3d .swiper-slide-shadow-left,
+    [data-swiper-ready="true"].mySwiper.swiper-3d .swiper-slide-shadow-right {
+        transform-style: preserve-3d;
+    }
+
+    [data-swiper-ready="true"].mySwiper .swiper-slide-shadow-left,
+    [data-swiper-ready="true"].mySwiper .swiper-slide-shadow-right {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    [data-swiper-ready="true"].mySwiper .swiper-slide-shadow-left {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
+    }
+
+    [data-swiper-ready="true"].mySwiper .swiper-slide-shadow-right {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+    }
+
+    [data-swiper-ready="true"].mySwiper .swiper-slide:not(.swiper-slide-active) .caption {
         opacity: 0;
         transform: translateY(150%);
     }
-    .mySwiper .swiper-slide:not(.swiper-slide-active) img {
+
+    [data-swiper-ready="true"].mySwiper .swiper-slide:not(.swiper-slide-active) img {
         filter: grayscale(70%);
+    }
+
+    @media screen and (min-width: 640px) {
+        .mySwiper .swiper-wrapper {
+            grid-auto-columns: minmax(48%, 1fr);
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .mySwiper .swiper-wrapper {
+            grid-auto-columns: minmax(31%, 1fr);
+        }
     }
 </style>
