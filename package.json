@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.5.0",
+    "@astrojs/partytown": "^2.1.7",
     "@tailwindcss/vite": "^4.2.2",
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.15.9",
