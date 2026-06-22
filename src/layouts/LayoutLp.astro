@@ -110,7 +110,7 @@ const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
 	<div class="relative text-gray-800 bg-blue-50">
 		<LpHeader currentPath={pathname}/>
 			<slot />
-		<LpFooter />
+		<LpFooter client:visible />
 	</div>
 	</body>
 </html>
