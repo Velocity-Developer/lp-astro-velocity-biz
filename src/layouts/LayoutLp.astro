@@ -57,44 +57,27 @@ const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
 
 		<!-- Meta Pixel Code -->
 		<script is:inline define:vars={{ pixelId }}>
-			(() => {
-				if (!pixelId) return;
+			if (pixelId) {
+				!(function (f, b, e, v, n, t, s) {
+					if (f.fbq) return;
+					n = f.fbq = function () {
+						n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+					};
+					if (!f._fbq) f._fbq = n;
+					n.push = n;
+					n.loaded = true;
+					n.version = '2.0';
+					n.queue = [];
+					t = b.createElement(e);
+					t.async = true;
+					t.src = v;
+					s = b.getElementsByTagName(e)[0];
+					s.parentNode.insertBefore(t, s);
+				})(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-				let hasLoadedPixel = false;
-				const listenerOptions = { passive: true, once: true };
-
-				const loadPixel = () => {
-					if (hasLoadedPixel) return;
-					hasLoadedPixel = true;
-
-					window.removeEventListener('scroll', handleInteraction, listenerOptions);
-					window.removeEventListener('mousemove', handleInteraction, listenerOptions);
-
-					const script = document.createElement('script');
-					script.type = 'text/partytown';
-					script.textContent = `
-						!function(f,b,e,v,n,t,s)
-						{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-						n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-						if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-						n.queue=[];t=b.createElement(e);t.async=!0;
-						t.src=v;s=b.getElementsByTagName(e)[0];
-						s.parentNode.insertBefore(t,s)}(window, document,'script',
-						'https://connect.facebook.net/en_US/fbevents.js');
-						fbq('init', '${pixelId}');
-						fbq('track', 'PageView');
-					`;
-
-					document.head.appendChild(script);
-				};
-
-				const handleInteraction = () => {
-					loadPixel();
-				};
-
-				window.addEventListener('scroll', handleInteraction, listenerOptions);
-				window.addEventListener('mousemove', handleInteraction, listenerOptions);
-			})();
+				fbq('init', pixelId);
+				fbq('track', 'PageView');
+			}
 		</script>
 		
 		<noscript>
