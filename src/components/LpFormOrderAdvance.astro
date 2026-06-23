@@ -106,7 +106,7 @@ const wa = '6285600566674';
             class="px-20! py-4! rounded-full inline-flex items-center justify-center transition-shadow duration-300 bg-linear-to-r from-green-500 to-green-800 hover:from-green-600 hover:to-green-900 text-white w-full"
             x-bind:class="isValid ? 'cursor-pointer hover:shadow-md' : 'opacity-50 cursor-not-allowed pointer-events-none'"
             x-bind:aria-disabled="(!isValid).toString()"
-            @click="if (!isValid) { $event.preventDefault(); return; } sendOrder()"
+            @click="if (!isValid) { $event.preventDefault(); return; } if (typeof window.fbq === 'function') window.fbq('track', 'Lead'); sendOrder()"
         >
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
