@@ -18,6 +18,9 @@ import LpFormOrderAdvance from '../components/LpFormOrderAdvance.astro';
 		x-data="{
 			isFormOrderOpen: false,
 			openFormOrderModal() {
+				if (typeof window.fbq === 'function') {
+					window.fbq('track', 'AddToCart');
+				}
 				this.isFormOrderOpen = true;
 				document.body.classList.add('overflow-hidden');
 			},
