@@ -1,0 +1,108 @@
+---
+const fields = [
+	{
+		label: 'Nama',
+		name: 'nama',
+		type: 'text',
+		placeholder: 'Nama Anda'
+	},
+	{
+		label: 'No. HP / WhatsApp',
+		name: 'no_hp',
+		type: 'tel',
+		placeholder: 'Contoh: 081234567890'
+	},
+	{
+		label: 'Nama media',
+		name: 'nama_media',
+		type: 'text',
+		placeholder: 'Nama media yang akan dibuat'
+	},
+	{
+		label: 'Domisili media',
+		name: 'domisili_media',
+		type: 'text',
+		placeholder: 'Contoh: Semarang, Jawa Tengah'
+	}
+];
+
+const wa = '6285600566674';
+---
+
+<form
+	class="w-full"
+	x-data={`{
+		form: {
+			nama: '',
+			no_hp: '',
+			domisili_media: '',
+			nama_media: ''
+		},
+		wa: '${wa}',
+		get isValid() {
+			return Object.values(this.form).every((value) => String(value).trim() !== '');
+		},
+		get waLink() {
+			const message = [
+				'Halo, saya ingin konsultasi pembuatan portal berita di Velocity Developer.',
+				'',
+				'Nama: ' + this.form.nama,
+				'No. HP: ' + this.form.no_hp,
+				'Domisili media: ' + this.form.domisili_media,
+				'Nama media: ' + this.form.nama_media
+			].join('\\n');
+
+			return 'https://wa.me/' + this.wa + '?text=' + encodeURIComponent(message);
+		},
+		get orderPayload() {
+			return {
+				source: window.location.host + window.location.pathname,
+				nama: this.form.nama,
+				hp: this.form.no_hp,
+				usia: '',
+				kebutuhan: 'Domisili media: ' + this.form.domisili_media + '\\nNama media: ' + this.form.nama_media
+			};
+		},
+		sendOrder() {
+			fetch('https://new.velocitydeveloper.net/api/api/public/form-order', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json',
+					'Authorization': 'Bearer JEs3eipnlZxhS028J4ybcBlZzwks6ac3r0nDfmsh'
+				},
+				body: JSON.stringify(this.orderPayload)
+			}).catch((error) => console.log('Form order POST error:', error));
+		}
+	}`}
+	@submit.prevent
+>
+	<h3 class="mb-6 text-lg font-bold md:text-2xl">Lengkapi data singkat</h3>
+	{fields.map((field) => (
+		<div class="mb-4">
+			<label class="mb-1 block text-sm text-slate-600" for={field.name}>{field.label}</label>
+			<input
+				id={field.name}
+				class="w-full rounded-md border border-slate-300 p-2"
+				type={field.type}
+				name={field.name}
+				placeholder={field.placeholder}
+				x-model={`form.${field.name}`}
+				required
+			/>
+		</div>
+	))}
+	<div class="mt-8">
+		<a
+			x-bind:href="isValid ? waLink : '#formorder'"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="inline-flex w-full items-center justify-center rounded-full bg-linear-to-r from-green-500 to-green-800 px-8 py-4 font-semibold text-white transition-shadow hover:shadow-md"
+			x-bind:class="isValid ? 'cursor-pointer' : 'pointer-events-none cursor-not-allowed opacity-50'"
+			x-bind:aria-disabled="(!isValid).toString()"
+			@click="if (!isValid) { $event.preventDefault(); return; } if (typeof window.fbq === 'function') window.fbq('track', 'Lead'); sendOrder()"
+		>
+			Lanjut Konsultasi via WhatsApp
+		</a>
+	</div>
+</form>
