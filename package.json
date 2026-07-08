@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "rimraf dist && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "zip": "rimraf dist && astro build && node build-zip.js"
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.5.0",
@@ -17,9 +18,13 @@
     "@tailwindcss/vite": "^4.2.2",
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.15.9",
+    "archiver": "^8.0.0",
     "astro": "^6.4.5",
     "sharp": "^0.35.2",
     "swiper": "^12.2.0",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "rimraf": "^6.1.3"
   }
 }
