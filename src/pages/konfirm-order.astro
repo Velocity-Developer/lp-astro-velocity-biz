@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Konfirmasi Order"
+	description="Konfirmasi order Velocity Developer"
+	noindex={true}
+>
+	<main class="flex min-h-[60vh] items-center justify-center px-6 py-16">
+		<div class="w-full max-w-xl rounded-2xl bg-white p-8 text-center shadow-lg md:p-12">
+			<p class="mb-8 text-xl font-semibold text-slate-800 md:text-2xl">
+				Silahkan klik tombol dibawah ini untuk konfirmasi
+			</p>
+
+			<a
+				href="https://wa.me/6285600566674?text=Halo%2C%20saya%20ingin%20konfirmasi%20order."
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center justify-center rounded-lg bg-green-600 px-7 py-3 font-semibold text-white transition-colors hover:bg-green-700"
+			>
+				Konfirmasi Order
+			</a>
+		</div>
+	</main>
+</Layout>
