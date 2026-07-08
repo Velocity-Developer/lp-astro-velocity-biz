@@ -6,21 +6,33 @@ import Layout from '../layouts/Layout.astro';
 	title="Konfirmasi Order"
 	description="Konfirmasi order Velocity Developer"
 	noindex={true}
->
-	<main class="flex min-h-[60vh] items-center justify-center px-6 py-16">
-		<div class="w-full max-w-xl rounded-2xl bg-white p-8 text-center shadow-lg md:p-12">
-			<p class="mb-8 text-xl font-semibold text-slate-800 md:text-2xl">
-				Silahkan klik tombol dibawah ini untuk konfirmasi
-			</p>
+	>
+	<main class="flex min-h-[65vh] items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-5 py-16">
+		<div class="w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-white px-6 py-12 text-center shadow-2xl md:px-14 md:py-16">
+			<div class="mx-auto mb-7 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 ring-8 ring-green-50">
+				<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="h-10 w-10" stroke="currentColor" stroke-width="2.5">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"></path>
+				</svg>
+			</div>
 
-			<a
-				href="https://wa.me/6285600566674?text=Halo%2C%20saya%20ingin%20konfirmasi%20order."
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex items-center justify-center rounded-lg bg-green-600 px-7 py-3 font-semibold text-white transition-colors hover:bg-green-700"
-			>
-				Konfirmasi Order
-			</a>
+			<p class="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-green-600">
+				Pemesanan Berhasil
+			</p>
+			<h1 class="text-2xl font-bold leading-snug text-slate-900 md:text-4xl md:leading-tight">
+				Terimakasih, <span id="customer-name" class="text-green-600">Anda</span>
+			</h1>
+			<p class="mx-auto mt-4 max-w-lg text-base leading-relaxed text-slate-600 md:text-lg">
+				Sudah melakukan pemesanan website di Velocity.
+			</p>
 		</div>
 	</main>
+
+	<script>
+		const name = new URLSearchParams(window.location.search).get('n')?.trim();
+		const customerName = document.querySelector('#customer-name');
+
+		if (name && customerName) {
+			customerName.textContent = name;
+		}
+	</script>
 </Layout>
