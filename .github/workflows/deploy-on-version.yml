@@ -63,10 +63,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Astro
-        run: npm run build
+      - name: Build Astro Zip
+        run: npm run zip
 
-      - name: Deploy via FTP
+      - name: Deploy build.zip via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -75,4 +75,6 @@ jobs:
           protocol: ftp
           port: 21
           local-dir: ./dist/
-          server-dir: /
+          include: |
+            build.zip
+          server-dir: /install/
