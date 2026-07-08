@@ -1,7 +1,7 @@
-import { constants } from 'node:fs';
+import { constants, createWriteStream } from 'node:fs';
 import { access } from 'node:fs/promises';
 import path from 'node:path';
-import { spawn } from 'node:child_process';
+import { ZipArchive } from 'archiver';
 
 const distDir = path.resolve('dist');
 const outputFile = path.join(distDir, 'build.zip');
@@ -13,28 +13,20 @@ try {
 }
 
 await new Promise((resolve, reject) => {
-  const child = spawn(
-    'powershell.exe',
-    [
-      '-NoProfile',
-      '-Command',
-      `Compress-Archive -Path * -DestinationPath '${outputFile.replace(/'/g, "''")}' -Force`,
-    ],
-    {
-      cwd: distDir,
-      stdio: 'inherit',
-    },
-  );
+  const output = createWriteStream(outputFile);
+  const archive = new ZipArchive({ zlib: { level: 9 } });
 
-  child.on('error', reject);
-  child.on('exit', (code) => {
-    if (code === 0) {
-      resolve();
-      return;
-    }
+  output.on('close', resolve);
+  output.on('error', reject);
+  archive.on('error', reject);
 
-    reject(new Error(`Compress-Archive gagal. Exit code: ${code}`));
+  archive.pipe(output);
+  archive.glob('**/*', {
+    cwd: distDir,
+    dot: true,
+    ignore: ['build.zip'],
   });
+  archive.finalize();
 });
 
 console.log(`ZIP created: ${outputFile}`);
