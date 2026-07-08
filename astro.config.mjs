@@ -17,6 +17,7 @@ export default defineConfig({
       assetsInlineLimit: 15360, 
     }
   },
+  outDir: './dist/build',
 
   integrations: [alpinejs()]
 });
