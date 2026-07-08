@@ -35,3 +35,6 @@ jobs:
             --user "$FTP_USERNAME:$FTP_PASSWORD" \
             -T ./dist/build.zip \
             "ftp://$FTP_SERVER:21/install/build.zip"
+            
+      - name: Trigger extract.php
+        run: curl --fail "https://velocitydeveloper.biz/install/extract.php"
