@@ -36,11 +36,23 @@ const wa = '6285600566674';
 			nama: '',
 			no_hp: '',
 			domisili_media: '',
-			nama_media: ''
+			nama_media: '',
+			utm_source: '',
+			utm_medium: '',
+			utm_campaign: '',
+			utm_adset: '',
+			utm_content: ''
 		},
 		wa: '${wa}',
+		initUtm() {
+			const params = new URLSearchParams(window.location.search);
+			['utm_source', 'utm_medium', 'utm_campaign', 'utm_adset', 'utm_content'].forEach((key) => {
+				this.form[key] = params.get(key) || '';
+			});
+		},
 		get isValid() {
-			return Object.values(this.form).every((value) => String(value).trim() !== '');
+			return ['nama', 'no_hp', 'domisili_media', 'nama_media']
+				.every((key) => String(this.form[key]).trim() !== '');
 		},
 		get waLink() {
 			const message = [
@@ -55,12 +67,25 @@ const wa = '6285600566674';
 			return 'https://wa.me/' + this.wa + '?text=' + encodeURIComponent(message);
 		},
 		get orderPayload() {
+			const utmInfo = [
+				'UTM Source: ' + (this.form.utm_source || '-'),
+				'UTM Medium: ' + (this.form.utm_medium || '-'),
+				'UTM Campaign: ' + (this.form.utm_campaign || '-'),
+				'UTM Adset: ' + (this.form.utm_adset || '-'),
+				'UTM Content: ' + (this.form.utm_content || '-')
+			].join('\\n');
+
 			return {
 				source: window.location.host + window.location.pathname,
 				nama: this.form.nama,
 				hp: this.form.no_hp,
 				usia: '',
-				kebutuhan: 'Domisili media: ' + this.form.domisili_media + '\\nNama media: ' + this.form.nama_media
+				kebutuhan: 'Domisili media: ' + this.form.domisili_media + '\\nNama media: ' + this.form.nama_media + '\\n' + utmInfo,
+				utm_source: this.form.utm_source,
+				utm_medium: this.form.utm_medium,
+				utm_campaign: this.form.utm_campaign,
+				utm_adset: this.form.utm_adset,
+				utm_content: this.form.utm_content
 			};
 		},
 		sendOrder() {
@@ -75,8 +100,14 @@ const wa = '6285600566674';
 			}).catch((error) => console.log('Form order POST error:', error));
 		}
 	}`}
+	x-init="initUtm()"
 	@submit.prevent
 >
+	<input type="hidden" name="utm_source" x-model="form.utm_source" />
+	<input type="hidden" name="utm_medium" x-model="form.utm_medium" />
+	<input type="hidden" name="utm_campaign" x-model="form.utm_campaign" />
+	<input type="hidden" name="utm_adset" x-model="form.utm_adset" />
+	<input type="hidden" name="utm_content" x-model="form.utm_content" />
 	<h3 class="mb-6 text-lg font-bold md:text-2xl">Lengkapi data singkat</h3>
 	{fields.map((field) => (
 		<div class="mb-4">
