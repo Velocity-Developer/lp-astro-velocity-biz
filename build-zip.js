@@ -3,13 +3,13 @@ import { access } from 'node:fs/promises';
 import path from 'node:path';
 import { ZipArchive } from 'archiver';
 
-const distDir = path.resolve('dist');
-const outputFile = path.join(distDir, 'build.zip');
+const sourceDir = path.resolve('dist', 'build');
+const outputFile = path.resolve('dist', 'build.zip');
 
 try {
-  await access(distDir, constants.F_OK);
+  await access(sourceDir, constants.F_OK);
 } catch {
-  throw new Error(`Folder dist tidak ditemukan: ${distDir}`);
+  throw new Error(`Folder dist/build tidak ditemukan: ${sourceDir}`);
 }
 
 await new Promise((resolve, reject) => {
@@ -22,9 +22,8 @@ await new Promise((resolve, reject) => {
 
   archive.pipe(output);
   archive.glob('**/*', {
-    cwd: distDir,
+    cwd: sourceDir,
     dot: true,
-    ignore: ['build.zip'],
   });
   archive.finalize();
 });
