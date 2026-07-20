@@ -1,0 +1,109 @@
+---
+import Button from '../LpButton.astro';
+
+const painPoints = [
+	{
+		title: "Website Lama Banget, Pengunjung Kabur",
+		description: "Artikel loading lama, gambar lambat, pengunjung langsung tutup halaman sebelum baca berita.",
+		icon: "&#128555;"
+	},
+	{
+		title: "Website susah terindeks google",
+		description: "Sudah bayar mahal tapi website tidak muncul di google.",
+		icon: "&#128532;"
+	},
+	{
+		title: "Hosting Limit, Kapasitas Cepat Habis",
+		description: "Upload gambar sedikit, space hosting langsung penuh, harus upgrade paket dengan harga mahal.",
+		icon: "&#128184;"
+	},
+	{
+		title: "Susah Update Konten Sendiri",
+		description: "Panel admin ribet, harus belajar coding dulu cuma buat upload berita.",
+		icon: "&#129327;"
+	},
+	{
+		title: "Tidak Ada Slot Iklan untuk Monetisasi",
+		description: "Punya banyak pengunjung tapi tidak ada tempat pasang iklan, tidak bisa menghasilkan uang dari portal berita.",
+		icon: "&#128201;"
+	},
+	{
+		title: "Support Hilang Setelah Website Jadi",
+		description: "Ada masalah teknis, developer tidak bisa dihubungi, portal berita down tanpa ada yang bantu.",
+		icon: "&#128560;"
+	},
+	{
+		title: "Website Rentan Hack & Malware",
+		description: "Keamanan lemah, website mudah dibobol, data berita hilang.",
+		icon: "&#9888;&#65039;"
+	},
+	{
+		title: "Tidak Mobile Friendly",
+		description: "80% pengunjung dari HP tapi tampilan website jelek di layar kecil, banyak yang keluar.",
+		icon: "&#128241;"
+	}
+];
+
+const benefits = [
+	"Hosting super cepat untuk ribuan artikel",
+	"SEO SetUp",
+	"Unlimited space & bandwidth",
+	"Admin mudah, tanpa coding",
+	"Slot iklan siap pakai",
+	"Support 24/7 via WhatsApp",
+	"Keamanan terjamin",
+	"100% mobile friendly",
+	"Domain gratis 1 tahun",
+	"Panduan kelola konten lengkap"
+];
+---
+
+<section id="painpoints" class="w-full bg-slate-900 px-8 py-15 text-white xl:py-20">
+	<div class="mx-auto max-w-6xl">
+		<h2 class="mx-auto mb-6 max-w-3xl text-center text-4xl font-bold md:mb-10 md:text-6xl">
+			Hati-Hati Masalah Ini Sering Membuat Pusing Saat Kelola Portal Berita!
+		</h2>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+			{painPoints.map((pain, index) => (
+				<div class="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all duration-300 hover:shadow-lg">
+					<div class="text-4xl mb-3" set:html={pain.icon}></div>
+					<h3 class="font-bold text-xl mb-2 text-yellow-300">{pain.title}</h3>
+					<p class="text-slate-300">{pain.description}</p>
+				</div>
+			))}
+		</div>
+
+		<div class="bg-blue-800/50 backdrop-blur-sm p-5 rounded-3xl mb-10 border border-blue-600">
+			<h3 class="mx-auto mb-6 max-w-3xl text-center text-3xl font-bold md:text-4xl">
+				Di Velocity Developer, Dengan <span class="text-yellow-400 text-5xl md:text-5xl">Rp 390rb,</span> Semua Masalah Diatas Hilang.
+			</h3>
+			<h3 class="mx-auto mb-6 max-w-3xl text-center text-2xl font-bold md:text-3xl">
+				Anda Akan Dapatkan SEMUA Ini:
+			</h3>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto">
+				{benefits.map((benefit) => (
+					<div class="flex items-center gap-3">
+						<div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
+								<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+							</svg>
+						</div>
+						<span class="text-lg">{benefit}</span>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<div class="mt-10 text-center">
+			<Button link="#" className="cta-modal-formorder px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
+				<div class="flex items-center justify-center gap-2">
+					Selesaikan Masalah Portal Berita Anda Sekarang!
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+					</svg>
+				</div>
+			</Button>
+		</div>
+	</div>
+</section>

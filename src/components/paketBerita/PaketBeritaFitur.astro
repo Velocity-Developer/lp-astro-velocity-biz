@@ -1,0 +1,64 @@
+---
+import Button from '../LpButton.astro';
+
+const featureRows = [
+	['Portal Berita Siap Online', '&#10004;', '&#10006;'],
+	['Hosting Unlimited', '&#10004;', '&#10006;'],
+	['Artikel & Kategori Tanpa Batas', '&#10004;', '&#10006;'],
+	['SEO Optimized', '&#10004;', '&#10006;'],
+	['Slot Iklan Siap Pakai', '&#10004;', '&#10006;'],
+	['Admin Mudah Tanpa Coding', '&#10004;', '&#10006;'],
+	['Domain Gratis 1 Tahun', '&#10004;', 'Kadang'],
+	['Support 24/7 via WhatsApp', '&#10004;', 'Harus buat tiket'],
+	['Panduan Kelola Konten', '&#10004;', 'Tidak ada'],
+	['Harga Mulai', 'Rp 390rb', 'Rp 5 Juta+++']
+];
+---
+
+<section id="fitur" class="bg-radial-[at_50%_15%] from-lime-50 via-blue-50 to-sky-50 px-6 pt-12 md:py-25">
+	<div class="mx-auto max-w-5xl">
+		<h2 class="text-center text-2xl font-bold mb-8 md:text-4xl">
+			Mengapa Memilih Velocity Developer Dibanding Jasa Lain?
+		</h2>
+
+		<div class="overflow-x-auto">
+			<table class="w-full border-collapse text-center">
+				<thead class="text-base text-blue-700 md:text-xl">
+					<tr>
+						<th class="px-3 py-4 border border-slate-300 bg-white">Fitur</th>
+						<th class="px-3 py-4 border border-slate-300 bg-blue-600 text-white">Velocity Developer</th>
+						<th class="px-3 py-4 border border-slate-300 bg-slate-200">Jasa Lain</th>
+					</tr>
+				</thead>
+				<tbody>
+					{featureRows.map((row, index) => (
+						<tr class={index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+							{row.map((item, colIndex) => (
+								<td class="border-t border-slate-300 px-1 py-3 md:px-5">
+									{colIndex === 0 ? (
+										<div class="text-sm font-semibold text-slate-800 md:text-lg">{item}</div>
+									) : colIndex === 1 ? (
+										<div class="text-sm font-bold text-green-800 md:text-lg" set:html={item}></div>
+									) : (
+										<div class="text-sm font-semibold text-red-800 md:text-lg" set:html={item}></div>
+									)}
+								</td>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="mt-12 text-center">
+			<Button link="#" className="cta-modal-formorder px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
+				<div class="flex flex-col items-center justify-center gap-2 px-3 py-2 md:flex-row">
+					<span>Dapatkan Portal Berita Profesional dengan <span class="font-bold">Rp 390rb</span> Sekarang!</span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+					</svg>
+				</div>
+			</Button>
+		</div>
+	</div>
+</section>

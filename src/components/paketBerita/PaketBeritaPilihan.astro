@@ -1,0 +1,71 @@
+---
+import Button from '../LpButton.astro';
+
+const packageOptions = [
+	{
+		name: 'Paket Biasa',
+		price: 'Rp 390.000',
+		description: 'Pilihan hemat untuk mulai membangun portal berita dan publikasi online.',
+		features: ['Portal berita siap online', 'Tampilan responsif', 'Dashboard mudah dikelola', 'Support teknis'],
+		featured: false
+	},
+	{
+		name: 'Paket Custom',
+		price: 'Rp 1.200.000',
+		description: 'Cocok untuk portal berita dengan tampilan dan kebutuhan yang lebih khusus.',
+		features: ['Semua fitur Paket Biasa', 'Desain dapat disesuaikan', 'Struktur kategori custom', 'Optimasi SEO dasar'],
+		featured: true
+	},
+	{
+		name: 'Paket Unlimited',
+		price: 'Rp 3.000.000',
+		description: 'Solusi lengkap untuk media online yang ingin berkembang tanpa khawatir batasan.',
+		features: ['Semua fitur Paket Custom', 'Hosting unlimited', 'Slot iklan siap pakai', 'Support prioritas'],
+		featured: false
+	}
+];
+---
+
+<section id="paketweb" class="bg-linear-to-r from-blue-800 to-sky-600 px-6 py-20 text-white md:px-10">
+	<div class="mx-auto max-w-7xl">
+		<div class="mx-auto max-w-3xl text-center">
+			<h2 class="text-3xl font-bold md:text-5xl">Pilih Paket Portal Berita</h2>
+			<p class="mt-4 text-lg text-blue-100">
+				Mulai Rp 390rb untuk punya portal berita profesional yang siap online.
+			</p>
+		</div>
+
+		<div class="mt-12 grid gap-8 lg:grid-cols-3">
+			{packageOptions.map((item) => (
+				<article class:list={[
+					'relative flex h-full flex-col rounded-3xl border p-7 shadow-xl backdrop-blur-sm md:p-8',
+					item.featured ? 'border-yellow-300 bg-white text-slate-900 lg:-translate-y-3' : 'border-white/20 bg-white/10 text-white'
+				]}>
+					{item.featured && (
+						<div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-yellow-400 px-5 py-2 text-sm font-bold text-slate-900">
+							Paling Populer
+						</div>
+					)}
+					<h3 class:list={['text-2xl font-bold', item.featured ? 'text-blue-800' : 'text-yellow-200']}>{item.name}</h3>
+					<div class:list={['mt-4 text-4xl font-extrabold tracking-tight md:text-5xl', item.featured ? 'text-slate-900' : 'text-yellow-400']}>
+						{item.price}
+					</div>
+					<p class:list={['mt-4 min-h-18 leading-7', item.featured ? 'text-slate-600' : 'text-blue-100']}>{item.description}</p>
+					<ul class="my-7 space-y-3">
+						{item.features.map((feature) => (
+							<li class="flex items-start gap-3">
+								<span class:list={['mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full font-bold', item.featured ? 'bg-blue-100 text-blue-700' : 'bg-white/15 text-yellow-300']}>✓</span>
+								<span>{feature}</span>
+							</li>
+						))}
+					</ul>
+					<div class="mt-auto">
+						<Button link="#" className="cta-modal-formorder w-full px-8 py-4 text-base font-bold shadow-lg" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
+							Pilih {item.name}
+						</Button>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+</section>

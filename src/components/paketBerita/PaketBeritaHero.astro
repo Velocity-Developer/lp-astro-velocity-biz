@@ -1,0 +1,27 @@
+---
+import Button from '../LpButton.astro';
+
+const runningItems = ['Portal berita siap online', 'Index halaman 1 Google', 'Hosting unlimited', 'Support 24/7', 'Panduan kelola konten'];
+---
+
+<section id="hero" class="relative w-full bg-linear-to-r from-blue-800 to-sky-600 px-6 pt-30 text-white md:px-10 md:pb-10 md:pt-20 xl:px-0">
+	<div class="absolute inset-0 z-0 opacity-50" style="background-image:linear-gradient(to right, #e7e5e4 1px, transparent 1px),linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);background-size:20px 20px;mask-image:radial-gradient(ellipse 80% 80% at 100% 0%, #000 50%, transparent 90%);"></div>
+	<div class="relative z-1 mx-auto flex min-h-[25em] max-w-7xl items-center justify-center md:min-h-[40em]">
+		<div class="mx-auto max-w-4xl space-y-8 text-center">
+			<h1 class="text-4xl font-extrabold md:text-6xl xl:text-8xl">Mau Punya Portal Berita atau Media Online Sendiri? Mulai <span class="text-yellow-400">Rp 390rb</span></h1>
+			<h2 class="text-2xl font-extrabold md:text-3xl">SEO Ready + Gampang Pasang Iklan + Support Selamanya</h2>
+			<h3 class="text-base md:text-2xl">Tidak usah pusing soal hosting, SEO, atau update konten. Kami bikin portal berita profesional yang siap monetisasi!<br />Harga promo spesial mulai <span class="font-bold text-yellow-400">Rp 390rb</span><br />All-in-One Service</h3>
+			<div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+				<Button link="#" className="cta-modal-formorder px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">Konsultasi Gratis via WhatsApp →</Button>
+				<a href="#painpoints" class="inline-flex rounded-full border border-white/40 bg-yellow-400 px-8 py-3 font-semibold text-black transition-colors hover:bg-white/30">Lihat Masalah Yang Kami Pecahkan</a>
+			</div>
+		</div>
+	</div>
+	<div class="mx-auto max-w-7xl overflow-hidden whitespace-nowrap pb-4 text-white md:pb-0">
+		<div class="marquee-container overflow-hidden">
+			<div class="marquee-track flex text-sm md:text-lg">
+				{Array.from({ length: 2 }).map(() => <div class="marquee-content flex">{runningItems.map((item) => <div class="mr-2 flex items-center gap-1 opacity-75 md:mr-8"><span>✓</span>{item}</div>)}</div>)}
+			</div>
+		</div>
+	</div>
+</section>
