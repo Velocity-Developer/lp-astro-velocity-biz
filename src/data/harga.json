@@ -1,0 +1,53 @@
+[
+    {
+        "id":  1,
+        "title": "Profile",
+        "description": "Untuk: Perusahaan, Sekolah, Universitas, Rumah Sakit, Puskesmas, Klinik, Instansi Pemerintah, Sales Mobil, Personal, Bisnis, Tour Travel, Sales Internet, dsb.",
+        "items" : [
+            {
+                "title" : "PAKET E",
+                "price": 390000,
+                "design": "1 pilihan desain",
+                "domain": 1
+            },
+            {
+                "title" : "PAKET F",
+                "price": 500000,
+                "design": "20 pilihan desain",
+                "domain": 1
+            },
+            {
+                "title" : "PAKET G",
+                "price": 11990000,
+                "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri).",
+                "domain": 1
+            }
+        ]
+    },
+    
+    {
+        "id":  2,
+        "title": "Profile",
+        "description": "Untuk: Perusahaan, Sekolah, Universitas, Rumah Sakit, Puskesmas, Klinik, Instansi Pemerintah, Sales Mobil, Personal, Bisnis, Tour Travel, Sales Internet, dsb.",
+        "items" : [
+            {
+                "title" : "PAKET E",
+                "price": 390000,
+                "design": "1 pilihan desain",
+                "domain": 1
+            },
+            {
+                "title" : "PAKET F",
+                "price": 500000,
+                "design": "20 pilihan desain",
+                "domain": 1
+            },
+            {
+                "title" : "PAKET G",
+                "price": 11990000,
+                "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri).",
+                "domain": 1
+            }
+        ]
+    }
+]
