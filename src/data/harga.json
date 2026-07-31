@@ -6,47 +6,127 @@
         "items" : [
             {
                 "title" : "PAKET E",
-                "price": 390000,
-                "design": "1 pilihan desain",
-                "domain": 1
+                "price": "Rp 390.000",
+                "price_renew": "Rp 311.000",
+                "features": [
+                    "Website siap pakai",
+                    "<b>Garansi dari hacker dan virus</b>",
+                    "1 domain",
+                    "Hosting 150MB",
+                    "Bandwith 15GB/bulan",
+                    "Panduan edit web",
+                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
+                    "<b>Garansi dari hacker dan virus</b>"
+                ]
             },
             {
                 "title" : "PAKET F",
-                "price": 500000,
-                "design": "20 pilihan desain",
-                "domain": 1
+                "price": "Rp 500.000",
+                "price_renew": "Rp 311.000",
+                "features": [
+                    "Website siap pakai",
+                    "<b>20 pilihan desain</b>",
+                    "<b>Header dan background bisa diganti</b>",
+                    "<b>Bisa request warna desain</b>",    
+                    "1 domain",
+                    "Hosting 150MB",
+                    "Bandwith 15GB/bulan",
+                    "Panduan edit web",
+                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
+                    "<b>Garansi dari hacker dan virus</b>"
+                ]
             },
             {
                 "title" : "PAKET G",
-                "price": 11990000,
-                "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri).",
-                "domain": 1
+                "price": "Rp 1.199.000",
+                "price_renew": "Rp 381.000",
+                "features": [
+                    "Website siap pakai",
+                    "<b>Desain professional, mewah dan custom (bisa mengajukan desain sendiri)</b>",
+                    "<b>Ada Slidernya</b>",
+                    "1 domain",
+                    "Hosting 250MB",
+                    "Bandwith 25GB/bulan",
+                    "Panduan edit web",
+                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
+                    "<b>Garansi dari hacker dan virus</b>"
+                ]
             }
         ]
     },
     
     {
         "id":  2,
-        "title": "Profile",
-        "description": "Untuk: Perusahaan, Sekolah, Universitas, Rumah Sakit, Puskesmas, Klinik, Instansi Pemerintah, Sales Mobil, Personal, Bisnis, Tour Travel, Sales Internet, dsb.",
+        "title": "Berita / Media Online",
+        "description": "Untuk: Media Online, Blog, Portal, News, dsb.",
         "items" : [
             {
-                "title" : "PAKET E",
-                "price": 390000,
-                "design": "1 pilihan desain",
-                "domain": 1
+                "title" : "PAKET PORTAL BERITA BIASA",
+                "price": "Rp 390.000",
+                "price_renew": "Rp 311.000",
+                "features": [
+                    "Website siap pakai",
+                    "<b>16 pilihan desain</b>",
+                    "1 domain",
+                    "Hosting 150MB",
+                    "Bandwith 15GB/bulan",
+                    "Panduan edit web",
+                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
+                    "<b>Garansi dari hacker dan virus</b>"
+                ]
             },
             {
-                "title" : "PAKET F",
-                "price": 500000,
-                "design": "20 pilihan desain",
-                "domain": 1
+                "title" : "PAKET PORTAL BERITA CUSTOM",
+                "price": "Rp 1.199.000",
+                "price_renew": "Rp 381.000",
+                "features": [
+                    "Website siap pakai",
+                    "<b>Desain professional, mewah dan custom (bisa mengajukan desain sendiri)</b>",
+                    "1 domain",
+                    "Hosting 150MB",
+                    "Bandwith 15GB/bulan",
+                    "Panduan edit web",
+                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
+                    "<b>Garansi dari hacker dan virus</b>"
+                ]
+            }
+        ]
+    },
+    
+    {
+        "id":  3,
+        "title": "Toko Online",
+        "description": "Untuk: Toko Online Jual Baju, Kosmetik, Komputer, dan Berbagai Barang",
+        "items" : [
+            {
+                "title" : "PAKET TOKO ONLINE BIASA",
+                "price": "Rp 390.000",
+                "price_renew": "Rp 311.000",
+                "features": [
+                    "Website siap pakai",
+                    "<b>20 pilihan desain</b>",
+                    "1 domain",
+                    "Hosting 150MB",
+                    "Bandwith 15GB/bulan",
+                    "Panduan edit web",
+                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
+                    "<b>Garansi dari hacker dan virus</b>"
+                ]
             },
             {
-                "title" : "PAKET G",
-                "price": 11990000,
-                "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri).",
-                "domain": 1
+                "title" : "PAKET TOKO ONLINE CUSTOM",
+                "price": "Rp 1.199.000",
+                "price_renew": "Rp 381.000",
+                "features": [
+                    "Website siap pakai",
+                    "<b>Desain professional, mewah dan custom (bisa mengajukan desain sendiri)</b>",
+                    "1 domain",
+                    "Hosting 150MB",
+                    "Bandwith 15GB/bulan",
+                    "Panduan edit web",
+                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
+                    "<b>Garansi dari hacker dan virus</b>"
+                ]
             }
         ]
     }
