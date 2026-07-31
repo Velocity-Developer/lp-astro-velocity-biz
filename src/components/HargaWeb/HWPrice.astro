@@ -14,17 +14,8 @@ const getCategoryId = (index: number) => `paketweb-${index + 1}`;
 
 const lastCategoryIndex = categories.length - 1;
 
-const getPackageGridClass = (packageCount: number) => {
-    if (packageCount === 1) {
-        return 'md:grid-cols-1 max-w-md mx-auto';
-    }
-
-    if (packageCount === 2) {
-        return 'md:grid-cols-2 max-w-4xl mx-auto';
-    }
-
-    return 'md:grid-cols-2 lg:grid-cols-3';
-};
+const getFeatureRows = (packages: typeof categories[number]['packages']) =>
+    Array.from({ length: Math.max(...packages.map((item) => item.features.length)) });
 ---
 <div
     id="paketweb"
@@ -75,52 +66,98 @@ const getPackageGridClass = (packageCount: number) => {
                 x-show={`activeTab === ${index}`}
                 x-cloak
             >
-                <h2 class="mb-2 text-center font-bold text-2xl md:text-2xl">
+                <h2 class="mb-2 text-left font-bold text-2xl md:text-2xl">
                     {category.category}
                 </h2>
-                <p class="text-center text-sm text-gray-700">
+                <p class="text-left text-sm text-gray-700">
                     {category.description}
                 </p>
-                <div class:list={[
-                    'relative z-2 grid grid-cols-1 mt-10 gap-4 md:gap-8',
-                    getPackageGridClass(category.packages.length),
-                ]}>
-                    {category.packages.map((item) => (
-                        <div class="bg-white shadow-sm hover:shadow-xl rounded-xl overflow-hidden transition duration-300 group">
-                            <div class="bg-linear-to-br from-blue-500 to-cyan-500 text-yellow-200 group-hover:bg-blue-600 group-hover:from-blue-400 transition duration-300">
-                                <div class="px-3 py-5 text-center text-2xl tracking-wide font-bold">
-                                    {item.name}
-                                </div>
-                            </div>
-                            <div class="bg-white min-h-50 text-sm md:text-base">   
-                                <div class="px-4 py-4 text-center odd:bg-slate-50">
-                                    <div class="text-2xl md:text-3xl font-bold tracking-tighter">
-                                        {formatRupiah(item.price)}
-                                    </div>
-                                    <div class="text-sm md:text-base mt-1 font-medium text-teal-600">
-                                        {formatRupiah(item.price_extension)} /tahun
-                                    </div>
-                                </div>
-                                <div class="px-4 py-4 text-center odd:bg-slate-50">
-                                    {item.design}
-                                </div>
-                                <div class="px-4 py-4 text-center odd:bg-slate-50">
-                                    Domain {item.domain} tahun
-                                </div>
-                                <div class="px-4 py-4 text-center odd:bg-slate-50">
-                                    Hosting {item.hosting}
-                                </div>
-                                <div class="px-4 py-4 text-center odd:bg-slate-50">
-                                    Bandwidth {item.bandwidth}
-                                </div>
-                                {item.features.map((feature) => (
-                                    <div class="px-4 py-4 text-center odd:bg-slate-50 font-normal">
-                                        {feature}
-                                    </div>
+                <div class="relative z-2 mt-10 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-180 border-collapse text-sm md:text-base">
+                            <thead>
+                                <tr class="bg-linear-to-br from-sky-600 to-sky-700 text-white">
+                                    <th scope="col" class="md:w-25 px-2 py-5 text-left font-bold text-blue-50">
+                                        
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <th scope="col" class="md:min-w-56 px-2 py-5 text-left text-lg md:text-xl font-bold tracking-wide text-blue-50">
+                                            {item.name}
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="bg-white">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Harga
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 text-left align-top">
+                                            <div class="text-2xl font-bold tracking-tighter text-slate-950 md:text-3xl">
+                                                {formatRupiah(item.price)}
+                                            </div>
+                                            <div class="mt-1 text-sm font-medium text-teal-600 md:text-base">
+                                                {formatRupiah(item.price_extension)} /tahun
+                                            </div>
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Desain
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 text-left align-top text-slate-700">
+                                            {item.design}
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr class="bg-white">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Domain
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 text-left align-top text-slate-700">
+                                            {item.domain} tahun
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Hosting
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 text-left align-top text-slate-700">
+                                            {item.hosting}
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr class="bg-white">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Bandwidth
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 align-top text-slate-700">
+                                            {item.bandwidth}
+                                        </td>
+                                    ))}
+                                </tr>
+                                {getFeatureRows(category.packages).map((_, featureIndex) => (
+                                    <tr class:list={[featureIndex % 2 === 0 ? 'bg-slate-50' : 'bg-white']}>
+                                        <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                            
+                                        </th>
+                                        {category.packages.map((item) => (
+                                            <td class="px-4 py-4 text-left align-top text-slate-700">
+                                                {item.features[featureIndex] ?? <span class="text-slate-300">-</span>}
+                                            </td>
+                                        ))}
+                                    </tr>
                                 ))}
-                            </div>
-                        </div>
-                    ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>               
                 
             </div>
