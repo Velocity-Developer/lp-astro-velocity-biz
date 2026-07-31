@@ -1,133 +1,496 @@
-[
+{
+  "source": "https://velocitydeveloper.com/harga-web/",
+  "categories": [
     {
-        "id":  1,
-        "title": "Profile",
-        "description": "Untuk: Perusahaan, Sekolah, Universitas, Rumah Sakit, Puskesmas, Klinik, Instansi Pemerintah, Sales Mobil, Personal, Bisnis, Tour Travel, Sales Internet, dsb.",
-        "items" : [
-            {
-                "title" : "PAKET E",
-                "price": "Rp 390.000",
-                "price_renew": "Rp 311.000",
-                "features": [
-                    "Website siap pakai",
-                    "<b>Garansi dari hacker dan virus</b>",
-                    "1 domain",
-                    "Hosting 150MB",
-                    "Bandwith 15GB/bulan",
-                    "Panduan edit web",
-                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
-                    "<b>Garansi dari hacker dan virus</b>"
-                ]
-            },
-            {
-                "title" : "PAKET F",
-                "price": "Rp 500.000",
-                "price_renew": "Rp 311.000",
-                "features": [
-                    "Website siap pakai",
-                    "<b>20 pilihan desain</b>",
-                    "<b>Header dan background bisa diganti</b>",
-                    "<b>Bisa request warna desain</b>",    
-                    "1 domain",
-                    "Hosting 150MB",
-                    "Bandwith 15GB/bulan",
-                    "Panduan edit web",
-                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
-                    "<b>Garansi dari hacker dan virus</b>"
-                ]
-            },
-            {
-                "title" : "PAKET G",
-                "price": "Rp 1.199.000",
-                "price_renew": "Rp 381.000",
-                "features": [
-                    "Website siap pakai",
-                    "<b>Desain professional, mewah dan custom (bisa mengajukan desain sendiri)</b>",
-                    "<b>Ada Slidernya</b>",
-                    "1 domain",
-                    "Hosting 250MB",
-                    "Bandwith 25GB/bulan",
-                    "Panduan edit web",
-                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
-                    "<b>Garansi dari hacker dan virus</b>"
-                ]
-            }
-        ]
+      "category": "Website Profile",
+      "description": "Perusahaan, Sekolah, Universitas, Rumah Sakit, Puskesmas, Klinik, Instansi Pemerintah, Sales Mobil, Personal, Bisnis, Tour Travel, Sales Internet, dsb.",
+      "packages": [
+        {
+          "name": "Paket E",
+          "price": 390000,
+          "price_extension": 311000,
+          "design": "1 pilihan desain",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket F",
+          "price": 500000,
+          "price_extension": 311000,
+          "design": "20 pilihan desain, bisa request warna, header dan background bisa diganti",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket G",
+          "price": 1199000,
+          "price_extension": 381000,
+          "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri), ada slider",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
     },
-    
     {
-        "id":  2,
-        "title": "Berita / Media Online",
-        "description": "Untuk: Media Online, Blog, Portal, News, dsb.",
-        "items" : [
-            {
-                "title" : "PAKET PORTAL BERITA BIASA",
-                "price": "Rp 390.000",
-                "price_renew": "Rp 311.000",
-                "features": [
-                    "Website siap pakai",
-                    "<b>16 pilihan desain</b>",
-                    "1 domain",
-                    "Hosting 150MB",
-                    "Bandwith 15GB/bulan",
-                    "Panduan edit web",
-                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
-                    "<b>Garansi dari hacker dan virus</b>"
-                ]
-            },
-            {
-                "title" : "PAKET PORTAL BERITA CUSTOM",
-                "price": "Rp 1.199.000",
-                "price_renew": "Rp 381.000",
-                "features": [
-                    "Website siap pakai",
-                    "<b>Desain professional, mewah dan custom (bisa mengajukan desain sendiri)</b>",
-                    "1 domain",
-                    "Hosting 150MB",
-                    "Bandwith 15GB/bulan",
-                    "Panduan edit web",
-                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
-                    "<b>Garansi dari hacker dan virus</b>"
-                ]
-            }
-        ]
+      "category": "Website Berita / Media Online",
+      "description": "Portal Berita dan Media Online",
+      "packages": [
+        {
+          "name": "Paket Portal Berita Biasa",
+          "price": 390000,
+          "price_extension": 311000,
+          "design": "16 pilihan desain",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket Portal Berita Custom",
+          "price": 1199000,
+          "price_extension": 381000,
+          "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
     },
-    
     {
-        "id":  3,
-        "title": "Toko Online",
-        "description": "Untuk: Toko Online Jual Baju, Kosmetik, Komputer, dan Berbagai Barang",
-        "items" : [
-            {
-                "title" : "PAKET TOKO ONLINE BIASA",
-                "price": "Rp 390.000",
-                "price_renew": "Rp 311.000",
-                "features": [
-                    "Website siap pakai",
-                    "<b>20 pilihan desain</b>",
-                    "1 domain",
-                    "Hosting 150MB",
-                    "Bandwith 15GB/bulan",
-                    "Panduan edit web",
-                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
-                    "<b>Garansi dari hacker dan virus</b>"
-                ]
-            },
-            {
-                "title" : "PAKET TOKO ONLINE CUSTOM",
-                "price": "Rp 1.199.000",
-                "price_renew": "Rp 381.000",
-                "features": [
-                    "Website siap pakai",
-                    "<b>Desain professional, mewah dan custom (bisa mengajukan desain sendiri)</b>",
-                    "1 domain",
-                    "Hosting 150MB",
-                    "Bandwith 15GB/bulan",
-                    "Panduan edit web",
-                    "<b>Gratis Tanya Jawab & Pemanduan</b>",
-                    "<b>Garansi dari hacker dan virus</b>"
-                ]
-            }
-        ]
+      "category": "Web Toko Online",
+      "description": "Toko Online Jual Baju, Kosmetik, Komputer, dan Berbagai Barang",
+      "packages": [
+        {
+          "name": "Paket Toko Online Biasa",
+          "price": 390000,
+          "price_extension": 311000,
+          "design": "20 pilihan desain",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur toko online",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket Toko Online Custom",
+          "price": 1199000,
+          "price_extension": 381000,
+          "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur toko online",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web Marketplace / Jual Beli",
+      "description": "Website Jual-Beli semacam Tokopedia, Shopee, OLX, Bukalapak, Lazada, Blibli dan sebagainya. Pengunjung Bisa Memasang Iklan Produk Mereka Sendiri Secara Gratis Ataupun Premium",
+      "packages": [
+        {
+          "name": "Paket Marketplace Biasa",
+          "price": 500000,
+          "price_extension": 311000,
+          "design": "2 pilihan desain",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur Marketplace",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket Marketplace Custom",
+          "price": 1199000,
+          "price_extension": 381000,
+          "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur Marketplace",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web Iklan Baris",
+      "description": "Iklan Baris dan Iklan Premium Dimana Pengunjung Dapat Memasang Iklan di Web Anda",
+      "packages": [
+        {
+          "name": "Paket Iklan Baris Biasa",
+          "price": 500000,
+          "price_extension": 311000,
+          "design": "1 pilihan desain, bisa request warna & background bisa diganti",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket Iklan Baris Custom",
+          "price": 1199000,
+          "price_extension": 381000,
+          "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web Elearning",
+      "description": "Media pembelajaran sekolah untuk mengupload tugas, mengerjakan soal/tes/ujian, dan mendownload materi pelajaran. Untuk media pembelajaran antara guru dan siswa.",
+      "packages": [
+        {
+          "name": "Paket Elearning Custom",
+          "price": 1199000,
+          "price_extension": 381000,
+          "design": "Desain professional dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur elearning",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web Sistem Informasi Akademik (SIA)",
+      "description": "Untuk kampus/universitas untuk KRS, KHS, Ambil Jadwal Kuliah, Cek nilai, Cek Jadwal Kuliah dan Ruang",
+      "packages": [
+        {
+          "name": "Paket SIA Custom",
+          "price": 1199000,
+          "price_extension": 381000,
+          "design": "Desain professional dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur SIA",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web Forum",
+      "description": "Website forum semacam Kaskus, Forum Modifikasi, Forum Detik dan sebagainya. Cocok untuk web komunitas dimana setiap user bisa mendaftar dan memposting thread/artikel dan saling mengomentari.",
+      "packages": [
+        {
+          "name": "Paket Forum Biasa",
+          "price": 500000,
+          "price_extension": 311000,
+          "design": "1 pilihan desain",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur forum",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket Forum Custom",
+          "price": 1199000,
+          "price_extension": 381000,
+          "design": "Desain professional dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur forum",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web Radio Streaming",
+      "description": "Website radio streaming. Jika mempunyai radio, bisa mengonlinekan radio. Bisa juga siaran dari PC atau play lagu-lagu otomatis.",
+      "packages": [
+        {
+          "name": "Paket Radio Streaming Biasa",
+          "price": 1500000,
+          "price_extension": 1556000,
+          "design": "1 pilihan desain",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Max 100 pendengar bersamaan",
+            "Penyimpanan mp3 500MB",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket Radio Streaming Custom",
+          "price": 2700000,
+          "price_extension": 1756000,
+          "design": "Desain professional dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Penyimpanan mp3 1GB",
+            "Max 200 pendengar bersamaan",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web Landingpage",
+      "description": "Website landingpage 1 lembar untuk jualan 1 macam produk, mencakup semua materi.",
+      "packages": [
+        {
+          "name": "Paket Landingpage Biasa",
+          "price": 599000,
+          "price_extension": 381000,
+          "design": "1 pilihan desain, bisa request warna",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket Landingpage Custom",
+          "price": 1200000,
+          "price_extension": 381000,
+          "design": "Desain professional dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web PPDB",
+      "description": "Website PPDB online",
+      "packages": [
+        {
+          "name": "Paket PPDB Biasa",
+          "price": 500000,
+          "price_extension": 311000,
+          "design": "1 pilihan desain",
+          "domain": 1,
+          "hosting": "150 MB",
+          "bandwidth": "15 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket PPDB Custom",
+          "price": 1200000,
+          "price_extension": 381000,
+          "design": "Desain professional dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web PPOB",
+      "description": "Website pembayaran listrik, pulsa, paket data, asuransi/BPJS, PDAM, dan sejenisnya",
+      "packages": [
+        {
+          "name": "Paket PPOB Biasa",
+          "price": 1500000,
+          "price_extension": 381000,
+          "design": "Desain dan fitur mengikuti bayarlistrikonline.com",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Payment Gateway 1 bank, masa aktif 1 bulan",
+            "WA Gateway, masa aktif 1 bulan",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket PPOB Custom",
+          "price": 2500000,
+          "price_extension": 381000,
+          "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Fitur seperti bayarlistrikonline.com",
+            "Payment Gateway 1 bank, masa aktif 1 bulan",
+            "WA Gateway, masa aktif 1 bulan",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Web Lowongan Kerja",
+      "description": "Website loker, menampilkan informasi lowongan kerja",
+      "packages": [
+        {
+          "name": "Paket Loker Biasa",
+          "price": 599000,
+          "price_extension": 381000,
+          "design": "1 pilihan desain",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        },
+        {
+          "name": "Paket Loker Custom",
+          "price": 1200000,
+          "price_extension": 381000,
+          "design": "Desain professional dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Website siap pakai",
+            "Panduan edit web",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Aplikasi Android",
+      "description": "Aplikasi Android yang bisa didownload di Google Play/Playstore. Contohnya untuk: Toko Online, Perusahaan, Sekolah, Portal Berita, dsb.",
+      "packages": [
+        {
+          "name": "Paket APK Custom",
+          "price": 1700000,
+          "price_extension": 381000,
+          "design": "Desain professional, mewah dan custom (bisa mengajukan desain sendiri)",
+          "domain": 1,
+          "hosting": "250 MB",
+          "bandwidth": "25 GB/bulan",
+          "features": [
+            "Aplikasi siap pakai",
+            "Panduan edit aplikasi",
+            "Gratis Tanya Jawab & Pemanduan",
+            "Garansi dari hacker dan virus"
+          ]
+        }
+      ]
     }
-]
+  ]
+}
