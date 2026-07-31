@@ -9,6 +9,18 @@ const formatRupiah = (price: number) =>
     }).format(price);
 
 const getCategoryId = (index: number) => `paketweb-${index + 1}`;
+
+const getPackageGridClass = (packageCount: number) => {
+    if (packageCount === 1) {
+        return 'md:grid-cols-1 max-w-md mx-auto';
+    }
+
+    if (packageCount === 2) {
+        return 'md:grid-cols-2 max-w-4xl mx-auto';
+    }
+
+    return 'md:grid-cols-2 lg:grid-cols-3';
+};
 ---
 <div class="price-container relative max-w-6xl mx-auto p-4 md:pt-10 pb-50">
 
@@ -31,7 +43,10 @@ const getCategoryId = (index: number) => `paketweb-${index + 1}`;
                 <p class="text-center text-sm text-gray-500">
                     {category.description}
                 </p>
-                <div class="relative z-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-4 md:gap-8">
+                <div class:list={[
+                    'relative z-2 grid grid-cols-1 mt-10 gap-4 md:gap-8',
+                    getPackageGridClass(category.packages.length),
+                ]}>
                     {category.packages.map((item) => (
                         <div class="bg-white shadow-sm hover:shadow-xl rounded-xl overflow-hidden transition duration-300 group">
                             <div class="bg-linear-to-br from-blue-500 to-cyan-500 text-yellow-200 group-hover:bg-blue-600 group-hover:from-blue-400 transition duration-300">
