@@ -1,0 +1,50 @@
+---
+import testimonials from '../../data/testimonials.json';
+---
+<div class="mx-auto max-w-7xl pb-20">
+    <h2 class="text-center font-bold text-2xl md:text-4xl mb-2 md:mb-4">
+        Reputasi Terbaik di Google Maps
+    </h2>
+    <p class="text-center mb-6 md:mb-10">
+        Kami mendapatkan 1.200 ulasan di google maps bintang 5
+    </p>
+    <div class="py-2 marquee-container">
+        <div class="marquee-track [animation-duration:80s]! flex text-sm md:text-lg">
+            
+            {Array.from({ length: 3 }).map((_, index) => (
+                <div class="marquee-content flex">
+                    {testimonials.map((item) => (
+                        <div class="py-2 px-3 w-[90vw] md:w-[50vw] xl:w-110">
+                            <div class="group shadow-md hover:shadow-lg rounded-xl p-4 md:p-8 xl:min-h-65 bg-white" x-data={`{ testi: ${JSON.stringify(item.testimonial)} }`}>
+                                <div class="flex items-center gap-3 border-b border-slate-300 mb-4 pb-4">
+                                    <div>
+                                        <div class="text-sm font-bold mb-1">{item.title}</div>
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-slate-600 group-hover:text-slate-800 min-h-25 tracking-normal mt-3" x-html="testi"></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ))}
+        </div>
+    </div>
+        
+</div>

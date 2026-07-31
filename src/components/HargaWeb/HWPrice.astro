@@ -28,7 +28,7 @@ const getPackageGridClass = (packageCount: number) => {
 ---
 <div
     id="paketweb"
-    class="price-container relative max-w-6xl mx-auto p-4 md:pt-50 pb-50"
+    class="price-container relative max-w-6xl mx-auto p-4 md:pt-30 pb-40"
     x-data={`{
         activeTab: 0,
         setTab(index) {
@@ -75,10 +75,10 @@ const getPackageGridClass = (packageCount: number) => {
                 x-show={`activeTab === ${index}`}
                 x-cloak
             >
-                <h2 class="mb-2 text-left font-bold text-2xl md:text-2xl">
+                <h2 class="mb-2 text-center font-bold text-2xl md:text-2xl">
                     {category.category}
                 </h2>
-                <p class="text-left text-sm text-gray-700">
+                <p class="text-center text-sm text-gray-700">
                     {category.description}
                 </p>
                 <div class:list={[
