@@ -1,0 +1,176 @@
+---
+import daftarHarga from '../../data/harga.json';
+
+const categories = daftarHarga.categories;
+
+const formatRupiah = (price: number) =>
+    new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0,
+    }).format(price);
+
+const getCategoryId = (index: number) => `paketweb-${index + 1}`;
+
+const lastCategoryIndex = categories.length - 1;
+
+const getFeatureRows = (packages: typeof categories[number]['packages']) =>
+    Array.from({ length: Math.max(...packages.map((item) => item.features.length)) });
+---
+<div
+    id="paketweb"
+    class="price-container relative max-w-6xl mx-auto p-4 md:pt-30 pb-40"
+    x-data={`{
+        activeTab: 0,
+        setTab(index) {
+            this.activeTab = index;
+            history.replaceState(null, '', '#paketweb-' + (index + 1));
+        },
+        init() {
+            const match = window.location.hash.match(/^#paketweb-(\\d+)$/);
+
+            if (!match) return;
+
+            const tabIndex = Number(match[1]) - 1;
+            this.activeTab = Math.min(Math.max(tabIndex, 0), ${lastCategoryIndex});
+        }
+    }`}
+>
+
+    <div class="relative z-2 grid grid-cols-1 gap-8 lg:grid-cols-12">
+        <div class="lg:col-span-3">
+            <div class="flex gap-2 overflow-x-auto rounded-xl bg-slate-100 p-2 shadow-inner lg:sticky lg:top-28 lg:flex-col lg:overflow-visible" role="tablist">
+            {categories.map((category, index) => (
+                <button
+                    id={`tab-${getCategoryId(index)}`}
+                    type="button"
+                    role="tab"
+                    aria-controls={getCategoryId(index)}
+                    @click={`setTab(${index})`}
+                    :aria-selected={`activeTab === ${index}`}
+                    :class={`activeTab === ${index} ? 'bg-sky-600 text-white shadow-sm' : 'bg-white text-slate-700 hover:bg-slate-800 hover:text-white'`}
+                    class="shrink-0 rounded-lg px-4 py-2 text-left text-sm font-medium transition duration-300 lg:w-full"
+                >
+                    {category.category}
+                </button>
+            ))}
+            </div>
+        </div>
+        <div class="relative lg:col-span-9">
+        {categories.map((category, index) => (
+            <div
+                id={getCategoryId(index)}
+                class="relative z-2"
+                role="tabpanel"
+                aria-labelledby={`tab-${getCategoryId(index)}`}
+                x-show={`activeTab === ${index}`}
+                x-cloak
+            >
+                <h2 class="mb-2 text-left font-bold text-2xl md:text-2xl">
+                    {category.category}
+                </h2>
+                <p class="text-left text-sm text-gray-700">
+                    {category.description}
+                </p>
+                <div class="relative z-2 mt-10 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-180 border-collapse text-sm md:text-base">
+                            <thead>
+                                <tr class="bg-linear-to-br from-sky-600 to-sky-700 text-white">
+                                    <th scope="col" class="md:w-25 px-2 py-5 text-left font-bold text-blue-50">
+                                        
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <th scope="col" class="md:min-w-56 px-2 py-5 text-left text-lg md:text-xl font-bold tracking-wide text-blue-50">
+                                            {item.name}
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="bg-white">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Harga
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 text-left align-top">
+                                            <div class="text-2xl font-bold tracking-tighter text-slate-950 md:text-3xl">
+                                                {formatRupiah(item.price)}
+                                            </div>
+                                            <div class="mt-1 text-sm font-medium text-teal-600 md:text-base">
+                                                {formatRupiah(item.price_extension)} /tahun
+                                            </div>
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Desain
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 text-left align-top text-slate-700">
+                                            {item.design}
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr class="bg-white">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Domain
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 text-left align-top text-slate-700">
+                                            {item.domain} tahun
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Hosting
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 text-left align-top text-slate-700">
+                                            {item.hosting}
+                                        </td>
+                                    ))}
+                                </tr>
+                                <tr class="bg-white">
+                                    <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                        Bandwidth
+                                    </th>
+                                    {category.packages.map((item) => (
+                                        <td class="px-4 py-4 align-top text-slate-700">
+                                            {item.bandwidth}
+                                        </td>
+                                    ))}
+                                </tr>
+                                {getFeatureRows(category.packages).map((_, featureIndex) => (
+                                    <tr class:list={[featureIndex % 2 === 0 ? 'bg-slate-50' : 'bg-white']}>
+                                        <th scope="row" class="px-4 py-4 text-left font-semibold text-slate-700">
+                                            
+                                        </th>
+                                        {category.packages.map((item) => (
+                                            <td class="px-4 py-4 text-left align-top text-slate-700">
+                                                {item.features[featureIndex] ?? <span class="text-slate-300">-</span>}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>               
+                
+            </div>
+        ))}
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 right-0 w-80 h-80 -translate-y-25 translate-x-0 z-1 bg-linear-to-b from-sky-200 via-sky-50 to-orange-100 rounded-full"></div>
+
+</div>
+
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>
