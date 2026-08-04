@@ -1,0 +1,51 @@
+---
+import Button from '../LpButton.astro';
+
+const featureRows = [
+	['Jenis website', 'Profile, berita, toko online', 'Sering hanya satu jenis'],
+	['Pilihan harga', 'Mulai Rp 390rb', 'Paket sering tidak transparan'],
+	['Desain', 'Siap pakai atau custom', 'Terbatas'],
+	['Dashboard admin', 'Mudah dikelola', 'Sering membingungkan'],
+	['Mobile friendly', 'Ya', 'Belum tentu'],
+	['Domain dan hosting', 'Dibantu siapkan', 'Kadang terpisah'],
+	['Support teknis', 'Via WhatsApp', 'Harus antre tiket'],
+	['Konsultasi kebutuhan', 'Gratis sebelum order', 'Tidak selalu ada']
+];
+---
+
+<section id="fitur" class="bg-radial-[at_50%_15%] from-lime-50 via-blue-50 to-sky-50 px-6 pt-12 md:py-25">
+	<div class="mx-auto max-w-5xl">
+		<h2 class="text-center text-2xl font-bold mb-8 md:text-4xl">
+			Mengapa Pesan Website di Velocity Developer?
+		</h2>
+
+		<div class="overflow-x-auto">
+			<table class="w-full border-collapse text-center">
+				<thead class="text-base text-blue-700 md:text-xl">
+					<tr>
+						<th class="px-3 py-4 border border-slate-300 bg-white">Kebutuhan</th>
+						<th class="px-3 py-4 border border-slate-300 bg-blue-600 text-white">Velocity Developer</th>
+						<th class="px-3 py-4 border border-slate-300 bg-slate-200">Umumnya</th>
+					</tr>
+				</thead>
+				<tbody>
+					{featureRows.map((row, index) => (
+						<tr class={index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+							{row.map((item, colIndex) => (
+								<td class="border-t border-slate-300 px-1 py-3 md:px-5">
+									<div class:list={['text-sm md:text-lg', colIndex === 1 ? 'font-bold text-green-800' : colIndex === 2 ? 'font-semibold text-slate-600' : 'font-semibold text-slate-800']}>{item}</div>
+								</td>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="mt-12 text-center">
+			<Button link="#" className="cta-modal-formorder px-10 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
+				Mulai dari Paket Rp 390rb
+			</Button>
+		</div>
+	</div>
+</section>

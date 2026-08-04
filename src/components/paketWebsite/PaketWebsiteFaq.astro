@@ -1,0 +1,47 @@
+---
+const faqs = [
+	['Paket Rp 390rb dan Rp 500rb desainnya bagaimana?', 'Untuk paket tersebut, desain sudah disediakan agar proses lebih cepat dan biaya tetap hemat. Anda tinggal menyiapkan materi seperti nama usaha, logo, kontak, produk, layanan, dan konten utama.'],
+	['Apakah paket Rp 1,2jt dan Rp 3jt bisa pakai desain sendiri?', 'Bisa. Paket Rp 1,2jt dan Rp 3jt unlimited bisa mengajukan referensi atau desain sendiri, lalu tampilan dibuat lebih profesional sesuai kebutuhan brand.'],
+	['Website apa saja yang bisa dibuat?', 'Kami bisa bantu web profile perusahaan, kantor, sekolah, organisasi, portal berita, media online, katalog produk, dan toko online.'],
+	['Apakah website bisa dikelola sendiri?', 'Ya. Website disiapkan dengan dashboard admin agar Anda bisa mengubah konten, produk, artikel, halaman, atau informasi penting tanpa coding.'],
+	['Apakah ada biaya perpanjangan?', 'Ada biaya tahunan untuk domain, hosting, dan maintenance sesuai paket yang dipilih. Detailnya bisa dikonsultasikan sebelum order.'],
+	['Kalau belum punya materi lengkap apakah bisa mulai?', 'Bisa konsultasi dulu. Kami bantu arahkan materi apa saja yang perlu disiapkan sesuai jenis website yang ingin dibuat.'],
+	['Pengerjaan berapa lama?', 'Lama pengerjaan 3 hari sampai 10 hari kerja, menyesuaikan paket yang dipilih dan kelengkapan materi dari Anda.'],
+	['Apakah bisa DP untuk pembayarannya?', 'Bisa. Untuk menjaga kenyamanan bertransaksi, kami menyediakan opsi pembayaran DP 50%.'],
+	['Apakah bisa dibantu memasarkan produk kami di dunia online?', 'Bisa. Kami punya tim pemasaran iklan Google yang berpengalaman untuk membantu promosi produk atau layanan Anda.'],
+	['Apakah website bisa membantu meningkatkan omzet usaha?', 'Bisa. Website dapat menjadi pusat informasi resmi, dan jika dikombinasikan dengan iklan Google, bisa membantu menemukan calon customer atau klien baru dari pencarian Google.'],
+	['Apakah dapat email bisnis?', 'Dapat. Anda bisa mendapat email bisnis profesional sesuai nama domain, misalnya nama@domain.com.'],
+	['Apakah ada tutorial penggunaan websitenya?', 'Ada. Kami menyediakan tutorial pengelolaan website agar Anda bisa mengelola konten sendiri.'],
+	['Apakah ada panduan jika mau mengedit web atau posting artikel/berita?', 'Ada. Kami bisa bantu lewat WhatsApp, telepon, maupun berbagi layar komputer sesuai kebutuhan.'],
+	['Apakah hosting benar-benar unlimited?', 'Ya, hosting unlimited tidak dibatasi dari kapasitas hosting. Namun tetap ada batas inodes dari hosting, menyesuaikan paket yang digunakan.'],
+	['Apakah dibantu perbaikan jika website kena hacker?', 'Ya. Kami bantu perbaikan jika website terkena masalah keamanan seperti hack atau malware.'],
+	['Jika website rusak atau error bagaimana?', 'Akan dibantu oleh tim support kami. Tim support siap membantu kendala teknis setiap hari.'],
+	['Apakah data hilang jika website rusak?', 'Data tidak hilang selama masih tersedia di sistem backup. Kami menyiapkan backup untuk membantu pemulihan jika terjadi masalah teknis.']
+];
+---
+
+<section id="faq" class="bg-linear-to-b from-white to-blue-50 px-6 py-16 md:px-10 md:py-24">
+	<div class="mx-auto max-w-5xl">
+		<div class="mx-auto max-w-3xl text-center">
+			<div class="mb-3 inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800">FAQ Paket Website</div>
+			<h2 class="text-3xl font-bold text-slate-900 md:text-5xl">Pertanyaan Sebelum Order Website</h2>
+			<p class="mt-4 text-base text-slate-600 md:text-lg">Jawaban singkat untuk calon pelanggan yang ingin punya website resmi, berita, atau toko online.</p>
+		</div>
+		<div class="mt-10 space-y-4" x-data="{ open: 0 }">
+			{faqs.map(([question, answer], index) => (
+				<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md">
+					<button type="button" class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left text-slate-800" @click={`open === ${index} ? open = null : open = ${index}`} x-bind:aria-expanded={`(open === ${index}).toString()`}>
+						<span class="text-base font-semibold md:text-lg">{question}</span>
+						<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xl font-bold text-blue-700" x-text={`open === ${index} ? '-' : '+'`}></span>
+					</button>
+					<div x-show={`open === ${index}`} x-transition class="px-6 pb-6 text-sm leading-7 text-slate-600 md:text-base">{answer}</div>
+				</div>
+			))}
+		</div>
+		<div class="mt-10 rounded-3xl bg-blue-900 px-6 py-8 text-center text-white shadow-xl">
+			<h3 class="text-2xl font-bold md:text-3xl">Masih bingung pilih paket?</h3>
+			<p class="mt-3 text-blue-100 md:text-lg">Isi form konsultasi dan kami bantu rekomendasikan paket yang paling pas.</p>
+			<a href="#" class="cta-modal-formorder mt-6 inline-flex rounded-full bg-yellow-400 px-8 py-4 font-bold text-slate-900" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'Lead');">Tanya Tim Kami Sekarang</a>
+		</div>
+	</div>
+</section>

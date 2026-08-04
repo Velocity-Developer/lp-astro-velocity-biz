@@ -1,0 +1,58 @@
+---
+import Button from '../LpButton.astro';
+
+const painPoints = [
+	['Usaha terlihat kurang meyakinkan', 'Calon pelanggan mencari nama bisnis di Google, tapi tidak menemukan website resmi yang rapi.'],
+	['Masih bergantung pada chat manual', 'Informasi layanan, katalog, kontak, dan lokasi harus dijelaskan berulang kali lewat WhatsApp.'],
+	['Desain tidak sesuai kebutuhan', 'Website terlihat seadanya, tidak cocok untuk citra perusahaan, sekolah, organisasi, atau toko online.'],
+	['Sulit update konten sendiri', 'Mau ganti produk, berita, profil, atau halaman harus menunggu orang teknis.'],
+	['Biaya terasa tidak jelas', 'Paket terlalu rumit, banyak biaya tambahan, dan sulit tahu mana yang sesuai kebutuhan.'],
+	['Support hilang setelah website jadi', 'Saat website bermasalah, tidak ada tim yang mudah dihubungi untuk bantu cek.']
+];
+
+const benefits = [
+	'Pilihan paket untuk web profile, portal berita, dan toko online',
+	'Dashboard admin mudah digunakan',
+	'Gratis domain sesuai paket',
+	'Website responsif untuk HP dan desktop',
+	'Bisa pakai desain siap pakai atau desain custom',
+	'Support teknis via WhatsApp'
+];
+---
+
+<section id="painpoints" class="w-full bg-slate-900 px-8 py-15 text-white xl:py-20">
+	<div class="mx-auto max-w-6xl">
+		<h2 class="mx-auto mb-6 max-w-3xl text-center text-3xl font-bold leading-tight md:mb-10 md:text-5xl">
+			Website Yang Tepat Membuat Bisnis dan Organisasi Lebih Mudah Dipercaya
+		</h2>
+
+		<div class="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+			{painPoints.map(([title, description]) => (
+				<div class="rounded-2xl border border-slate-700 bg-slate-800/60 p-6 transition-all duration-300 hover:border-cyan-400 hover:shadow-lg">
+					<h3 class="mb-2 text-xl font-bold text-yellow-300">{title}</h3>
+					<p class="leading-7 text-slate-300">{description}</p>
+				</div>
+			))}
+		</div>
+
+		<div class="rounded-3xl border border-blue-500 bg-blue-900/60 p-6 md:p-8">
+			<h3 class="mx-auto mb-6 max-w-3xl text-center text-2xl font-bold md:text-4xl">
+				Velocity Developer bantu siapkan website yang rapi, jelas, dan siap dipakai.
+			</h3>
+			<div class="mx-auto grid max-w-4xl grid-cols-1 gap-3 md:grid-cols-2">
+				{benefits.map((benefit) => (
+					<div class="flex items-center gap-3">
+						<span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white">&check;</span>
+						<span class="text-base md:text-lg">{benefit}</span>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<div class="mt-10 text-center">
+			<Button link="#" className="cta-modal-formorder px-10 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
+				Konsultasikan Website Yang Anda Butuhkan
+			</Button>
+		</div>
+	</div>
+</section>
