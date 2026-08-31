@@ -51,13 +51,17 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
           kebutuhan: this.form.kebutuhan,
           url_referensi: this.form.url_referensi,
           url_materi: this.form.url_materi,
-          sumber_order: window.location.origin,
+          sumber_order: window.location.host,
         };
         let popup;
         try {
           const response = await fetch('https://new.velocitydeveloper.net/api/api/public/order-web-snap', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': 'Bearer JEs3eipnlZxhS028J4ybcBlZzwks6ac3r0nDfmsh'
+            },
             body: JSON.stringify(payload)
           });
           const { nomor_order, redirect_url } = await response.json();
