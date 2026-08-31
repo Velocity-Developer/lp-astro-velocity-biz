@@ -14,6 +14,8 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
     x-data={`{
       categories: ${JSON.stringify(categories)},
       step: 0,
+      loading: false,
+      error: '',
       selectedCategory: null,
       selectedPackage: null,
       form: { nama: '', no_hp: '', email: '', alamat: '', nama_usaha: '', kebutuhan: '', url_referensi: '', url_materi: '', pembayaran: 'Transfer Bank' },
@@ -30,27 +32,50 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
         if (this.step === 0 && !this.selectedCategory) return;
         if (this.step === 1 && !this.selectedPackage) return;
         if (this.step === 2 && (!$refs.form.reportValidity() || !this.form.alamat.trim())) return;
-        if (this.step < 3) this.step++;
+        if (this.step < 2) this.step++;
         else this.sendOrder();
       },
-      sendOrder() {
-        const message = [
-          'Halo, saya ingin memesan website di Velocity Developer.', '',
-          'Jenis website: ' + this.selectedCategory.category,
-          'Paket: ' + this.selectedPackage.name,
-          'Harga: ' + this.formatRupiah(this.total),
-          'Nama: ' + this.form.nama,
-          'No. WhatsApp: ' + this.form.no_hp,
-          'Usaha / instansi: ' + this.form.nama_usaha,
-          'Kebutuhan: ' + this.form.kebutuhan,
-          'Pembayaran: ' + this.form.pembayaran
-        ].join('\\n');
-        window.open('https://wa.me/6285600566674?text=' + encodeURIComponent(message), '_blank');
+      async sendOrder() {
+        if (!this.selectedCategory || !this.selectedPackage || this.loading) return;
+        this.loading = true;
+        this.error = '';
+        const payload = {
+          jenis_web: this.selectedCategory.category,
+          paket: this.selectedPackage.name,
+          harga: this.total,
+          nama: this.form.nama,
+          no_hp: this.form.no_hp,
+          email: this.form.email,
+          alamat: this.form.alamat,
+          nama_usaha: this.form.nama_usaha,
+          kebutuhan: this.form.kebutuhan,
+          url_referensi: this.form.url_referensi,
+          url_materi: this.form.url_materi,
+          sumber_order: window.location.origin,
+        };
+        let popup;
+        try {
+          const response = await fetch('https://new.velocitydeveloper.net/api/api/public/order-web-snap', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const { nomor_order, redirect_url } = await response.json();
+          if (!response.ok || !redirect_url) throw new Error('URL pembayaran tidak tersedia');
+          popup = window.open(redirect_url, 'midtrans-snap', 'width=480,height=720,resizable=yes,scrollbars=yes');
+          if (!popup) window.location.href = redirect_url;
+          console.log('Order:', nomor_order);
+        } catch (error) {
+          if (popup) popup.close();
+          this.error = error.message || 'Pesanan gagal diproses.';
+        } finally {
+          this.loading = false;
+        }
       }
     }`}
   >
 
-    <div class="min-h-60 bg-blue-600 px-12 py-12 text-white flex justify-center items-center">
+    <div class="min-h-60 md:min-h-100 bg-blue-800 px-12 py-12 md:pt-30 text-white flex justify-center items-center">
       <div class="mx-auto mb-10 max-w-2xl text-center">
         <span class="mb-3 inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-700">Mulai dari sini</span>
         <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Pesan website impian Anda</h1>
@@ -101,6 +126,7 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
                 <label>Nama lengkap<input :required="step === 2" name="nama" placeholder="Nama Anda" x-model="form.nama" /></label>
                 <label>No. WhatsApp<input :required="step === 2" name="no_hp" type="tel" placeholder="081234567890" x-model="form.no_hp" /></label>
                 <label>Email<input :required="step === 2" name="email" type="email" placeholder="nama@email.com" x-model="form.email" /></label>
+                <label class="sm:col-span-2">Alamat<textarea :required="step === 2" name="alamat" rows="3" placeholder="Alamat lengkap" x-model="form.alamat"></textarea></label>
                 <label class="sm:col-span-2">Nama usaha / instansi<input :required="step === 2" name="nama_usaha" placeholder="Contoh: CV Maju Jaya" x-model="form.nama_usaha" /></label>
                 <div class="sm:col-span-2 my-2 border-t border-slate-200 pt-6">
                   <h3 class="text-lg font-bold text-slate-900">Data Projek</h3>
@@ -111,17 +137,11 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
               </div>
             </div>
 
-            <div class="panel" x-show="step === 3" x-cloak>
-              <h2 class="text-xl font-bold text-slate-900">Pilih pembayaran</h2>
-              <p class="mt-1 mb-6 text-sm text-slate-500">Pilih metode pembayaran untuk menyelesaikan pesanan.</p>
-              <label class="payment"><input :required="step === 3" type="radio" name="pembayaran" value="Transfer Bank" x-model="form.pembayaran" /><span><strong>Transfer Bank</strong><small>BCA, sesuai instruksi setelah pesanan dikirim</small></span></label>
-              <label class="payment"><input type="radio" name="pembayaran" value="Konfirmasi via WhatsApp" x-model="form.pembayaran" /><span><strong>Konfirmasi via WhatsApp</strong><small>Diskusikan detail pembayaran bersama tim kami</small></span></label>
-              <div class="mt-6 rounded-xl bg-blue-50 p-4 text-sm text-blue-800">Setelah klik kirim, Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan.</div>
-            </div>
 
+            <p x-show="error" x-text="error" class="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700"></p>
             <div class="mt-8 flex justify-between gap-3 border-t border-slate-100 pt-6">
               <button type="button" class="rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-700" x-show="step > 0" @click="step--">Kembali</button>
-              <button type="button" class="ml-auto rounded-full bg-blue-600 px-7 py-3 font-semibold text-white transition hover:bg-blue-700" @click="nextStep" x-text="step === 3 ? 'Kirim pesanan' : 'Lanjut'"></button>
+              <button type="button" class="ml-auto rounded-full bg-blue-600 px-7 py-3 font-semibold text-white transition hover:bg-blue-700" @click="nextStep" x-text="loading ? 'Memproses...' : (step === 2 ? 'Lanjut ke pembayaran' : 'Lanjut')"></button>
             </div>
           </form>
         </section>
