@@ -43,6 +43,7 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
           jenis_web: this.selectedCategory.category,
           paket: this.selectedPackage.name,
           harga: this.total,
+          nama: this.form.nama,
           telepon: this.form.no_hp,
           sumber_order: window.location.host,
           datadiri_order: {
