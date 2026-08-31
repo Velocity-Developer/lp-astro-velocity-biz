@@ -43,15 +43,19 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
           jenis_web: this.selectedCategory.category,
           paket: this.selectedPackage.name,
           harga: this.total,
-          nama: this.form.nama,
-          no_hp: this.form.no_hp,
-          email: this.form.email,
-          alamat: this.form.alamat,
-          nama_usaha: this.form.nama_usaha,
-          kebutuhan: this.form.kebutuhan,
-          url_referensi: this.form.url_referensi,
-          url_materi: this.form.url_materi,
+          telepon: this.form.no_hp,
           sumber_order: window.location.host,
+          datadiri_order: {
+            nama: this.form.nama,
+            email: this.form.email,
+            alamat: this.form.alamat,
+            nama_usaha: this.form.nama_usaha,
+          },
+          project_order: {
+            kebutuhan: this.form.kebutuhan,
+            url_referensi: this.form.url_referensi,
+            url_materi: this.form.url_materi,
+          },
         };
         let popup;
         try {
