@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import harga from '../data/harga.json';
+
+const categories = harga.categories;
+const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(value);
+---
+
+<Layout title="Pesan Website" description="Pesan website sesuai kebutuhan bisnis Anda dengan mudah.">
+  <main
+    class="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:px-8"
+    x-data={`{
+      categories: ${JSON.stringify(categories)},
+      step: 0,
+      selectedCategory: null,
+      selectedPackage: null,
+      form: { nama: '', no_hp: '', nama_usaha: '', kebutuhan: '', pembayaran: 'Transfer Bank' },
+      get packages() { return this.selectedCategory?.packages || [] },
+      get total() { return this.selectedPackage?.price || 0 },
+      formatRupiah(value) { return 'Rp ' + new Intl.NumberFormat('id-ID').format(value) },
+      selectCategory(category) { this.selectedCategory = category; this.selectedPackage = null; this.step = 1 },
+      selectPackage(item) { this.selectedPackage = item },
+      nextStep() {
+        if (this.step === 0 && !this.selectedCategory) return;
+        if (this.step === 1 && !this.selectedPackage) return;
+        if (this.step === 2 && !$refs.form.reportValidity()) return;
+        if (this.step < 3) this.step++;
+        else this.sendOrder();
+      },
+      sendOrder() {
+        const message = [
+          'Halo, saya ingin memesan website di Velocity Developer.', '',
+          'Jenis website: ' + this.selectedCategory.category,
+          'Paket: ' + this.selectedPackage.name,
+          'Harga: ' + this.formatRupiah(this.total),
+          'Nama: ' + this.form.nama,
+          'No. WhatsApp: ' + this.form.no_hp,
+          'Usaha / instansi: ' + this.form.nama_usaha,
+          'Kebutuhan: ' + this.form.kebutuhan,
+          'Pembayaran: ' + this.form.pembayaran
+        ].join('\\n');
+        window.open('https://wa.me/6285600566674?text=' + encodeURIComponent(message), '_blank');
+      }
+    }`}
+  >
+    <div class="mx-auto max-w-6xl">
+      <div class="mx-auto mb-10 max-w-2xl text-center">
+        <span class="mb-3 inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-700">Mulai dari sini</span>
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Pesan website impian Anda</h1>
+        <p class="mt-3 text-slate-600">Ikuti 4 langkah singkat. Tim kami akan segera memproses pesanan Anda.</p>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-[1fr_340px]">
+        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <div class="mb-8 flex items-center justify-between">
+            <div class="step" :class="{ active: step === 0, done: step > 0 }"><span>1</span><small>Jenis website</small></div>
+            <i></i><div class="step" :class="{ active: step === 1, done: step > 1 }"><span>2</span><small>Paket</small></div>
+            <i></i><div class="step" :class="{ active: step === 2, done: step > 2 }"><span>3</span><small>Data diri</small></div>
+            <i></i><div class="step" :class="{ active: step === 3 }"><span>4</span><small>Pembayaran</small></div>
+          </div>
+
+          <form id="order-form" x-ref="form" @submit.prevent="nextStep">
+            <div class="panel" x-show="step === 0">
+              <h2 class="text-xl font-bold text-slate-900">Pilih jenis website</h2>
+              <p class="mt-1 mb-6 text-sm text-slate-500">Pilih sesuai tujuan utama website Anda.</p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                {categories.map((category) => (
+                  <button type="button" class="choice text-left" :class="{ selected: selectedCategory?.category === $el.dataset.category }" @click="selectCategory(categories.find((item) => item.category === $el.dataset.category))" data-category={category.category}>
+                    <strong>{category.category}</strong><span>{category.description}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div class="panel" x-show="step === 1" x-cloak>
+              <h2 class="text-xl font-bold text-slate-900">Pilih paket</h2>
+              <p class="mt-1 mb-6 text-sm text-slate-500">Paket tersedia untuk jenis website yang dipilih.</p>
+              <div id="packages" class="grid gap-3">
+                <template x-for="item in packages" :key="item.name">
+                  <button type="button" class="choice text-left" :class="{ selected: selectedPackage?.name === item.name }" @click="selectPackage(item)">
+                    <strong x-text="item.name"></strong><span x-text="item.design"></span><b class="mt-3 block text-blue-700" x-text="formatRupiah(item.price)"></b>
+                  </button>
+                </template>
+              </div>
+            </div>
+
+            <div class="panel hidden" data-panel="2">
+              <h2 class="text-xl font-bold text-slate-900">Isi data Anda</h2>
+              <p class="mt-1 mb-6 text-sm text-slate-500">Data ini dipakai tim kami untuk menghubungi Anda.</p>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label>Nama lengkap<input required name="nama" placeholder="Nama Anda" x-model="form.nama" /></label>
+                <label>No. WhatsApp<input required name="no_hp" type="tel" placeholder="081234567890" /></label>
+                <label class="sm:col-span-2">Nama usaha / instansi<input required name="nama_usaha" placeholder="Contoh: CV Maju Jaya" x-model="form.nama_usaha" /></label>
+                <label class="sm:col-span-2">Catatan kebutuhan<textarea required name="kebutuhan" rows="4" placeholder="Ceritakan kebutuhan website Anda" x-model="form.kebutuhan"></textarea></label>
+              </div>
+            </div>
+
+            <div class="panel" x-show="step === 3" x-cloak>
+              <h2 class="text-xl font-bold text-slate-900">Pilih pembayaran</h2>
+              <p class="mt-1 mb-6 text-sm text-slate-500">Pilih metode pembayaran untuk menyelesaikan pesanan.</p>
+              <label class="payment"><input required type="radio" name="pembayaran" value="Transfer Bank" x-model="form.pembayaran" /><span><strong>Transfer Bank</strong><small>BCA, sesuai instruksi setelah pesanan dikirim</small></span></label>
+              <label class="payment"><input type="radio" name="pembayaran" value="Konfirmasi via WhatsApp" x-model="form.pembayaran" /><span><strong>Konfirmasi via WhatsApp</strong><small>Diskusikan detail pembayaran bersama tim kami</small></span></label>
+              <div class="mt-6 rounded-xl bg-blue-50 p-4 text-sm text-blue-800">Setelah klik kirim, Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan.</div>
+            </div>
+
+            <div class="mt-8 flex justify-between gap-3 border-t border-slate-100 pt-6">
+              <button type="button" class="rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-700" x-show="step > 0" @click="step--">Kembali</button>
+              <button type="submit" class="ml-auto rounded-full bg-blue-600 px-7 py-3 font-semibold text-white transition hover:bg-blue-700" x-text="step === 3 ? 'Kirim pesanan' : 'Lanjut'"></button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="h-fit rounded-2xl bg-slate-900 p-6 text-white lg:sticky lg:top-6">
+          <p class="text-sm font-semibold text-blue-300">Ringkasan pesanan</p><h2 class="mt-2 text-xl font-bold">Website baru, langkah mudah.</h2>
+          <div class="mt-8 space-y-4 text-sm"><div><span class="text-slate-400">Jenis website</span><strong class="mt-1 block" x-text="selectedCategory?.category || 'Belum dipilih'"></strong></div><div><span class="text-slate-400">Paket</span><strong class="mt-1 block" x-text="selectedPackage?.name || 'Belum dipilih'"></strong></div><div class="border-t border-slate-700 pt-4"><span class="text-slate-400">Total mulai dari</span><strong class="mt-1 block text-2xl text-blue-300" x-text="formatRupiah(total)"></strong></div></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .step { display:flex; flex-direction:column; align-items:center; gap:.4rem; color:#94a3b8; min-width:3rem }.step span { display:grid; place-items:center; width:2rem; height:2rem; border-radius:999px; background:#e2e8f0; font-size:.875rem; font-weight:700 }.step small { font-size:.7rem; white-space:nowrap }.step.active { color:#2563eb }.step.active span { background:#2563eb; color:white }.step.done span { background:#dbeafe; color:#2563eb } .step.done { color:#2563eb } .step + i { height:1px; flex:1; margin:0 .35rem; background:#e2e8f0 }
+  .choice { border:1px solid #e2e8f0; border-radius:1rem; padding:1rem; transition:.2s }.choice:hover,.choice.selected { border-color:#2563eb; background:#eff6ff }.choice strong,.choice span { display:block }.choice span { margin-top:.4rem; color:#64748b; font-size:.75rem; line-height:1.5 } label { display:block; color:#475569; font-size:.875rem; font-weight:600 } input:not([type=radio]),textarea { display:block; width:100%; margin-top:.4rem; border:1px solid #cbd5e1; border-radius:.65rem; padding:.75rem; font:inherit; font-weight:400; outline:none } input:focus,textarea:focus { border-color:#2563eb; box-shadow:0 0 0 3px #dbeafe }.payment { display:flex; gap:.75rem; align-items:flex-start; border:1px solid #e2e8f0; border-radius:1rem; padding:1rem; margin-bottom:.75rem; cursor:pointer }.payment:has(input:checked) { border-color:#2563eb; background:#eff6ff }.payment strong,.payment small { display:block }.payment small { margin-top:.3rem; color:#64748b; font-weight:400 }
+</style>
+
+<style is:global>
+  [x-cloak] { display: none !important; }
+</style>
