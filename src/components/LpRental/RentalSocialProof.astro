@@ -97,18 +97,19 @@ const itemsSwiper = [
 		
 		<div class="swiper mySwiper" data-rental-swiper-root>
 			<div class="swiper-wrapper">
-			{itemsSwiper.map((item, index) => (
-				<div class="swiper-slide pb-2">
-					<div class="carousel-cell-container relative">
-						<Image src={item.image} alt={item.title} loading="lazy" class="w-full object-contain shadow-md"/>
-						<div class="caption absolute bottom-0 left-0 right-0 pb-1 px-1 text-center text-sm transition-all duration-300">                        
-							<div class="bg-blue-600 rounded-full text-white p-2 shadow-md">
-								{item.title}
-							</div>
-						</div>
-					</div>
-				</div>
-			))}
+                {itemsSwiper.map((item, index) => (
+                    <div class="swiper-slide pb-2">
+                        <div class="carousel-cell-container relative">
+                            <Image src={item.image} alt={item.title} loading="lazy" class="w-full object-contain shadow-md"/>
+                            <div class="caption absolute bottom-0 left-0 right-0 pb-1 px-1 text-center text-sm transition-all duration-300">                        
+                                <div class="bg-blue-600 rounded-full text-white p-2 shadow-md">
+                                    {item.title}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
 		</div>
 
 	</div>
