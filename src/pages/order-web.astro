@@ -9,6 +9,7 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
 <Layout title="Pesan Website" description="Pesan website sesuai kebutuhan bisnis Anda dengan mudah.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" />
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key={import.meta.env.PUBLIC_MIDTRANS_CLIENT_KEY}></script>
   <main
     class="min-h-screen bg-slate-50"
     x-data={`{
@@ -44,6 +45,7 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
           paket: this.selectedPackage.name,
           harga: this.total,
           nama: this.form.nama,
+          email: this.form.email,
           telepon: this.form.no_hp,
           sumber_order: window.location.host,
           datadiri_order: {
@@ -58,7 +60,6 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
             url_materi: this.form.url_materi,
           },
         };
-        let popup;
         try {
           const response = await fetch('https://new.velocitydeveloper.net/api/api/public/order-web-snap', {
             method: 'POST',
@@ -69,13 +70,18 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
             },
             body: JSON.stringify(payload)
           });
-          const { nomor_order, redirect_url } = await response.json();
-          if (!response.ok || !redirect_url) throw new Error('URL pembayaran tidak tersedia');
-          popup = window.open(redirect_url, 'midtrans-snap', 'width=480,height=720,resizable=yes,scrollbars=yes');
-          if (!popup) window.location.href = redirect_url;
-          console.log('Order:', nomor_order);
+          const result = await response.json();
+          const nomor_order = result.data?.nomor_order;
+          const snapToken = result.snap_token;
+          if (!response.ok || !snapToken) throw new Error('Token pembayaran tidak tersedia');
+          if (!window.snap) throw new Error('Pembayaran belum siap, silakan coba lagi.');
+          window.snap.pay(snapToken, {
+            onSuccess: () => console.log('Pembayaran berhasil:', nomor_order),
+            onPending: () => console.log('Pembayaran menunggu:', nomor_order),
+            onError: () => { this.error = 'Pembayaran gagal diproses.'; },
+            onClose: () => console.log('Popup pembayaran ditutup:', nomor_order),
+          });
         } catch (error) {
-          if (popup) popup.close();
           this.error = error.message || 'Pesanan gagal diproses.';
         } finally {
           this.loading = false;
