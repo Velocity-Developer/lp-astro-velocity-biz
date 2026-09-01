@@ -19,6 +19,9 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
       error: '',
       selectedCategory: null,
       selectedPackage: null,
+      orderNumber: '',
+      snapToken: '',
+      copied: false,
       form: { nama: '', no_hp: '', email: '', alamat: '', nama_usaha: '', kebutuhan: '', url_referensi: '', url_materi: '', pembayaran: 'Transfer Bank' },
       get packages() { return this.selectedCategory?.packages || [] },
       get total() { return this.selectedPackage?.price || 0 },
@@ -35,6 +38,15 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
         if (this.step === 2 && (!$refs.form.reportValidity() || !this.form.alamat.trim())) return;
         if (this.step < 2) this.step++;
         else this.sendOrder();
+      },
+      payOrder() {
+        if (!this.snapToken || !window.snap) return;
+        window.snap.pay(this.snapToken);
+      },
+      async copyOrderNumber() {
+        await navigator.clipboard.writeText(this.orderNumber);
+        this.copied = true;
+        setTimeout(() => { this.copied = false }, 1500);
       },
       async sendOrder() {
         if (!this.selectedCategory || !this.selectedPackage || this.loading) return;
@@ -75,6 +87,8 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
           const snapToken = result.snap_token;
           if (!response.ok || !snapToken) throw new Error('Token pembayaran tidak tersedia');
           if (!window.snap) throw new Error('Pembayaran belum siap, silakan coba lagi.');
+          this.orderNumber = nomor_order;
+          this.snapToken = snapToken;
           window.snap.pay(snapToken, {
             onSuccess: () => console.log('Pembayaran berhasil:', nomor_order),
             onPending: () => console.log('Pembayaran menunggu:', nomor_order),
@@ -159,6 +173,16 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
               <button type="button" class="ml-auto rounded-full bg-blue-600 px-7 py-3 font-semibold text-white transition hover:bg-blue-700" @click="nextStep" x-text="loading ? 'Memproses...' : (step === 2 ? 'Lanjut ke pembayaran' : 'Lanjut')"></button>
             </div>
           </form>
+                    
+          <div x-show="orderNumber" x-cloak class="mb-8 rounded-xl bg-emerald-50 p-5 text-emerald-900" role="status">
+            <h2 class="text-xl font-bold">Terima kasih atas pesanan Anda.</h2>
+            <p class="mt-2 text-sm">Selesaikan pembayaran melalui popup Midtrans.</p>
+            <div class="mt-4 flex items-center gap-2 rounded-lg bg-white p-3 ring-1 ring-emerald-200">
+              <strong class="flex-1 select-all" x-text="orderNumber"></strong>
+              <button type="button" class="rounded-lg bg-emerald-600 px-3 py-2 text-sm font-semibold text-white" @click="copyOrderNumber" x-text="copied ? 'Tersalin' : 'Salin'"></button>
+            </div>
+            <button type="button" class="mt-3 w-full rounded-lg bg-blue-600 px-4 py-3 font-bold text-white hover:bg-blue-700" @click="payOrder">BAYAR</button>
+          </div>
         </section>
 
         <aside class="h-fit rounded-2xl bg-slate-900 p-6 text-white lg:sticky lg:top-6">
