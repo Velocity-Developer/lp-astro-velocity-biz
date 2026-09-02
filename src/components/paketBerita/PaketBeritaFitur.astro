@@ -13,6 +13,8 @@ const featureRows = [
 	['Panduan Kelola Konten', '&#10004;', 'Tidak ada'],
 	['Harga Mulai', 'Rp 390rb', 'Rp 5 Juta+++']
 ];
+
+const orderUrl = '/order-web?category=Website+Berita+%2F+Media+Online';
 ---
 
 <section id="fitur" class="bg-radial-[at_50%_15%] from-lime-50 via-blue-50 to-sky-50 px-6 pt-12 md:py-25">
@@ -51,7 +53,7 @@ const featureRows = [
 		</div>
 
 		<div class="mt-12 text-center">
-			<Button link="#" className="cta-modal-formorder px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
+			<Button link={orderUrl} className="px-12 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-shadow" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
 				<div class="flex flex-col items-center justify-center gap-2 px-3 py-2 md:flex-row">
 					<span>Dapatkan Portal Berita Profesional dengan <span class="font-bold">Rp 390rb</span> Sekarang!</span>
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">

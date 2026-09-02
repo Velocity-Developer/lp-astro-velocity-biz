@@ -8,6 +8,8 @@ const faqs = [
 	['Apakah ada support setelah website selesai?', 'Ya. Kami tetap membantu kebutuhan teknis, panduan penggunaan, dan kendala umum setelah portal diluncurkan.'],
 	['Kalau saya belum punya nama media atau konsepnya, apakah tetap bisa konsultasi?', 'Tetap bisa. Konsultasi awal dapat membahas konsep media, target pembaca, struktur kategori, dan kebutuhan sebelum produksi.']
 ];
+
+const orderUrl = '/order-web?category=Website+Berita+%2F+Media+Online';
 ---
 
 <section id="faq" class="bg-linear-to-b from-white to-blue-50 px-6 py-16 md:px-10 md:py-24">
@@ -31,7 +33,7 @@ const faqs = [
 		<div class="mt-10 rounded-3xl bg-blue-900 px-6 py-8 text-center text-white shadow-xl">
 			<h3 class="text-2xl font-bold md:text-3xl">Masih ada pertanyaan sebelum mulai?</h3>
 			<p class="mt-3 text-blue-100 md:text-lg">Isi form konsultasi dan kami bantu cek kebutuhan portal berita Anda tanpa biaya.</p>
-			<a href="#" class="cta-modal-formorder mt-6 inline-flex rounded-full bg-yellow-400 px-8 py-4 font-bold text-slate-900" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'Lead');">Tanya Tim Kami Sekarang</a>
+			<a href={orderUrl} class="mt-6 inline-flex rounded-full bg-yellow-400 px-8 py-4 font-bold text-slate-900" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'Lead');">Order Portal Berita Sekarang</a>
 		</div>
 	</div>
 </section>

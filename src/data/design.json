@@ -1,0 +1,58 @@
+{
+  "Website Berita / Media Online": {
+    "Paket Portal Berita Biasa": [
+      {
+        "name": "Desain Berita Biasa 1",
+        "image": "/designs/portal-berita/biasa-1.jpg"
+      },
+      {
+        "name": "Desain Berita Biasa 2",
+        "image": "/designs/portal-berita/biasa-2.jpg"
+      },
+      {
+        "name": "Desain Berita Biasa 3",
+        "image": "/designs/portal-berita/biasa-3.jpg"
+      },
+      {
+        "name": "Desain Berita Biasa 4",
+        "image": "/designs/portal-berita/biasa-4.jpg"
+      }
+    ],
+    "Paket Portal Berita Custom": [
+      {
+        "name": "Desain Berita Custom 1",
+        "image": "/designs/portal-berita/custom-1.jpg"
+      },
+      {
+        "name": "Desain Berita Custom 2",
+        "image": "/designs/portal-berita/custom-2.jpg"
+      },
+      {
+        "name": "Desain Berita Custom 3",
+        "image": "/designs/portal-berita/custom-3.jpg"
+      },
+      {
+        "name": "Desain Berita Custom 4",
+        "image": "/designs/portal-berita/custom-4.jpg"
+      }
+    ],
+    "Paket Unlimited": [
+      {
+        "name": "Desain Berita Unlimited 1",
+        "image": "/designs/portal-berita/unlimited-1.jpg"
+      },
+      {
+        "name": "Desain Berita Unlimited 2",
+        "image": "/designs/portal-berita/unlimited-2.jpg"
+      },
+      {
+        "name": "Desain Berita Unlimited 3",
+        "image": "/designs/portal-berita/unlimited-3.jpg"
+      },
+      {
+        "name": "Desain Berita Unlimited 4",
+        "image": "/designs/portal-berita/unlimited-4.jpg"
+      }
+    ]
+  }
+}

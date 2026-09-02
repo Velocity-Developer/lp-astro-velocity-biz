@@ -4,6 +4,8 @@ import Button from '../LpButton.astro';
 const packageOptions = [
 	{
 		name: 'Paket Biasa',
+		orderName: 'Paket Biasa',
+		orderPrice: 390000,
 		price: 'Rp 390.000',
 		description: 'Pilihan hemat untuk mulai membangun portal berita dan publikasi online.',
 		features: ['Hosting 150mb','Gratis Domain','Portal berita siap online', 'Tampilan responsif', 'Dashboard mudah dikelola', 'Support teknis','Desain disediakan sudah siap pakai'],
@@ -11,6 +13,8 @@ const packageOptions = [
 	},
 	{
 		name: 'Paket Custom',
+		orderName: 'Paket Custom',
+		orderPrice: 1200000,
 		price: 'Rp 1.200.000',
 		description: 'Cocok untuk portal berita dengan tampilan dan kebutuhan yang lebih khusus.',
 		features: ['Hosting 250mb','Gratis Domain','Tampilan Responsif','Dashboard Mudah Dikelola','Support Teknis','Desain dapat disesuaikan', 'Struktur kategori custom', 'Optimasi SEO dasar','Desain Custom'],
@@ -18,12 +22,24 @@ const packageOptions = [
 	},
 	{
 		name: 'Paket Unlimited',
+		orderName: 'Paket Unlimited',
+		orderPrice: 3000000,
 		price: 'Rp 3.000.000',
 		description: 'Solusi lengkap untuk media online yang ingin berkembang tanpa khawatir batasan.',
 		features: ['Hosting Unlimited','Gratis Domain','Tampilan Responsif','Dashboard Mudah Dikelola','Support Teknis','Desain dapat disesuaikan', 'Struktur kategori custom', 'Optimasi SEO dasar','Desain Custom'],
 		featured: false
 	}
 ];
+
+const getOrderUrl = (item: typeof packageOptions[number]) => {
+	const params = new URLSearchParams({
+		category: 'Website Berita / Media Online',
+		paket: item.orderName,
+		harga: String(item.orderPrice),
+	});
+
+	return `/order-web?${params.toString()}`;
+};
 ---
 
 <section id="paketweb" class="bg-linear-to-r from-blue-800 to-sky-600 px-6 py-20 text-white md:px-10">
@@ -60,7 +76,7 @@ const packageOptions = [
 						))}
 					</ul>
 					<div class="mt-auto">
-						<Button link="#" className="cta-modal-formorder w-full px-8 py-4 text-base font-bold shadow-lg" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
+						<Button link={getOrderUrl(item)} className="w-full px-8 py-4 text-base font-bold shadow-lg" color="yellow" onclick="if (typeof window.fbq === 'function') window.fbq('track', 'AddToCart');">
 							Pilih {item.name}
 						</Button>
 					</div>

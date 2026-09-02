@@ -27,6 +27,12 @@ const fields = [
 ];
 
 const wa = '6285600566674';
+
+const packagePrices = {
+	'Paket Biasa': 390000,
+	'Paket Custom': 1200000,
+	'Paket Unlimited': 3000000
+};
 ---
 
 <form
@@ -45,6 +51,7 @@ const wa = '6285600566674';
 			utm_content: ''
 		},
 		wa: '${wa}',
+		packagePrices: ${JSON.stringify(packagePrices)},
 		initUtm() {
 			const params = new URLSearchParams(window.location.search);
 			['utm_source', 'utm_medium', 'utm_campaign', 'utm_adset', 'utm_content'].forEach((key) => {
@@ -67,6 +74,24 @@ const wa = '6285600566674';
 			].join('\\n');
 
 			return 'https://wa.me/' + this.wa + '?text=' + encodeURIComponent(message);
+		},
+		get orderLink() {
+			const params = new URLSearchParams({
+				category: 'Website Berita / Media Online',
+				paket: this.form.paket,
+				harga: String(this.packagePrices[this.form.paket] || 0),
+				nama: this.form.nama,
+				no_hp: this.form.no_hp,
+				nama_usaha: this.form.nama_media,
+				kebutuhan: 'Domisili media: ' + this.form.domisili_media + '\\nNama media: ' + this.form.nama_media,
+				utm_source: this.form.utm_source,
+				utm_medium: this.form.utm_medium,
+				utm_campaign: this.form.utm_campaign,
+				utm_adset: this.form.utm_adset,
+				utm_content: this.form.utm_content
+			});
+
+			return '/order-web?' + params.toString();
 		},
 		get orderPayload() {
 			const utmInfo = [
@@ -115,9 +140,9 @@ const wa = '6285600566674';
 		<label class="mb-1 block text-sm text-slate-600" for="paket">Pilihan paket</label>
 		<select id="paket" name="paket" class="w-full rounded-md border border-slate-300 bg-white p-2" x-model="form.paket" required>
 			<option value="" disabled>Pilih paket berita</option>
-			<option value="Paket Biasa - Rp 390.000">Paket Biasa - Rp 390.000</option>
-			<option value="Paket Custom - Rp 1.200.000">Paket Custom - Rp 1.200.000</option>
-			<option value="Paket Unlimited - Rp 3.000.000">Paket Unlimited - Rp 3.000.000</option>
+			<option value="Paket Biasa">Paket Biasa - Rp 390.000</option>
+			<option value="Paket Custom">Paket Custom - Rp 1.200.000</option>
+			<option value="Paket Unlimited">Paket Unlimited - Rp 3.000.000</option>
 		</select>
 	</div>
 	{fields.map((field) => (
@@ -136,15 +161,13 @@ const wa = '6285600566674';
 	))}
 	<div class="mt-8">
 		<a
-			x-bind:href="isValid ? waLink : '#formorder'"
-			target="_blank"
-			rel="noopener noreferrer"
+			x-bind:href="isValid ? orderLink : '#formorder'"
 			class="inline-flex w-full items-center justify-center rounded-full bg-linear-to-r from-green-500 to-green-800 px-8 py-4 font-semibold text-white transition-shadow hover:shadow-md"
 			x-bind:class="isValid ? 'cursor-pointer' : 'pointer-events-none cursor-not-allowed opacity-50'"
 			x-bind:aria-disabled="(!isValid).toString()"
 			@click="if (!isValid) { $event.preventDefault(); return; } if (typeof window.fbq === 'function') window.fbq('track', 'Lead'); sendOrder()"
 		>
-			Lanjut Konsultasi via WhatsApp
+			Lanjut ke Form Order
 		</a>
 	</div>
 </form>

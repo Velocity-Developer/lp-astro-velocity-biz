@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import harga from '../data/harga.json';
+import designs from '../data/design.json';
 
 const categories = harga.categories;
 const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(value);
@@ -14,6 +15,7 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
     class="min-h-screen bg-slate-50"
     x-data={`{
       categories: ${JSON.stringify(categories)},
+      designs: ${JSON.stringify(designs)},
       step: 0,
       loading: false,
       error: '',
@@ -22,12 +24,51 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
       orderNumber: '',
       snapToken: '',
       copied: false,
-      form: { nama: '', no_hp: '', email: '', alamat: '', nama_usaha: '', kebutuhan: '', url_referensi: '', url_materi: '', pembayaran: 'Transfer Bank' },
+      lockedCategoryFromLandingPage: false,
+      form: { nama: '', no_hp: '', email: '', alamat: '', nama_usaha: '', kebutuhan: '', pilihan_desain: '', url_referensi: '', url_materi: '', pembayaran: 'Transfer Bank' },
       get packages() { return this.selectedCategory?.packages || [] },
       get total() { return this.selectedPackage?.price || 0 },
+      get minStep() { return this.lockedCategoryFromLandingPage ? 1 : 0 },
+      get isPortalBerita() { return this.selectedCategory?.category === 'Website Berita / Media Online' },
+      get currentDesigns() { return this.designs[this.selectedCategory?.category]?.[this.selectedPackage?.name] || [] },
       formatRupiah(value) { return 'Rp ' + new Intl.NumberFormat('id-ID').format(value) },
-      selectCategory(category) { this.selectedCategory = category; this.selectedPackage = null; this.step = 1 },
-      selectPackage(item) { this.selectedPackage = item },
+      init() {
+        this.applyPresetFromQuery();
+      },
+      applyPresetFromQuery() {
+        const params = new URLSearchParams(window.location.search);
+        const categoryName = params.get('category');
+        const packageName = params.get('paket');
+        const packagePrice = Number(params.get('harga') || 0);
+
+        ['nama', 'no_hp', 'email', 'alamat', 'nama_usaha', 'kebutuhan', 'pilihan_desain', 'url_referensi', 'url_materi'].forEach((key) => {
+          const value = params.get(key);
+          if (value) this.form[key] = value;
+        });
+
+        if (!categoryName && !packageName) return;
+
+        const category = this.categories.find((item) => item.category === categoryName) || this.categories.find((item) => item.category === 'Website Berita / Media Online');
+        if (!category) return;
+
+        this.selectedCategory = category;
+        if (packageName) {
+          this.selectedPackage = this.packages.find((item) => item.name === packageName || item.name.endsWith(packageName)) || {
+            name: packageName,
+            price: packagePrice,
+            design: 'Paket dari landingpage',
+          };
+        }
+        this.lockedCategoryFromLandingPage = Boolean(categoryName);
+        this.step = this.selectedPackage ? 2 : 1;
+      },
+      selectCategory(category) { this.selectedCategory = category; this.selectedPackage = null; this.form.pilihan_desain = ''; this.step = 1 },
+      selectPackage(item) { this.selectedPackage = item; this.form.pilihan_desain = '' },
+      selectDesign(item) { this.form.pilihan_desain = item.name },
+      previousStep() {
+        if (this.step <= this.minStep) return;
+        this.step--;
+      },
       initEditor() {
         const editor = new Quill(this.$refs.editor, { theme: 'snow', placeholder: 'Ceritakan kebutuhan website Anda', modules: { toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']] } });
         editor.on('text-change', () => { this.form.kebutuhan = editor.root.innerHTML === '<p><br></p>' ? '' : editor.root.innerHTML });
@@ -68,6 +109,7 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
           },
           project_order: {
             kebutuhan: this.form.kebutuhan,
+            pilihan_desain: this.form.pilihan_desain,
             url_referensi: this.form.url_referensi,
             url_materi: this.form.url_materi,
           },
@@ -156,20 +198,35 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
                 <label>No. WhatsApp<input :required="step === 2" name="no_hp" type="tel" placeholder="081234567890" x-model="form.no_hp" /></label>
                 <label>Email<input :required="step === 2" name="email" type="email" placeholder="nama@email.com" x-model="form.email" /></label>
                 <label class="sm:col-span-2">Alamat<textarea :required="step === 2" name="alamat" rows="3" placeholder="Alamat lengkap" x-model="form.alamat"></textarea></label>
-                <label class="sm:col-span-2">Nama usaha / instansi<input :required="step === 2" name="nama_usaha" placeholder="Contoh: CV Maju Jaya" x-model="form.nama_usaha" /></label>
-                <div class="sm:col-span-2 my-2 border-t border-slate-200 pt-6">
+                <label class="sm:col-span-2"><span x-text="isPortalBerita ? 'Nama media' : 'Nama usaha / instansi'"></span><input :required="step === 2" name="nama_usaha" :placeholder="isPortalBerita ? 'Contoh: Kabar Nusantara' : 'Contoh: CV Maju Jaya'" x-model="form.nama_usaha" /></label>
+                <div x-show="isPortalBerita" x-cloak class="sm:col-span-2">
+                  <div class="mb-3 flex items-end justify-between gap-3">
+                    <label class="m-0">Pilihan desain</label>
+                    <span class="text-xs font-semibold text-slate-500" x-text="selectedPackage?.name || ''"></span>
+                  </div>
+                  <input type="hidden" name="pilihan_desain" :required="step === 2 && isPortalBerita" x-model="form.pilihan_desain" />
+                  <div class="grid gap-3 sm:grid-cols-2">
+                    <template x-for="item in currentDesigns" :key="item.name">
+                      <button type="button" class="design-choice text-left" :class="{ selected: form.pilihan_desain === item.name }" @click="selectDesign(item)">
+                        <img :src="item.image" :alt="item.name" loading="lazy" />
+                        <strong x-text="item.name"></strong>
+                      </button>
+                    </template>
+                  </div>
+                </div>
+                <div x-show="!isPortalBerita" class="sm:col-span-2 my-2 border-t border-slate-200 pt-6">
                   <h3 class="text-lg font-bold text-slate-900">Data Projek</h3>
                 </div>
-                <label class="sm:col-span-2">Catatan kebutuhan<div class="quill-editor-container"><div x-ref="editor" x-init="initEditor()" class="quill-editor" style="height: 16rem; overflow-y: auto;"></div></div><input type="hidden" name="kebutuhan" :value="form.kebutuhan" /></label>
-                <label>URL referensi<input name="url_referensi" type="url" placeholder="https://contoh.com" x-model="form.url_referensi" /></label>
-                <label>URL materi<input name="url_materi" type="url" placeholder="https://drive.google.com/..." x-model="form.url_materi" /></label>
+                <label x-show="!isPortalBerita" class="sm:col-span-2">Catatan kebutuhan<div class="quill-editor-container"><div x-ref="editor" x-init="initEditor()" class="quill-editor" style="height: 16rem; overflow-y: auto;"></div></div><input type="hidden" name="kebutuhan" :value="form.kebutuhan" /></label>
+                <label x-show="!isPortalBerita">URL referensi<input name="url_referensi" type="url" placeholder="https://contoh.com" x-model="form.url_referensi" /></label>
+                <label x-show="!isPortalBerita">URL materi<input name="url_materi" type="url" placeholder="https://drive.google.com/..." x-model="form.url_materi" /></label>
               </div>
             </div>
 
 
             <p x-show="error" x-text="error" class="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700"></p>
             <div class="mt-8 flex justify-between gap-3 border-t border-slate-100 pt-6">
-              <button type="button" class="rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-700" x-show="step > 0" @click="step--">Kembali</button>
+              <button type="button" class="rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-700" x-show="step > minStep" @click="previousStep">Kembali</button>
               <button type="button" class="ml-auto rounded-full bg-blue-600 px-7 py-3 font-semibold text-white transition hover:bg-blue-700" @click="nextStep" x-text="loading ? 'Memproses...' : (step === 2 ? 'Lanjut ke pembayaran' : 'Lanjut')"></button>
             </div>
           </form>
@@ -199,7 +256,8 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
   .quill-editor { min-height: 16rem; background: white; color: #0f172a; font-weight: 400; }
   .quill-editor .ql-editor { min-height: 16rem; }
   .step { display:flex; flex-direction:column; align-items:center; gap:.4rem; color:#94a3b8; min-width:3rem }.step span { display:grid; place-items:center; width:2rem; height:2rem; border-radius:999px; background:#e2e8f0; font-size:.875rem; font-weight:700 }.step small { font-size:.7rem; white-space:nowrap }.step.active { color:#2563eb }.step.active span { background:#2563eb; color:white }.step.done span { background:#dbeafe; color:#2563eb } .step.done { color:#2563eb } .step + i { height:1px; flex:1; margin:0 .35rem; background:#e2e8f0 }
-  .choice { border:1px solid #e2e8f0; border-radius:1rem; padding:1rem; transition:.2s }.choice:hover,.choice.selected { border-color:#2563eb; background:#eff6ff }.choice strong,.choice span { display:block }.choice span { margin-top:.4rem; color:#64748b; font-size:.75rem; line-height:1.5 } label { display:block; color:#475569; font-size:.875rem; font-weight:600 } input:not([type=radio]),textarea { display:block; width:100%; margin-top:.4rem; border:1px solid #cbd5e1; border-radius:.65rem; padding:.75rem; font:inherit; font-weight:400; outline:none } input:focus,textarea:focus { border-color:#2563eb; box-shadow:0 0 0 3px #dbeafe }.payment { display:flex; gap:.75rem; align-items:flex-start; border:1px solid #e2e8f0; border-radius:1rem; padding:1rem; margin-bottom:.75rem; cursor:pointer }.payment:has(input:checked) { border-color:#2563eb; background:#eff6ff }.payment strong,.payment small { display:block }.payment small { margin-top:.3rem; color:#64748b; font-weight:400 }
+  .design-choice { overflow:hidden; border:1px solid #e2e8f0; border-radius:1rem; background:white; transition:.2s }.design-choice:hover,.design-choice.selected { border-color:#2563eb; background:#eff6ff }.design-choice img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; background:#e2e8f0 }.design-choice strong { display:block; padding:.85rem; color:#0f172a; font-size:.875rem }
+  .choice { border:1px solid #e2e8f0; border-radius:1rem; padding:1rem; transition:.2s }.choice:hover,.choice.selected { border-color:#2563eb; background:#eff6ff }.choice strong,.choice span { display:block }.choice span { margin-top:.4rem; color:#64748b; font-size:.75rem; line-height:1.5 } label { display:block; color:#475569; font-size:.875rem; font-weight:600 } input:not([type=radio]),textarea,select { display:block; width:100%; margin-top:.4rem; border:1px solid #cbd5e1; border-radius:.65rem; padding:.75rem; font:inherit; font-weight:400; outline:none; background:white } input:focus,textarea:focus,select:focus { border-color:#2563eb; box-shadow:0 0 0 3px #dbeafe }.payment { display:flex; gap:.75rem; align-items:flex-start; border:1px solid #e2e8f0; border-radius:1rem; padding:1rem; margin-bottom:.75rem; cursor:pointer }.payment:has(input:checked) { border-color:#2563eb; background:#eff6ff }.payment strong,.payment small { display:block }.payment small { margin-top:.3rem; color:#64748b; font-weight:400 }
 </style>
 
 <style is:global>
