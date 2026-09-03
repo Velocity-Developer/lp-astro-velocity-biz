@@ -5,6 +5,30 @@ import designs from '../data/design.json';
 
 const categories = harga.categories;
 const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(value);
+const designAssetUrls = import.meta.glob('../assets/designs/**/*.{webp,png,jpg,jpeg}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+const resolveDesignImage = (image: string) => {
+  if (image.startsWith('/')) return image;
+  const assetKey = image.replace(/^src\/assets\//, '../assets/');
+  return designAssetUrls[assetKey] || image;
+};
+const resolvedDesigns = Object.fromEntries(
+  Object.entries(designs).map(([categoryName, packages]) => [
+    categoryName,
+    Object.fromEntries(
+      Object.entries(packages).map(([packageName, items]) => [
+        packageName,
+        items.map((item) => ({
+          ...item,
+          image: resolveDesignImage(item.image),
+        })),
+      ])
+    ),
+  ])
+);
 ---
 
 <Layout title="Pesan Website" description="Pesan website sesuai kebutuhan bisnis Anda dengan mudah.">
@@ -15,7 +39,7 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
     class="min-h-screen bg-slate-50"
     x-data={`{
       categories: ${JSON.stringify(categories)},
-      designs: ${JSON.stringify(designs)},
+      designs: ${JSON.stringify(resolvedDesigns)},
       step: 0,
       loading: false,
       error: '',
@@ -256,7 +280,7 @@ const formatRupiah = (value: number) => new Intl.NumberFormat('id-ID').format(va
   .quill-editor { min-height: 16rem; background: white; color: #0f172a; font-weight: 400; }
   .quill-editor .ql-editor { min-height: 16rem; }
   .step { display:flex; flex-direction:column; align-items:center; gap:.4rem; color:#94a3b8; min-width:3rem }.step span { display:grid; place-items:center; width:2rem; height:2rem; border-radius:999px; background:#e2e8f0; font-size:.875rem; font-weight:700 }.step small { font-size:.7rem; white-space:nowrap }.step.active { color:#2563eb }.step.active span { background:#2563eb; color:white }.step.done span { background:#dbeafe; color:#2563eb } .step.done { color:#2563eb } .step + i { height:1px; flex:1; margin:0 .35rem; background:#e2e8f0 }
-  .design-choice { overflow:hidden; border:1px solid #e2e8f0; border-radius:1rem; background:white; transition:.2s }.design-choice:hover,.design-choice.selected { border-color:#2563eb; background:#eff6ff }.design-choice img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; background:#e2e8f0 }.design-choice strong { display:block; padding:.85rem; color:#0f172a; font-size:.875rem }
+  .design-choice { overflow:hidden; border:1px solid #e2e8f0; border-radius:1rem; background:white; transition:.2s }.design-choice:hover,.design-choice.selected { border-color:#2563eb; background:#eff6ff }.design-choice img { display:block; width:100%; height:18rem; object-fit:contain; background:#f8fafc }.design-choice strong { display:block; padding:.85rem; color:#0f172a; font-size:.875rem }
   .choice { border:1px solid #e2e8f0; border-radius:1rem; padding:1rem; transition:.2s }.choice:hover,.choice.selected { border-color:#2563eb; background:#eff6ff }.choice strong,.choice span { display:block }.choice span { margin-top:.4rem; color:#64748b; font-size:.75rem; line-height:1.5 } label { display:block; color:#475569; font-size:.875rem; font-weight:600 } input:not([type=radio]),textarea,select { display:block; width:100%; margin-top:.4rem; border:1px solid #cbd5e1; border-radius:.65rem; padding:.75rem; font:inherit; font-weight:400; outline:none; background:white } input:focus,textarea:focus,select:focus { border-color:#2563eb; box-shadow:0 0 0 3px #dbeafe }.payment { display:flex; gap:.75rem; align-items:flex-start; border:1px solid #e2e8f0; border-radius:1rem; padding:1rem; margin-bottom:.75rem; cursor:pointer }.payment:has(input:checked) { border-color:#2563eb; background:#eff6ff }.payment strong,.payment small { display:block }.payment small { margin-top:.3rem; color:#64748b; font-weight:400 }
 </style>
 

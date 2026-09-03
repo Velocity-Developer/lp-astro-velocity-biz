@@ -2,57 +2,48 @@
   "Website Berita / Media Online": {
     "Paket Portal Berita Biasa": [
       {
-        "name": "Desain Berita Biasa 1",
-        "image": "/designs/portal-berita/biasa-1.jpg"
+        "name": "Berita Biasa",
+        "image": "src/assets/designs/portal berita/Berita Biasa.webp"
       },
       {
-        "name": "Desain Berita Biasa 2",
-        "image": "/designs/portal-berita/biasa-2.jpg"
+        "name": "Berita Biasa (3)",
+        "image": "src/assets/designs/portal berita/Berita Biasa (3).webp"
       },
       {
-        "name": "Desain Berita Biasa 3",
-        "image": "/designs/portal-berita/biasa-3.jpg"
+        "name": "Berita Biasa (4)",
+        "image": "src/assets/designs/portal berita/Berita Biasa (4).webp"
       },
       {
-        "name": "Desain Berita Biasa 4",
-        "image": "/designs/portal-berita/biasa-4.jpg"
+        "name": "Berita Biasa (5)",
+        "image": "src/assets/designs/portal berita/Berita Biasa (5).webp"
       }
     ],
     "Paket Portal Berita Custom": [
       {
-        "name": "Desain Berita Custom 1",
-        "image": "/designs/portal-berita/custom-1.jpg"
+        "name": "Berita Custom (2)",
+        "image": "src/assets/designs/portal berita/Berita Custom (2).webp"
       },
       {
-        "name": "Desain Berita Custom 2",
-        "image": "/designs/portal-berita/custom-2.jpg"
+        "name": "Berita Custom (3)",
+        "image": "src/assets/designs/portal berita/Berita Custom (3).webp"
       },
       {
-        "name": "Desain Berita Custom 3",
-        "image": "/designs/portal-berita/custom-3.jpg"
+        "name": "Berita Custom (4)",
+        "image": "src/assets/designs/portal berita/Berita Custom (4).webp"
       },
       {
-        "name": "Desain Berita Custom 4",
-        "image": "/designs/portal-berita/custom-4.jpg"
+        "name": "Berita Custom (5)",
+        "image": "src/assets/designs/portal berita/Berita Custom (5).webp"
+      },
+      {
+        "name": "Berita Custom (6)",
+        "image": "src/assets/designs/portal berita/Berita Custom (6).webp"
+      },
+      {
+        "name": "Berita Custom",
+        "image": "src/assets/designs/portal berita/Berita Custom.webp"
       }
     ],
-    "Paket Unlimited": [
-      {
-        "name": "Desain Berita Unlimited 1",
-        "image": "/designs/portal-berita/unlimited-1.jpg"
-      },
-      {
-        "name": "Desain Berita Unlimited 2",
-        "image": "/designs/portal-berita/unlimited-2.jpg"
-      },
-      {
-        "name": "Desain Berita Unlimited 3",
-        "image": "/designs/portal-berita/unlimited-3.jpg"
-      },
-      {
-        "name": "Desain Berita Unlimited 4",
-        "image": "/designs/portal-berita/unlimited-4.jpg"
-      }
-    ]
+    "Paket Unlimited": []
   }
 }
