@@ -8,7 +8,7 @@
         {
           "name": "Paket E",
           "price": 390000,
-          "price_extension": 311000,
+          "price_extension": 371000,
           "design": "1 pilihan desain",
           "domain": 1,
           "hosting": "150 MB",
@@ -23,7 +23,7 @@
         {
           "name": "Paket F",
           "price": 500000,
-          "price_extension": 311000,
+          "price_extension": 371000,
           "design": "20 pilihan desain, bisa request warna, header dan background bisa diganti",
           "domain": 1,
           "hosting": "150 MB",
@@ -74,7 +74,7 @@
         {
           "name": "Paket Portal Berita Biasa",
           "price": 390000,
-          "price_extension": 311000,
+          "price_extension": 371000,
           "design": "16 pilihan desain",
           "domain": 1,
           "hosting": "150 MB",
@@ -125,7 +125,7 @@
         {
           "name": "Paket Toko Online Biasa",
           "price": 390000,
-          "price_extension": 311000,
+          "price_extension": 371000,
           "design": "20 pilihan desain",
           "domain": 1,
           "hosting": "150 MB",
@@ -179,7 +179,7 @@
         {
           "name": "Paket Marketplace Biasa",
           "price": 500000,
-          "price_extension": 311000,
+          "price_extension": 371000,
           "design": "2 pilihan desain",
           "domain": 1,
           "hosting": "150 MB",
@@ -233,7 +233,7 @@
         {
           "name": "Paket Iklan Baris Biasa",
           "price": 500000,
-          "price_extension": 311000,
+          "price_extension": 371000,
           "design": "1 pilihan desain, bisa request warna & background bisa diganti",
           "domain": 1,
           "hosting": "150 MB",
@@ -360,7 +360,7 @@
         {
           "name": "Paket Forum Biasa",
           "price": 500000,
-          "price_extension": 311000,
+          "price_extension": 371000,
           "design": "1 pilihan desain",
           "domain": 1,
           "hosting": "150 MB",
@@ -522,7 +522,7 @@
         {
           "name": "Paket PPDB Biasa",
           "price": 500000,
-          "price_extension": 311000,
+          "price_extension": 371000,
           "design": "1 pilihan desain",
           "domain": 1,
           "hosting": "150 MB",
